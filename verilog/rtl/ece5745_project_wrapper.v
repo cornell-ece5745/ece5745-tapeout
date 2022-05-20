@@ -82,6 +82,41 @@ module ece5745_project_wrapper #(
 /* User project is instantiated  here   */
 /*--------------------------------------*/
 
+// ECE5745: Hardcode output enables for GPIO here
+assign io_oeb[26] = 1; //Input clk
+assign io_oeb[27] = 1; //Input reset
+
+assign io_oeb[35] = 1; //Input  15 lt_sel
+assign io_oeb[36] = 0; //Output 15 mp
+assign io_oeb[37] = 0; //Output 15 ap
+assign io_oeb[8]  = 1; //Input  15 cs
+assign io_oeb[9]  = 1; //Input  15 sclk
+assign io_oeb[10] = 0; //Output 15 miso
+assign io_oeb[11] = 1; //Input  15 mosi
+
+assign io_oeb[25] = 1; //Input  16 lt_sel
+assign io_oeb[24] = 0; //Output 16 mp
+assign io_oeb[23] = 0; //Output 16 ap
+assign io_oeb[22] = 1; //Input  16 cs
+assign io_oeb[21] = 1; //Input  16 sclk
+assign io_oeb[20] = 0; //Output 16 miso
+assign io_oeb[19] = 1; //Input  16 mosi
+
+assign io_oeb[34] = 1; //Input  17 lt_sel
+assign io_oeb[33] = 0; //Output 17 mp
+assign io_oeb[32] = 0; //Output 17 ap
+assign io_oeb[31] = 1; //Input  17 cs
+assign io_oeb[30] = 1; //Input  17 sclk
+assign io_oeb[29] = 0; //Output 17 miso
+assign io_oeb[28] = 1; //Input  17 mosi
+
+assign io_oeb[12] = 1; //Input  99 lt_sel
+assign io_oeb[13] = 0; //Output 99 mp
+assign io_oeb[14] = 0; //Output 99 ap
+assign io_oeb[15] = 1; //Input  99 cs
+assign io_oeb[16] = 1; //Input  99 sclk
+assign io_oeb[17] = 0; //Output 99 miso
+assign io_oeb[18] = 1; //Input  99 mosi
 
 grp_15_SPI_TapeOutBlock_32bits_5entries grp_15
 (
@@ -89,15 +124,15 @@ grp_15_SPI_TapeOutBlock_32bits_5entries grp_15
 	.vccd1(vccd1),	// User area 1 1.8V power
 	.vssd1(vssd1),	// User area 1 digital ground
 `endif 
-    .clk(),   // Connect to same GPIO as other groups
-    .reset(), // Connect to same GPIO as other groups
-    .loopthrough_sel(),
-    .minion_parity(),
-    .adapter_parity(),
-    .cs(),
-    .sclk(),
-    .miso(),
-    .mosi()
+    .clk(io_in[26]),   // Connect to same GPIO as other groups
+    .reset(io_in[27]), // Connect to same GPIO as other groups
+    .loopthrough_sel(io_in[35]),
+    .minion_parity(io_out[36]),
+    .adapter_parity(io_out[37]),
+    .cs(io_in[8]), // These pins are usually used by the SPI unit on chip, and will need to be reconfigured for GPIO
+    .sclk(io_in[9]), // These pins are usually used by the SPI unit on chip, and will need to be reconfigured for GPIO
+    .miso(io_out[10]), // These pins are usually used by the SPI unit on chip, and will need to be reconfigured for GPIO
+    .mosi(io_in[11]) // These pins are usually used by the SPI unit on chip, and will need to be reconfigured for GPIO
 );
 
 grp_16_SPI_TapeOutBlock_32bits_5entries grp_16
@@ -106,15 +141,15 @@ grp_16_SPI_TapeOutBlock_32bits_5entries grp_16
 	.vccd1(vccd1),	// User area 1 1.8V power
 	.vssd1(vssd1),	// User area 1 digital ground
 `endif 
-    .clk(),   // Connect to same GPIO as other groups
-    .reset(), // Connect to same GPIO as other groups
-    .loopthrough_sel(),
-    .minion_parity(),
-    .adapter_parity(),
-    .cs(),
-    .sclk(),
-    .miso(),
-    .mosi()
+    .clk(io_in[26]),   // Connect to same GPIO as other groups
+    .reset(io_in[27]), // Connect to same GPIO as other groups
+    .loopthrough_sel(io_in[25]),
+    .minion_parity(io_out[24]),
+    .adapter_parity(io_out[23]),
+    .cs(io_in[22]),
+    .sclk(io_in[21]),
+    .miso(io_out[20]),
+    .mosi(io_in[19])
 );
 
 grp_17_SPI_TapeOutBlock_32bits_5entries grp_17
@@ -123,15 +158,15 @@ grp_17_SPI_TapeOutBlock_32bits_5entries grp_17
 	.vccd1(vccd1),	// User area 1 1.8V power
 	.vssd1(vssd1),	// User area 1 digital ground
 `endif 
-    .clk(),   // Connect to same GPIO as other groups
-    .reset(), // Connect to same GPIO as other groups
-    .loopthrough_sel(),
-    .minion_parity(),
-    .adapter_parity(),
-    .cs(),
-    .sclk(),
-    .miso(),
-    .mosi()
+    .clk(io_in[26]),   // Connect to same GPIO as other groups
+    .reset(io_in[27]), // Connect to same GPIO as other groups
+    .loopthrough_sel(io_in[34]),
+    .minion_parity(io_out[33]),
+    .adapter_parity(io_out[32]),
+    .cs(io_in[31]),
+    .sclk(io_in[30]),
+    .miso(io_out[29]),
+    .mosi(io_in[28])
 );
 
 grp_99_SPI_TapeOutBlock_32bits_5entries grp_99
@@ -140,53 +175,17 @@ grp_99_SPI_TapeOutBlock_32bits_5entries grp_99
 	.vccd1(vccd1),	// User area 1 1.8V power
 	.vssd1(vssd1),	// User area 1 digital ground
 `endif 
-    .clk(),   // Connect to same GPIO as other groups
-    .reset(), // Connect to same GPIO as other groups
-    .loopthrough_sel(),
-    .minion_parity(),
-    .adapter_parity(),
-    .cs(),
-    .sclk(),
-    .miso(),
-    .mosi()
+    .clk(io_in[26]),   // Connect to same GPIO as other groups
+    .reset(io_in[27]), // Connect to same GPIO as other groups
+    .loopthrough_sel(io_in[12]),
+    .minion_parity(io_out[13]),
+    .adapter_parity(io_out[14]),
+    .cs(io_in[15]),
+    .sclk(io_in[16]),
+    .miso(io_out[17]),
+    .mosi(io_in[18])
 );
 
-// user_proj_example mprj (
-// `ifdef USE_POWER_PINS
-// 	.vccd1(vccd1),	// User area 1 1.8V power
-// 	.vssd1(vssd1),	// User area 1 digital ground
-// `endif
-
-//     .wb_clk_i(wb_clk_i),
-//     .wb_rst_i(wb_rst_i),
-
-//     // MGMT SoC Wishbone Slave
-
-//     .wbs_cyc_i(wbs_cyc_i),
-//     .wbs_stb_i(wbs_stb_i),
-//     .wbs_we_i(wbs_we_i),
-//     .wbs_sel_i(wbs_sel_i),
-//     .wbs_adr_i(wbs_adr_i),
-//     .wbs_dat_i(wbs_dat_i),
-//     .wbs_ack_o(wbs_ack_o),
-//     .wbs_dat_o(wbs_dat_o),
-
-//     // Logic Analyzer
-
-//     .la_data_in(la_data_in),
-//     .la_data_out(la_data_out),
-//     .la_oenb (la_oenb),
-
-//     // IO Pads
-
-//     .io_in (io_in),
-//     .io_out(io_out),
-//     .io_oeb(io_oeb),
-
-//     // IRQ
-//     .irq(user_irq)
-// );
-
-endmodule	// user_project_wrapper
+endmodule	// ece5745_project_wrapper
 
 `default_nettype wire
