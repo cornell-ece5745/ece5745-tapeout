@@ -17,5 +17,5 @@
     "PL_TARGET_DENSITY"        : "0.05",
     "RUN_CVC"                  : "1",
     "VDD_NETS"                 : "vccd1",
-    "VERILOG_FILES"            : ["../../caravel/verilog/rtl/defines.v", "../../verilog/rtl/grp_15_SPI_TapeOutBlock_32bits_5entries__pickled.v"]
+    "VERILOG_FILES"            : ["../../caravel/verilog/rtl/defines.v", "../../verilog/rtl/grp_15_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v"]
 }

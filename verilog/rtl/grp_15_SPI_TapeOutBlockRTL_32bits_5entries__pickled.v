@@ -3292,18 +3292,18 @@ endmodule
 module grp_15_SPI_TapeOutBlockRTL_32bits_5entries
 (
   `ifdef USE_POWER_PINS
-  inout vccd1, // User area 1 1.8V supply
-  inout vssd1, // User area 1 digital ground
+    inout vccd1, // User area 1 1.8V supply
+    inout vssd1, // User area 1 digital ground
   `endif
-  output logic [1-1:0] adapter_parity ,
-  input logic [1-1:0] clk ,
-  input logic [1-1:0] loopthrough_sel ,
-  output logic [1-1:0] minion_parity ,
-  input logic [1-1:0] reset ,
-  input logic [1-1:0] spi_min_cs ,
-  output logic [1-1:0] spi_min_miso ,
-  input logic [1-1:0] spi_min_mosi ,
-  input logic [1-1:0] spi_min_sclk 
+    output logic [1-1:0] adapter_parity ,
+    input logic [1-1:0] clk ,
+    input logic [1-1:0] loopthrough_sel ,
+    output logic [1-1:0] minion_parity ,
+    input logic [1-1:0] reset ,
+    input logic [1-1:0] spi_min_cs ,
+    output logic [1-1:0] spi_min_miso ,
+    input logic [1-1:0] spi_min_mosi ,
+    input logic [1-1:0] spi_min_sclk 
 );
   tapeout_SPI_TapeOutBlockVRTL
   #(

@@ -22,7 +22,7 @@ set ::env(DESIGN_NAME) SPI_sort_unit_example
 
 set ::env(VERILOG_FILES) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/grp_15_SPI_TapeOutBlock_32bits_5entries__pickled.v"
+	$script_dir/../../verilog/rtl/grp_15_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v"
 
 set ::env(DESIGN_IS_CORE) 0
 
