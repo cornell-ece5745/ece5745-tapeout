@@ -18,11 +18,11 @@ set ::env(STD_CELL_LIBRARY) "sky130_fd_sc_hd"
 
 set script_dir [file dirname [file normalize [info script]]]
 
-set ::env(DESIGN_NAME) SPI_sort_unit_example
+set ::env(DESIGN_NAME) grp_99_SPI_TapeOutBlockRTL_32bits_5entries
 
 set ::env(VERILOG_FILES) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/grp_99_SPI_TapeOutBlock_32bits_5entries__pickled.v"
+	$script_dir/../../verilog/rtl/grp_99_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v"
 
 set ::env(DESIGN_IS_CORE) 0
 
@@ -54,3 +54,6 @@ set ::env(GND_NETS) [list {vssd1}]
 set ::env(DIODE_INSERTION_STRATEGY) 4 
 # If you're going to use multiple power domains, then disable cvc run.
 set ::env(RUN_CVC) 1
+
+set ::env(PL_RESIZER_HOLD_SLACK_MARGIN) 0.8
+set ::env(GLB_RESIZER_HOLD_SLACK_MARGIN) 0.8
