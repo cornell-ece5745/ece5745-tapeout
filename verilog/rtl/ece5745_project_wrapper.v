@@ -82,41 +82,41 @@ module ece5745_project_wrapper #(
 /* User project is instantiated  here   */
 /*--------------------------------------*/
 
-// ECE5745: Hardcode output enables for GPIO here
-assign io_oeb[26] = 1; //Input clk
-assign io_oeb[27] = 1; //Input reset
+// // ECE5745: Hardcode output enables for GPIO here
+// assign io_oeb[26] = 1; //Input clk
+// assign io_oeb[27] = 1; //Input reset
 
-assign io_oeb[35] = 1; //Input  15 lt_sel
-assign io_oeb[36] = 0; //Output 15 mp
-assign io_oeb[37] = 0; //Output 15 ap
-assign io_oeb[8]  = 1; //Input  15 cs
-assign io_oeb[9]  = 1; //Input  15 sclk
-assign io_oeb[10] = 0; //Output 15 miso
-assign io_oeb[11] = 1; //Input  15 mosi
+// assign io_oeb[35] = 1; //Input  15 lt_sel
+// assign io_oeb[36] = 0; //Output 15 mp
+// assign io_oeb[37] = 0; //Output 15 ap
+// assign io_oeb[8]  = 1; //Input  15 cs
+// assign io_oeb[9]  = 1; //Input  15 sclk
+// assign io_oeb[10] = 0; //Output 15 miso
+// assign io_oeb[11] = 1; //Input  15 mosi
 
-assign io_oeb[25] = 1; //Input  16 lt_sel
-assign io_oeb[24] = 0; //Output 16 mp
-assign io_oeb[23] = 0; //Output 16 ap
-assign io_oeb[22] = 1; //Input  16 cs
-assign io_oeb[21] = 1; //Input  16 sclk
-assign io_oeb[20] = 0; //Output 16 miso
-assign io_oeb[19] = 1; //Input  16 mosi
+// assign io_oeb[25] = 1; //Input  16 lt_sel
+// assign io_oeb[24] = 0; //Output 16 mp
+// assign io_oeb[23] = 0; //Output 16 ap
+// assign io_oeb[22] = 1; //Input  16 cs
+// assign io_oeb[21] = 1; //Input  16 sclk
+// assign io_oeb[20] = 0; //Output 16 miso
+// assign io_oeb[19] = 1; //Input  16 mosi
 
-assign io_oeb[34] = 1; //Input  17 lt_sel
-assign io_oeb[33] = 0; //Output 17 mp
-assign io_oeb[32] = 0; //Output 17 ap
-assign io_oeb[31] = 1; //Input  17 cs
-assign io_oeb[30] = 1; //Input  17 sclk
-assign io_oeb[29] = 0; //Output 17 miso
-assign io_oeb[28] = 1; //Input  17 mosi
+// assign io_oeb[34] = 1; //Input  17 lt_sel
+// assign io_oeb[33] = 0; //Output 17 mp
+// assign io_oeb[32] = 0; //Output 17 ap
+// assign io_oeb[31] = 1; //Input  17 cs
+// assign io_oeb[30] = 1; //Input  17 sclk
+// assign io_oeb[29] = 0; //Output 17 miso
+// assign io_oeb[28] = 1; //Input  17 mosi
 
-assign io_oeb[12] = 1; //Input  99 lt_sel
-assign io_oeb[13] = 0; //Output 99 mp
-assign io_oeb[14] = 0; //Output 99 ap
-assign io_oeb[15] = 1; //Input  99 cs
-assign io_oeb[16] = 1; //Input  99 sclk
-assign io_oeb[17] = 0; //Output 99 miso
-assign io_oeb[18] = 1; //Input  99 mosi
+// assign io_oeb[12] = 1; //Input  99 lt_sel
+// assign io_oeb[13] = 0; //Output 99 mp
+// assign io_oeb[14] = 0; //Output 99 ap
+// assign io_oeb[15] = 1; //Input  99 cs
+// assign io_oeb[16] = 1; //Input  99 sclk
+// assign io_oeb[17] = 0; //Output 99 miso
+// assign io_oeb[18] = 1; //Input  99 mosi
 
 grp_15_SPI_TapeOutBlock_32bits_5entries grp_15
 (
@@ -132,7 +132,14 @@ grp_15_SPI_TapeOutBlock_32bits_5entries grp_15
     .cs(io_in[8]), // These pins are usually used by the SPI unit on chip, and will need to be reconfigured for GPIO
     .sclk(io_in[9]), // These pins are usually used by the SPI unit on chip, and will need to be reconfigured for GPIO
     .miso(io_out[10]), // These pins are usually used by the SPI unit on chip, and will need to be reconfigured for GPIO
-    .mosi(io_in[11]) // These pins are usually used by the SPI unit on chip, and will need to be reconfigured for GPIO
+    .mosi(io_in[11]), // These pins are usually used by the SPI unit on chip, and will need to be reconfigured for GPIO
+    .lt_sel_en(io_oeb[35]),
+    .mp_en(io_oeb[36]),
+    .ap_en(io_oeb[37]),
+    .cs_en(io_oeb[8]),
+    .sclk_en(io_oeb[9]),
+    .miso_en(io_oeb[10]),
+    .mosi_en(io_oeb[11])
 );
 
 grp_16_SPI_TapeOutBlock_32bits_5entries grp_16
@@ -149,7 +156,14 @@ grp_16_SPI_TapeOutBlock_32bits_5entries grp_16
     .cs(io_in[22]),
     .sclk(io_in[21]),
     .miso(io_out[20]),
-    .mosi(io_in[19])
+    .mosi(io_in[19]),
+    .lt_sel_en(io_oeb[25]),
+    .mp_en(io_oeb[24]),
+    .ap_en(io_oeb[23]),
+    .cs_en(io_oeb[22]),
+    .sclk_en(io_oeb[21]),
+    .miso_en(io_oeb[20]),
+    .mosi_en(io_oeb[19])
 );
 
 grp_17_SPI_TapeOutBlock_32bits_5entries grp_17
@@ -166,7 +180,14 @@ grp_17_SPI_TapeOutBlock_32bits_5entries grp_17
     .cs(io_in[31]),
     .sclk(io_in[30]),
     .miso(io_out[29]),
-    .mosi(io_in[28])
+    .mosi(io_in[28]),
+    .lt_sel_en(io_oeb[34]),
+    .mp_en(io_oeb[33]),
+    .ap_en(io_oeb[32]),
+    .cs_en(io_oeb[31]),
+    .sclk_en(io_oeb[30]),
+    .miso_en(io_oeb[29]),
+    .mosi_en(io_oeb[28])
 );
 
 grp_99_SPI_TapeOutBlock_32bits_5entries grp_99
@@ -183,7 +204,16 @@ grp_99_SPI_TapeOutBlock_32bits_5entries grp_99
     .cs(io_in[15]),
     .sclk(io_in[16]),
     .miso(io_out[17]),
-    .mosi(io_in[18])
+    .mosi(io_in[18]),
+    .clk_en(io_oeb[26]),
+    .reset_en(io_oeb[27]),
+    .lt_sel_en(io_oeb[12]),
+    .mp_en(io_oeb[13]),
+    .ap_en(io_oeb[14]),
+    .cs_en(io_oeb[15]),
+    .sclk_en(io_oeb[16]),
+    .miso_en(io_oeb[17]),
+    .mosi_en(io_oeb[18])
 );
 
 endmodule	// ece5745_project_wrapper
