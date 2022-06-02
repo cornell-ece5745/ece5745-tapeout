@@ -57,3 +57,10 @@ set ::env(RUN_CVC) 1
 
 set ::env(PL_RESIZER_HOLD_SLACK_MARGIN) 0.8
 set ::env(GLB_RESIZER_HOLD_SLACK_MARGIN) 0.8
+
+# Attempt to adjust where macros are placed
+# set ::env(PL_MACRO_HALO) 100
+# set ::env(PL_MACRO_CHANNEL) 200
+# set ::env(PL_TARGET_DENSITY) 0.1
+
+set ::env(GLB_RT_ADJUSTMENT) 0.25
