@@ -1,6 +1,6 @@
 ###############################################################################
 # Created by write_sdc
-# Thu Jun  2 19:39:11 2022
+# Fri Jun  3 18:03:55 2022
 ###############################################################################
 current_design grp_99_SPI_TapeOutBlockRTL_32bits_5entries
 ###############################################################################
@@ -16,13 +16,31 @@ set_input_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {spi_min
 set_input_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {spi_min__mosi}]
 set_input_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {spi_min__sclk}]
 set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {adapter_parity}]
+set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {ap_en}]
+set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {clk_en}]
+set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {cs_en}]
+set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {lt_sel_en}]
 set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {minion_parity}]
+set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {miso_en}]
+set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {mosi_en}]
+set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {mp_en}]
+set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {reset_en}]
+set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {sclk_en}]
 set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {spi_min__miso}]
 ###############################################################################
 # Environment
 ###############################################################################
 set_load -pin_load 0.0334 [get_ports {adapter_parity}]
+set_load -pin_load 0.0334 [get_ports {ap_en}]
+set_load -pin_load 0.0334 [get_ports {clk_en}]
+set_load -pin_load 0.0334 [get_ports {cs_en}]
+set_load -pin_load 0.0334 [get_ports {lt_sel_en}]
 set_load -pin_load 0.0334 [get_ports {minion_parity}]
+set_load -pin_load 0.0334 [get_ports {miso_en}]
+set_load -pin_load 0.0334 [get_ports {mosi_en}]
+set_load -pin_load 0.0334 [get_ports {mp_en}]
+set_load -pin_load 0.0334 [get_ports {reset_en}]
+set_load -pin_load 0.0334 [get_ports {sclk_en}]
 set_load -pin_load 0.0334 [get_ports {spi_min__miso}]
 set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {clk}]
 set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {loopthrough_sel}]

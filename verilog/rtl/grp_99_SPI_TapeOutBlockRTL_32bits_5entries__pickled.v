@@ -1088,8 +1088,29 @@ module grp_99_SPI_TapeOutBlockRTL_32bits_5entries
   input  logic [0:0]    spi_min__cs,
   output logic [0:0]    spi_min__miso,
   input  logic [0:0]    spi_min__mosi,
-  input  logic [0:0]    spi_min__sclk
+  input  logic [0:0]    spi_min__sclk,
+  output logic [0:0]    clk_en,
+  output logic [0:0]    reset_en,
+  output logic [0:0]    lt_sel_en,
+  output logic [0:0]    mp_en,
+  output logic [0:0]    ap_en,
+  output logic [0:0]    cs_en,
+  output logic [0:0]    sclk_en,
+  output logic [0:0]    miso_en,
+  output logic [0:0]    mosi_en
 );
+
+  assign lt_sel_en = 1; //Input
+  assign mp_en = 0; //Output
+  assign ap_en = 0; //Output
+  assign cs_en = 1; //Input
+  assign sclk_en = 1; //Input
+  assign miso_en = 0; //Output
+  assign mosi_en = 1; //Input
+  assign clk_en = 1; //Input
+  assign reset_en = 1; //Input
+  
+
   // Sub-component declarations
   logic [0:0]    block__clk;
   logic [0:0]    block__reset;
