@@ -58,7 +58,9 @@
   end
 
 module loopback_test_tb;
-	reg clock;
+	wire clock;
+    reg clock_reg;
+    assign clock = clock_reg;
 	reg RSTB;
 	reg CSB;
     integer cycle_count;
@@ -69,21 +71,31 @@ module loopback_test_tb;
 
 	assign checkbits = mprj_io[31:16];
 
-    logic [0:0] adapter_parity ;
-    logic [0:0] loopthrough_sel ;
-    logic [0:0] minion_parity ;
-    logic [0:0] spi_min__cs ;
-    logic [0:0] spi_min__miso ;
-    logic [0:0] spi_min__mosi ;
-    logic [0:0] spi_min__sclk ;
+    reg loopthrough_sel_reg;
+    reg spi_min__cs_reg;
+    reg spi_min__mosi_reg;
+    reg spi_min__sclk_reg;
 
-    assign adapter_parity  = mprj_io[14];
-    assign loopthrough_sel = mprj_io[12];
-    assign minion_parity   = mprj_io[13];
-    assign spi_min__cs     = mprj_io[15];
-    assign spi_min__miso   = mprj_io[17];
-    assign spi_min__mosi   = mprj_io[18];
-    assign spi_min__sclk   = mprj_io[16];
+    assign mprj_io[12] = loopthrough_sel_reg;
+    assign mprj_io[15] = spi_min__cs_reg;
+    assign mprj_io[16] = spi_min__sclk_reg;
+    assign mprj_io[17] = spi_min__mosi_reg;
+
+    // logic [0:0] adapter_parity ;
+    // logic [0:0] loopthrough_sel ;
+    // logic [0:0] minion_parity ;
+    // logic [0:0] spi_min__cs ;
+    // logic [0:0] spi_min__miso ;
+    // logic [0:0] spi_min__mosi ;
+    // logic [0:0] spi_min__sclk ;
+
+    // assign adapter_parity  = mprj_io[14];
+    // assign loopthrough_sel = mprj_io[12];
+    // assign minion_parity   = mprj_io[13];
+    // assign spi_min__cs     = mprj_io[15];
+    // assign spi_min__miso   = mprj_io[17];
+    // assign spi_min__mosi   = mprj_io[18];
+    // assign spi_min__sclk   = mprj_io[16];
 
     task t(
       input logic [0:0] ref_adapter_parity,
@@ -96,14 +108,21 @@ module loopback_test_tb;
       integer lineno
     );
     begin
-      loopthrough_sel = inp_loopthrough_sel;
-      spi_min__cs = inp_spi_min__cs;
-      spi_min__mosi = inp_spi_min__mosi;
-      spi_min__sclk = inp_spi_min__sclk;
+    //   loopthrough_sel = inp_loopthrough_sel;
+      loopthrough_sel_reg <= inp_loopthrough_sel;
+    //   spi_min__cs = inp_spi_min__cs;
+      spi_min__cs_reg <= inp_spi_min__cs;
+    //   spi_min__mosi = inp_spi_min__mosi;
+      spi_min__mosi_reg <= inp_spi_min__mosi;
+    //   spi_min__sclk = inp_spi_min__sclk;
+      spi_min__sclk_reg <= inp_spi_min__sclk;
       #`INTRA_CYCLE_TIME;
-      `CHECK(lineno, adapter_parity, ref_adapter_parity, "adapter_parity (adapter_parity in Verilog)");
-      `CHECK(lineno, minion_parity, ref_minion_parity, "minion_parity (minion_parity in Verilog)");
-      `CHECK(lineno, spi_min__miso, ref_spi_min__miso, "spi_min.miso (spi_min__miso in Verilog)");
+    //   `CHECK(lineno, adapter_parity, ref_adapter_parity, "adapter_parity (adapter_parity in Verilog)");
+      `CHECK(lineno, mprj_io[14], ref_adapter_parity, "adapter_parity (adapter_parity in Verilog)");
+    //   `CHECK(lineno, minion_parity, ref_minion_parity, "minion_parity (minion_parity in Verilog)");
+      `CHECK(lineno, mprj_io[13], ref_minion_parity, "minion_parity (minion_parity in Verilog)");
+    //   `CHECK(lineno, spi_min__miso, ref_spi_min__miso, "spi_min.miso (spi_min__miso in Verilog)");
+      `CHECK(lineno, mprj_io[17], ref_spi_min__miso, "spi_min.miso (spi_min__miso in Verilog)");
       #(`CYCLE_TIME-`INTRA_CYCLE_TIME);
       cycle_count += 1;
     end
@@ -111,16 +130,16 @@ module loopback_test_tb;
 
 	reg power1, power2;
 
-	always #(`CYCLE_TIME/2) clk = ~clk;
+	always #(`CYCLE_TIME/2) clock_reg <= ~clock_reg;
 
 	initial begin
-		clock = 0;
+		clock_reg <= 1'b0;
 	end
 
 	initial begin
 		$dumpfile("loopback_test.vcd");
 		$dumpvars(0, loopback_test_tb);
-        #1
+        #1;
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
 		// repeat (75) begin
@@ -146,17 +165,17 @@ module loopback_test_tb;
 	// end
 
     initial begin
-      assert(0 <= `VTB_INPUT_DELAY)
-        else $fatal("\n=====\n\nVTB_INPUT_DELAY should >= 0\n\n=====\n");
+    //   assert(0 <= `VTB_INPUT_DELAY)
+    //     else $fatal("\n=====\n\nVTB_INPUT_DELAY should >= 0\n\n=====\n");
   
-      assert(`VTB_INPUT_DELAY < `VTB_OUTPUT_ASSERT_DELAY)
-        else $fatal("\n=====\n\nVTB_OUTPUT_ASSERT_DELAY should be larger than VTB_INPUT_DELAY\n\n=====\n");
+    //   assert(`VTB_INPUT_DELAY < `VTB_OUTPUT_ASSERT_DELAY)
+    //     else $fatal("\n=====\n\nVTB_OUTPUT_ASSERT_DELAY should be larger than VTB_INPUT_DELAY\n\n=====\n");
   
-      assert(`VTB_OUTPUT_ASSERT_DELAY <= `CYCLE_TIME)
-        else $fatal("\n=====\n\nVTB_OUTPUT_ASSERT_DELAY should be smaller than or equal to CYCLE_TIME\n\n=====\n");
+    //   assert(`VTB_OUTPUT_ASSERT_DELAY <= `CYCLE_TIME)
+    //     else $fatal("\n=====\n\nVTB_OUTPUT_ASSERT_DELAY should be smaller than or equal to CYCLE_TIME\n\n=====\n");
   
       cycle_count = 0;
-      clock   = 1'b0; // NEED TO DO THIS TO HAVE FALLING EDGE AT TIME 0
+      clock_reg <= 1'b0; // NEED TO DO THIS TO HAVE FALLING EDGE AT TIME 0
       RSTB = 1'b1; // TODO reset active low/high
       #(`CYCLE_TIME/2);
   
@@ -167,7 +186,7 @@ module loopback_test_tb;
       #`CYCLE_TIME;
       cycle_count = 2;
       // 2 cycles plus input delay
-      reset = 1'b0;
+      RSTB = 1'b0;
   
       `include "loopback_test_tb.v.cases"
   
@@ -212,6 +231,8 @@ module loopback_test_tb;
 
 	assign mprj_io[3] = 1;  // Force CSB high.
 	assign mprj_io[0] = 0;  // Disable debug mode
+    assign mprj_io[27] = RSTB; //Reset
+    assign mprj_io[26] = clock; //Clock
 
 	caravel uut (
 		.vddio	  (VDD3V3),

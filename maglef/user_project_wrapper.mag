@@ -1,11 +1,11 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1654280797
+timestamp 1654626797
 << obsli1 >>
 rect 236104 340159 475856 637761
 << obsm1 >>
-rect 3418 336472 580230 700596
+rect 3418 336472 580230 700528
 << metal2 >>
 rect 8086 703520 8198 704960
 rect 24278 703520 24390 704960
@@ -997,7 +997,7 @@ rect 590110 -5734 590730 709670
 rect 591070 -6694 591690 710630
 rect 592030 -7654 592650 711590
 << obsm4 >>
-rect 239208 340128 476501 641749
+rect 239208 340128 476501 641885
 << metal5 >>
 rect -8726 710970 592650 711590
 rect -7766 710010 591690 710630
@@ -3196,8 +3196,8 @@ port 645 nsew signal input
 string FIXED_BBOX 0 0 584000 704000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 28619420
+string GDS_END 29368988
 string GDS_FILE /home/acm289/ece5745-tapeout/openlane/user_project_wrapper/runs/user_project_wrapper/results/finishing/user_project_wrapper.magic.gds
-string GDS_START 27708144
+string GDS_START 28443760
 << end >>
 

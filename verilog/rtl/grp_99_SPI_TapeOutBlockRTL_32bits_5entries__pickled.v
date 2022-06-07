@@ -50,7 +50,7 @@ module LoopThroughPRTL__nbits_32
   // At /home/acm289/project-group99/sim/SPI_v3/components/LoopThroughPRTL.py:42
   // s.downstream.req.val //= lambda: 0 if (s.sel) else s.upstream.req.val
   
-  always_comb begin : _lambda__s_spi_min_stack_loopthrough_downstream_req_val
+  always @(*) begin : _lambda__s_spi_min_stack_loopthrough_downstream_req_val
     downstream__req__val = sel ? 1'd0 : upstream__req__val;
   end
 
@@ -58,7 +58,7 @@ module LoopThroughPRTL__nbits_32
   // At /home/acm289/project-group99/sim/SPI_v3/components/LoopThroughPRTL.py:47
   // s.downstream.resp.rdy //= lambda: 0 if (s.sel) else s.upstream.resp.rdy 
   
-  always_comb begin : _lambda__s_spi_min_stack_loopthrough_downstream_resp_rdy
+  always @(*) begin : _lambda__s_spi_min_stack_loopthrough_downstream_resp_rdy
     downstream__resp__rdy = sel ? 1'd0 : upstream__resp__rdy;
   end
 
@@ -66,7 +66,7 @@ module LoopThroughPRTL__nbits_32
   // At /home/acm289/project-group99/sim/SPI_v3/components/LoopThroughPRTL.py:45
   // s.upstream.req.rdy //= lambda: s.upstream.resp.rdy if (s.sel) else s.downstream.req.rdy 
   
-  always_comb begin : _lambda__s_spi_min_stack_loopthrough_upstream_req_rdy
+  always @(*) begin : _lambda__s_spi_min_stack_loopthrough_upstream_req_rdy
     upstream__req__rdy = sel ? upstream__resp__rdy : downstream__req__rdy;
   end
 
@@ -74,7 +74,7 @@ module LoopThroughPRTL__nbits_32
   // At /home/acm289/project-group99/sim/SPI_v3/components/LoopThroughPRTL.py:40
   // s.upstream.resp.msg //= lambda: s.upstream.req.msg if (s.sel) else s.downstream.resp.msg
   
-  always_comb begin : _lambda__s_spi_min_stack_loopthrough_upstream_resp_msg
+  always @(*) begin : _lambda__s_spi_min_stack_loopthrough_upstream_resp_msg
     upstream__resp__msg = sel ? upstream__req__msg : downstream__resp__msg;
   end
 
@@ -82,7 +82,7 @@ module LoopThroughPRTL__nbits_32
   // At /home/acm289/project-group99/sim/SPI_v3/components/LoopThroughPRTL.py:39
   // s.upstream.resp.val //= lambda: s.upstream.req.val if (s.sel) else s.downstream.resp.val
   
-  always_comb begin : _lambda__s_spi_min_stack_loopthrough_upstream_resp_val
+  always @(*) begin : _lambda__s_spi_min_stack_loopthrough_upstream_resp_val
     upstream__resp__val = sel ? upstream__req__val : downstream__resp__val;
   end
 
@@ -117,7 +117,7 @@ module NormalQueueCtrlRTL__num_entries_5
   // At /classes/ece5745/install/venv-pkgs/x86_64-rhel7/pypy3-pymtl3-7.3.3/site-packages/pymtl3/stdlib/stream/queues.py:121
   // s.recv_rdy  //= lambda: s.count < num_entries
   
-  always_comb begin : _lambda__s_spi_min_stack_minion_adapter_cm_q_ctrl_recv_rdy
+  always @(*) begin : _lambda__s_spi_min_stack_minion_adapter_cm_q_ctrl_recv_rdy
     recv_rdy = count < 3'd5;
   end
 
@@ -125,7 +125,7 @@ module NormalQueueCtrlRTL__num_entries_5
   // At /classes/ece5745/install/venv-pkgs/x86_64-rhel7/pypy3-pymtl3-7.3.3/site-packages/pymtl3/stdlib/stream/queues.py:124
   // s.recv_xfer //= lambda: s.recv_val & s.recv_rdy
   
-  always_comb begin : _lambda__s_spi_min_stack_minion_adapter_cm_q_ctrl_recv_xfer
+  always @(*) begin : _lambda__s_spi_min_stack_minion_adapter_cm_q_ctrl_recv_xfer
     recv_xfer = recv_val & recv_rdy;
   end
 
@@ -133,7 +133,7 @@ module NormalQueueCtrlRTL__num_entries_5
   // At /classes/ece5745/install/venv-pkgs/x86_64-rhel7/pypy3-pymtl3-7.3.3/site-packages/pymtl3/stdlib/stream/queues.py:122
   // s.send_val  //= lambda: s.count > 0
   
-  always_comb begin : _lambda__s_spi_min_stack_minion_adapter_cm_q_ctrl_send_val
+  always @(*) begin : _lambda__s_spi_min_stack_minion_adapter_cm_q_ctrl_send_val
     send_val = count > 3'd0;
   end
 
@@ -141,7 +141,7 @@ module NormalQueueCtrlRTL__num_entries_5
   // At /classes/ece5745/install/venv-pkgs/x86_64-rhel7/pypy3-pymtl3-7.3.3/site-packages/pymtl3/stdlib/stream/queues.py:125
   // s.send_xfer //= lambda: s.send_val & s.send_rdy
   
-  always_comb begin : _lambda__s_spi_min_stack_minion_adapter_cm_q_ctrl_send_xfer
+  always @(*) begin : _lambda__s_spi_min_stack_minion_adapter_cm_q_ctrl_send_xfer
     send_xfer = send_val & send_rdy;
   end
 
@@ -167,7 +167,7 @@ module NormalQueueCtrlRTL__num_entries_5
   //     elif ~s.recv_xfer & s.send_xfer:
   //       s.count <<= s.count - 1
   
-  always_ff @(posedge clk) begin : up_reg
+  always @(posedge clk) begin : up_reg
     if ( reset ) begin
       head <= 3'd0;
       tail <= 3'd0;
@@ -229,7 +229,7 @@ module RegisterFile__35272b4450df532b
   
   integer __loopvar__up_rf_read_i;
   
-  always_comb begin : up_rf_read
+  always @(*) begin : up_rf_read
     for ( __loopvar__up_rf_read_i = 1'd0; __loopvar__up_rf_read_i < 1'd1; __loopvar__up_rf_read_i = __loopvar__up_rf_read_i + 1'd1 )
       rdata[1'(__loopvar__up_rf_read_i)] = regs[raddr[1'(__loopvar__up_rf_read_i)]];
   end
@@ -244,7 +244,7 @@ module RegisterFile__35272b4450df532b
   
   integer __loopvar__up_rf_write_i;
   
-  always_ff @(posedge clk) begin : up_rf_write
+  always @(posedge clk) begin : up_rf_write
     for ( __loopvar__up_rf_write_i = 1'd0; __loopvar__up_rf_write_i < 1'd1; __loopvar__up_rf_write_i = __loopvar__up_rf_write_i + 1'd1 )
       if ( wen[1'(__loopvar__up_rf_write_i)] ) begin
         regs[waddr[1'(__loopvar__up_rf_write_i)]] <= wdata[1'(__loopvar__up_rf_write_i)];
@@ -479,7 +479,7 @@ module SPIMinionAdapterPRTL__nbits_34__num_entries_5
   // At /home/acm289/project-group99/sim/SPI_v3/components/SPIMinionAdapterPRTL.py:62
   // s.parity //= lambda: reduce_xor(s.send.msg) & s.send.val
   
-  always_comb begin : _lambda__s_spi_min_stack_minion_adapter_parity
+  always @(*) begin : _lambda__s_spi_min_stack_minion_adapter_parity
     parity = ( ^ send__msg ) & send__val;
   end
 
@@ -495,13 +495,17 @@ module SPIMinionAdapterPRTL__nbits_34__num_entries_5
   //   s.pull.msg.val @= s.cm_send_rdy & s.cm_q.send.val
   //   s.pull.msg.data @= s.cm_q.send.msg & (sext(s.pull.msg.val, s.nbits_minus2))
   
-  always_comb begin : comb_block
+  
+  always @(*) begin : comb_block
     open_entries = mc_q__count < ( 3'd5 - 3'd1 );
     mc_recv_val = push__msg__val_wrt & push__en;
-    pull__msg__spc = mc_q__recv__rdy & ( ( ~mc_q__recv__val ) | open_entries );
+    // pull__msg__spc = mc_q__recv__rdy & ( ( ~mc_q__recv__val ) | open_entries );
+    pull__msg[32:32] <= mc_q__recv__rdy & ( ( ~mc_q__recv__val ) | open_entries );
     cm_send_rdy = push__msg__val_rd & pull__en;
-    pull__msg__val = cm_send_rdy & cm_q__send__val;
-    pull__msg__data = cm_q__send__msg & { { 31 { pull__msg__val[0] } }, pull__msg__val };
+    // pull__msg__val = cm_send_rdy & cm_q__send__val;
+    pull__msg[33:33] = cm_send_rdy & cm_q__send__val;
+    // pull__msg__data = cm_q__send__msg & { { 31 { pull__msg__val[0] } }, pull__msg__val };
+    pull__msg[31:0] = cm_q__send__msg & { { 31 { pull__msg__val[0] } }, pull__msg__val };
   end
 
   // Connections
@@ -546,7 +550,7 @@ module Synchronizer__reset_value_1
   // At /home/acm289/project-group99/sim/SPI_v3/components/Synchronizer.py:37
   // s.negedge_ //= lambda: s.shreg[2]  & ~s.shreg[1]
   
-  always_comb begin : _lambda__s_spi_min_stack_minion_minion_cs_sync_negedge_
+  always @(*) begin : _lambda__s_spi_min_stack_minion_minion_cs_sync_negedge_
     negedge_ = shreg[2'd2] & ( ~shreg[2'd1] );
   end
 
@@ -554,7 +558,7 @@ module Synchronizer__reset_value_1
   // At /home/acm289/project-group99/sim/SPI_v3/components/Synchronizer.py:36
   // s.posedge_ //= lambda: ~s.shreg[2] & s.shreg[1]
   
-  always_comb begin : _lambda__s_spi_min_stack_minion_minion_cs_sync_posedge_
+  always @(*) begin : _lambda__s_spi_min_stack_minion_minion_cs_sync_posedge_
     posedge_ = ( ~shreg[2'd2] ) & shreg[2'd1];
   end
 
@@ -565,7 +569,7 @@ module Synchronizer__reset_value_1
   //   if s.reset: s.shreg <<= concat(s.reset_value,s.reset_value,s.reset_value) #for 4 state sim
   //   else: s.shreg <<= concat( s.shreg[0:2], s.in_ )
   
-  always_ff @(posedge clk) begin : up_shreg
+  always @(posedge clk) begin : up_shreg
     if ( reset ) begin
       shreg <= { 1'd1, 1'd1, 1'd1 };
     end
@@ -597,7 +601,7 @@ module Synchronizer__reset_value_0
   // At /home/acm289/project-group99/sim/SPI_v3/components/Synchronizer.py:37
   // s.negedge_ //= lambda: s.shreg[2]  & ~s.shreg[1]
   
-  always_comb begin : _lambda__s_spi_min_stack_minion_minion_mosi_sync_negedge_
+  always @(*) begin : _lambda__s_spi_min_stack_minion_minion_mosi_sync_negedge_
     negedge_ = shreg[2'd2] & ( ~shreg[2'd1] );
   end
 
@@ -605,7 +609,7 @@ module Synchronizer__reset_value_0
   // At /home/acm289/project-group99/sim/SPI_v3/components/Synchronizer.py:36
   // s.posedge_ //= lambda: ~s.shreg[2] & s.shreg[1]
   
-  always_comb begin : _lambda__s_spi_min_stack_minion_minion_mosi_sync_posedge_
+  always @(*) begin : _lambda__s_spi_min_stack_minion_minion_mosi_sync_posedge_
     posedge_ = ( ~shreg[2'd2] ) & shreg[2'd1];
   end
 
@@ -616,7 +620,7 @@ module Synchronizer__reset_value_0
   //   if s.reset: s.shreg <<= concat(s.reset_value,s.reset_value,s.reset_value) #for 4 state sim
   //   else: s.shreg <<= concat( s.shreg[0:2], s.in_ )
   
-  always_ff @(posedge clk) begin : up_shreg
+  always @(posedge clk) begin : up_shreg
     if ( reset ) begin
       shreg <= { 1'd0, 1'd0, 1'd0 };
     end
@@ -654,7 +658,7 @@ module ShiftReg__nbits_34
   //   elif ( ~s.load_en & s.shift_en ):
   //     s.out <<= concat( s.out[0:s.nbits-1], s.in_ )
   
-  always_ff @(posedge clk) begin : up_shreg
+  always @(posedge clk) begin : up_shreg
     if ( reset ) begin
       out <= { { 33 { 1'b0 } }, 1'd0 };
     end
@@ -779,7 +783,7 @@ module SPIMinionPRTL__nbits_34
   // At /home/acm289/project-group99/sim/SPI_v3/components/SPIMinionPRTL.py:62
   // s.parity //= lambda: reduce_xor(s.push.msg[0:s.nbits-2]) & s.push.en
   
-  always_comb begin : _lambda__s_spi_min_stack_minion_minion_parity
+  always @(*) begin : _lambda__s_spi_min_stack_minion_minion_parity
     parity = ( ^ push__msg[6'd31:6'd0] ) & push__en;
   end
 
@@ -787,7 +791,7 @@ module SPIMinionPRTL__nbits_34
   // At /home/acm289/project-group99/sim/SPI_v3/components/SPIMinionPRTL.py:45
   // m.shift_en  //= lambda: ~s.cs_sync.out & s.sclk_sync.posedge_
   
-  always_comb begin : _lambda__s_spi_min_stack_minion_minion_shreg_in_shift_en
+  always @(*) begin : _lambda__s_spi_min_stack_minion_minion_shreg_in_shift_en
     shreg_in__shift_en = ( ~cs_sync__out ) & sclk_sync__posedge_;
   end
 
@@ -795,7 +799,7 @@ module SPIMinionPRTL__nbits_34
   // At /home/acm289/project-group99/sim/SPI_v3/components/SPIMinionPRTL.py:51
   // m.shift_en  //= lambda: ~s.cs_sync.out & s.sclk_sync.negedge_
   
-  always_comb begin : _lambda__s_spi_min_stack_minion_minion_shreg_out_shift_en
+  always @(*) begin : _lambda__s_spi_min_stack_minion_minion_shreg_out_shift_en
     shreg_out__shift_en = ( ~cs_sync__out ) & sclk_sync__negedge_;
   end
 
@@ -921,9 +925,12 @@ module SPIMinionAdapterCompositePRTL__nbits_34__num_entries_5
   assign adapter__pull__msg[33:33] = adapter__pull__msg__val;
   assign adapter__pull__msg[32:32] = adapter__pull__msg__spc;
   assign adapter__pull__msg[31:0] = adapter__pull__msg__data;
-  assign adapter__push__msg__val_wrt = adapter__push__msg[33:33];
-  assign adapter__push__msg__val_rd = adapter__push__msg[32:32];
-  assign adapter__push__msg__data = adapter__push__msg[31:0];
+//   assign adapter__push__msg__val_wrt = adapter__push__msg[33:33];
+//   assign adapter__push__msg__val_rd = adapter__push__msg[32:32];
+//   assign adapter__push__msg__data = adapter__push__msg[31:0];
+  assign adapter__push__msg[33:33] = adapter__push__msg__val_wrt;
+  assign adapter__push__msg[32:32] = adapter__push__msg__val_rd;
+  assign adapter__push__msg[31:0] = adapter__push__msg__data;
 
   // Connections
   assign minion__clk = clk;
@@ -1179,7 +1186,7 @@ module grp_99_SPI_TapeOutBlockRTL_32bits_5entries
   //   s.spi_min_stack.recv.val @= s.block.send.val
   //   s.block.send.rdy         @= s.spi_min_stack.recv.rdy
   
-  always_comb begin : combinational
+  always @(*) begin : combinational
     block__recv__msg = spi_min_stack__send__msg;
     block__recv__val = spi_min_stack__send__val;
     spi_min_stack__send__rdy = block__recv__rdy;
