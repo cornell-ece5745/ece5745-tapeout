@@ -231,7 +231,8 @@ module RegisterFile__35272b4450df532b
   
   always @(*) begin : up_rf_read
     for ( __loopvar__up_rf_read_i = 1'd0; __loopvar__up_rf_read_i < 1'd1; __loopvar__up_rf_read_i = __loopvar__up_rf_read_i + 1'd1 )
-      rdata[1'(__loopvar__up_rf_read_i)] = regs[raddr[1'(__loopvar__up_rf_read_i)]];
+    //   rdata[1'(__loopvar__up_rf_read_i)] = regs[raddr[1'(__loopvar__up_rf_read_i)]];
+      rdata[__loopvar__up_rf_read_i] = regs[raddr[__loopvar__up_rf_read_i]];
   end
 
   // PyMTL Update Block Source
@@ -246,8 +247,11 @@ module RegisterFile__35272b4450df532b
   
   always @(posedge clk) begin : up_rf_write
     for ( __loopvar__up_rf_write_i = 1'd0; __loopvar__up_rf_write_i < 1'd1; __loopvar__up_rf_write_i = __loopvar__up_rf_write_i + 1'd1 )
-      if ( wen[1'(__loopvar__up_rf_write_i)] ) begin
-        regs[waddr[1'(__loopvar__up_rf_write_i)]] <= wdata[1'(__loopvar__up_rf_write_i)];
+    //   if ( wen[1'(__loopvar__up_rf_write_i)] ) begin
+    //     regs[waddr[1'(__loopvar__up_rf_write_i)]] <= wdata[1'(__loopvar__up_rf_write_i)];
+    //   end
+      if ( wen[__loopvar__up_rf_write_i] ) begin
+        regs[waddr[__loopvar__up_rf_write_i]] <= wdata[__loopvar__up_rf_write_i];
       end
   end
 

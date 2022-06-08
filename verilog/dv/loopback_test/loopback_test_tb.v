@@ -58,10 +58,10 @@
   end
 
 module loopback_test_tb;
-	wire clock;
-    reg clock_reg;
-    assign clock = clock_reg;
+	reg clock;
+    reg clk;
 	reg RSTB;
+    reg reset;
 	reg CSB;
     integer cycle_count;
 
@@ -70,6 +70,12 @@ module loopback_test_tb;
 	wire [15:0] checkbits;
 
 	assign checkbits = mprj_io[31:16];
+
+    always #12.5 clock <= (clock === 1'b0);
+
+	initial begin
+		clock <= 0;
+	end
 
     reg loopthrough_sel_reg;
     reg spi_min__cs_reg;
@@ -105,7 +111,7 @@ module loopback_test_tb;
       input logic [0:0] ref_spi_min__miso,
       input logic [0:0] inp_spi_min__mosi,
       input logic [0:0] inp_spi_min__sclk,
-      integer lineno
+      input integer lineno
     );
     begin
     //   loopthrough_sel = inp_loopthrough_sel;
@@ -130,10 +136,10 @@ module loopback_test_tb;
 
 	reg power1, power2;
 
-	always #(`CYCLE_TIME/2) clock_reg <= ~clock_reg;
+	always #2 clk = ~clk;
 
 	initial begin
-		clock_reg <= 1'b0;
+		clk = 1'b0;
 	end
 
 	initial begin
@@ -175,8 +181,9 @@ module loopback_test_tb;
     //     else $fatal("\n=====\n\nVTB_OUTPUT_ASSERT_DELAY should be smaller than or equal to CYCLE_TIME\n\n=====\n");
   
       cycle_count = 0;
-      clock_reg <= 1'b0; // NEED TO DO THIS TO HAVE FALLING EDGE AT TIME 0
+    //   clk = 1'b0; // NEED TO DO THIS TO HAVE FALLING EDGE AT TIME 0
       RSTB = 1'b1; // TODO reset active low/high
+      reset = 1'b1;
       #(`CYCLE_TIME/2);
   
       // Now we are talking
@@ -187,6 +194,7 @@ module loopback_test_tb;
       cycle_count = 2;
       // 2 cycles plus input delay
       RSTB = 1'b0;
+      reset = 1'b0;
   
       `include "loopback_test_tb.v.cases"
   
@@ -231,8 +239,8 @@ module loopback_test_tb;
 
 	assign mprj_io[3] = 1;  // Force CSB high.
 	assign mprj_io[0] = 0;  // Disable debug mode
-    assign mprj_io[27] = RSTB; //Reset
-    assign mprj_io[26] = clock; //Clock
+    assign mprj_io[27] = reset; //Reset
+    assign mprj_io[26] = clk; //Clock
 
 	caravel uut (
 		.vddio	  (VDD3V3),
