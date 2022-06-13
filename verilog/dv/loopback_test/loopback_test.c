@@ -46,10 +46,10 @@ void main()
 	// All GPIO pins are configured to be output
 	// Used to flad the start/end of a test 
 
-        // reg_mprj_io_31 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // reg_mprj_io_30 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // reg_mprj_io_29 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // reg_mprj_io_28 = GPIO_MODE_MGMT_STD_OUTPUT;
+        reg_mprj_io_31 = GPIO_MODE_MGMT_STD_OUTPUT;
+        reg_mprj_io_30 = GPIO_MODE_MGMT_STD_OUTPUT;
+        reg_mprj_io_29 = GPIO_MODE_MGMT_STD_OUTPUT;
+        reg_mprj_io_28 = GPIO_MODE_MGMT_STD_OUTPUT;
         // reg_mprj_io_27 = GPIO_MODE_MGMT_STD_OUTPUT;
         // reg_mprj_io_26 = GPIO_MODE_MGMT_STD_OUTPUT;
         // reg_mprj_io_25 = GPIO_MODE_MGMT_STD_OUTPUT;
@@ -101,7 +101,7 @@ void main()
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 
 	// Flag start of the test
-	reg_mprj_datal = 0xAB600000;
+	reg_mprj_datal = 0xA0000000;
 
 	// Configure LA[64] LA[65] as outputs from the cpu
 	reg_la2_oenb = reg_la2_iena = 0x00000003; 
@@ -120,12 +120,12 @@ void main()
 
         // reg_mprj_datal = 0xAB610000;
 
-        while (1){
-                if (reg_la0_data_in >= 0x05) {
-                        reg_mprj_datal = 0xAB610000;
-                        break;
-                }
+        // while (1){
+        //         if (reg_la0_data_in >= 0x05) {
+        //                 reg_mprj_datal = 0xAB610000;
+        //                 break;
+        //         }
                 
-        }
+        // }
 
 }

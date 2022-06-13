@@ -82,66 +82,66 @@ module user_project_wrapper #(
 /* User project is instantiated  here   */
 /*--------------------------------------*/
 
-user_proj_example mprj (
-`ifdef USE_POWER_PINS
-	.vccd1(vccd1),	// User area 1 1.8V power
-	.vssd1(vssd1),	// User area 1 digital ground
-`endif
-
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
-
-    // MGMT SoC Wishbone Slave
-
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
-
-    // Logic Analyzer
-
-    .la_data_in(la_data_in),
-    .la_data_out(la_data_out),
-    .la_oenb (la_oenb),
-
-    // IO Pads
-
-    .io_in (io_in),
-    .io_out(io_out),
-    .io_oeb(io_oeb),
-
-    // IRQ
-    .irq(user_irq)
-);
-
-// grp_99_SPI_TapeOutBlockRTL_32bits_5entries mprj (
+// user_proj_example mprj (
 // `ifdef USE_POWER_PINS
 // 	.vccd1(vccd1),	// User area 1 1.8V power
 // 	.vssd1(vssd1),	// User area 1 digital ground
 // `endif
-//     .adapter_parity  (io_out[14]),
-//     .clk             (io_in[26]),
-//     .loopthrough_sel (io_in[12]),
-//     .minion_parity   (io_out[13]),
-//     .reset           (io_in[27]),
-//     .spi_min__cs     (io_in[15]),
-//     .spi_min__miso   (io_out[17]),
-//     .spi_min__mosi   (io_in[18]),
-//     .spi_min__sclk   (io_in[16]),
-//     .clk_en          (io_oeb[26]),
-//     .reset_en        (io_oeb[27]),
-//     .lt_sel_en       (io_oeb[12]),
-//     .mp_en           (io_oeb[13]),
-//     .ap_en           (io_oeb[14]),
-//     .cs_en           (io_oeb[15]),
-//     .sclk_en         (io_oeb[16]),
-//     .miso_en         (io_oeb[17]),
-//     .mosi_en         (io_oeb[18])
+
+//     .wb_clk_i(wb_clk_i),
+//     .wb_rst_i(wb_rst_i),
+
+//     // MGMT SoC Wishbone Slave
+
+//     .wbs_cyc_i(wbs_cyc_i),
+//     .wbs_stb_i(wbs_stb_i),
+//     .wbs_we_i(wbs_we_i),
+//     .wbs_sel_i(wbs_sel_i),
+//     .wbs_adr_i(wbs_adr_i),
+//     .wbs_dat_i(wbs_dat_i),
+//     .wbs_ack_o(wbs_ack_o),
+//     .wbs_dat_o(wbs_dat_o),
+
+//     // Logic Analyzer
+
+//     .la_data_in(la_data_in),
+//     .la_data_out(la_data_out),
+//     .la_oenb (la_oenb),
+
+//     // IO Pads
+
+//     .io_in (io_in),
+//     .io_out(io_out),
+//     .io_oeb(io_oeb),
+
+//     // IRQ
+//     .irq(user_irq)
 // );
+
+grp_99_SPI_TapeOutBlockRTL_32bits_5entries mprj (
+`ifdef USE_POWER_PINS
+	.vccd1(vccd1),	// User area 1 1.8V power
+	.vssd1(vssd1),	// User area 1 digital ground
+`endif
+    .adapter_parity  (io_out[14]),
+    .clk             (io_in[26]),
+    .loopthrough_sel (io_in[12]),
+    .minion_parity   (io_out[13]),
+    .reset           (io_in[27]),
+    .spi_min__cs     (io_in[15]),
+    .spi_min__miso   (io_out[17]),
+    .spi_min__mosi   (io_in[18]),
+    .spi_min__sclk   (io_in[16]),
+    .clk_en          (io_oeb[26]),
+    .reset_en        (io_oeb[27]),
+    .lt_sel_en       (io_oeb[12]),
+    .mp_en           (io_oeb[13]),
+    .ap_en           (io_oeb[14]),
+    .cs_en           (io_oeb[15]),
+    .sclk_en         (io_oeb[16]),
+    .miso_en         (io_oeb[17]),
+    .mosi_en         (io_oeb[18])
+);
 
 endmodule	// user_project_wrapper
 

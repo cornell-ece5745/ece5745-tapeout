@@ -38,7 +38,7 @@ module io_ports_tb;
 	// simulation.  Normally this would be a slow clock and the digital PLL
 	// would be the fast clock.
 
-	always #12.5 clock <= (clock === 1'b0);
+	always #12.5 clock = ~clock;
 
 	initial begin
 		clock = 0;

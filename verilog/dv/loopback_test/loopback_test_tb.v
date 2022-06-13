@@ -64,17 +64,19 @@ module loopback_test_tb;
     reg reset;
 	reg CSB;
     integer cycle_count;
+    reg power1, power2;
+	reg power3, power4;
 
     wire gpio;
 	wire [37:0] mprj_io;
-	wire [15:0] checkbits;
+	wire [3:0] checkbits;
 
-	assign checkbits = mprj_io[31:16];
+	assign checkbits = mprj_io[31:28];
 
     always #12.5 clock <= (clock === 1'b0);
 
 	initial begin
-		clock <= 0;
+		clock = 0;
 	end
 
     reg loopthrough_sel_reg;
@@ -134,8 +136,6 @@ module loopback_test_tb;
     end
     endtask
 
-	reg power1, power2;
-
 	always #2 clk = ~clk;
 
 	initial begin
@@ -147,19 +147,19 @@ module loopback_test_tb;
 		$dumpvars(0, loopback_test_tb);
         #1;
 
-		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		// repeat (75) begin
-		// 	repeat (1000) @(posedge clock);
-		// 	// $display("+1000 cycles");
-		// end
-		// $display("%c[1;31m",27);
-		// `ifdef GL
-		// 	$display ("Monitor: Timeout, Test Mega-Project IO (GL) Failed");
-		// `else
-		// 	$display ("Monitor: Timeout, Test Mega-Project IO (RTL) Failed");
-		// `endif
-		// $display("%c[0m",27);
-		// $finish;
+		//Repeat cycles of 1000 clock edges as needed to complete testbench
+		repeat (75) begin
+			repeat (1000) @(posedge clock);
+			// $display("+1000 cycles");
+		end
+		$display("%c[1;31m",27);
+		`ifdef GL
+			$display ("Monitor: Timeout, Test Mega-Project Loopback (GL) Failed");
+		`else
+			$display ("Monitor: Timeout, Test Mega-Project Loopback (RTL) Failed");
+		`endif
+		$display("%c[0m",27);
+		$finish;
 	end
 
 	// initial begin
@@ -180,22 +180,23 @@ module loopback_test_tb;
     //   assert(`VTB_OUTPUT_ASSERT_DELAY <= `CYCLE_TIME)
     //     else $fatal("\n=====\n\nVTB_OUTPUT_ASSERT_DELAY should be smaller than or equal to CYCLE_TIME\n\n=====\n");
   
+      wait(checkbits == 4'hA);
       cycle_count = 0;
-    //   clk = 1'b0; // NEED TO DO THIS TO HAVE FALLING EDGE AT TIME 0
-      RSTB = 1'b1; // TODO reset active low/high
+      clk = 1'b0; // NEED TO DO THIS TO HAVE FALLING EDGE AT TIME 0
+    //   RSTB = 1'b1; // TODO reset active low/high
       reset = 1'b1;
-      #(`CYCLE_TIME/2);
+    //   #(`CYCLE_TIME/2);
   
-      // Now we are talking
+    //   // Now we are talking
       #`VTB_INPUT_DELAY;
       #`CYCLE_TIME;
       cycle_count = 1;
       #`CYCLE_TIME;
       cycle_count = 2;
       // 2 cycles plus input delay
-      RSTB = 1'b0;
       reset = 1'b0;
-  
+ 
+      // Start test
       `include "loopback_test_tb.v.cases"
   
       $display("");
@@ -208,21 +209,29 @@ module loopback_test_tb;
       $finish;
     end    
 
-	// initial begin
-	// 	RSTB <= 1'b0;
-	// 	#1000;
-	// 	RSTB <= 1'b1;	    // Release reset
-	// 	#2000;
-	// end
+	initial begin
+		RSTB <= 1'b0;
+		CSB  <= 1'b1;		// Force CSB high
+		#2000;
+		RSTB <= 1'b1;	    	// Release reset
+		#300000;
+		CSB = 1'b0;		// CSB can be released
+	end
 
-	// initial begin		// Power-up sequence
-	// 	power1 <= 1'b0;
-	// 	power2 <= 1'b0;
-	// 	#200;
-	// 	power1 <= 1'b1;
-	// 	#200;
-	// 	power2 <= 1'b1;
-	// end
+	initial begin		// Power-up sequence
+		power1 <= 1'b0;
+		power2 <= 1'b0;
+		power3 <= 1'b0;
+		power4 <= 1'b0;
+		#100;
+		power1 <= 1'b1;
+		#100;
+		power2 <= 1'b1;
+		#100;
+		power3 <= 1'b1;
+		#100;
+		power4 <= 1'b1;
+	end
 
     	wire flash_csb;
 	wire flash_clk;
