@@ -1,0 +1,187 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1655160277
+<< obsli1 >>
+rect 1104 2159 240856 299761
+<< obsm1 >>
+rect 14 2128 240856 299792
+<< metal2 >>
+rect 9678 301200 9734 302000
+rect 51538 301200 51594 302000
+rect 94042 301200 94098 302000
+rect 136546 301200 136602 302000
+rect 178406 301200 178462 302000
+rect 220910 301200 220966 302000
+rect 18 0 74 800
+rect 41878 0 41934 800
+rect 84382 0 84438 800
+rect 126242 0 126298 800
+rect 168746 0 168802 800
+rect 211250 0 211306 800
+<< obsm2 >>
+rect 20 301144 9622 301322
+rect 9790 301144 51482 301322
+rect 51650 301144 93986 301322
+rect 94154 301144 136490 301322
+rect 136658 301144 178350 301322
+rect 178518 301144 220854 301322
+rect 221022 301144 240194 301322
+rect 20 856 240194 301144
+rect 130 800 41822 856
+rect 41990 800 84326 856
+rect 84494 800 126186 856
+rect 126354 800 168690 856
+rect 168858 800 211194 856
+rect 211362 800 240194 856
+<< metal3 >>
+rect 241200 279488 242000 279608
+rect 0 267248 800 267368
+rect 241200 234608 242000 234728
+rect 0 222368 800 222488
+rect 241200 190408 242000 190528
+rect 0 178168 800 178288
+rect 241200 145528 242000 145648
+rect 0 133288 800 133408
+rect 241200 100648 242000 100768
+rect 0 89088 800 89208
+rect 241200 56448 242000 56568
+rect 0 44208 800 44328
+rect 241200 11568 242000 11688
+<< obsm3 >>
+rect 800 279688 241200 299777
+rect 800 279408 241120 279688
+rect 800 267448 241200 279408
+rect 880 267168 241200 267448
+rect 800 234808 241200 267168
+rect 800 234528 241120 234808
+rect 800 222568 241200 234528
+rect 880 222288 241200 222568
+rect 800 190608 241200 222288
+rect 800 190328 241120 190608
+rect 800 178368 241200 190328
+rect 880 178088 241200 178368
+rect 800 145728 241200 178088
+rect 800 145448 241120 145728
+rect 800 133488 241200 145448
+rect 880 133208 241200 133488
+rect 800 100848 241200 133208
+rect 800 100568 241120 100848
+rect 800 89288 241200 100568
+rect 880 89008 241200 89288
+rect 800 56648 241200 89008
+rect 800 56368 241120 56648
+rect 800 44408 241200 56368
+rect 880 44128 241200 44408
+rect 800 11768 241200 44128
+rect 800 11488 241120 11768
+rect 800 2143 241200 11488
+<< metal4 >>
+rect 4208 2128 4528 299792
+rect 19568 2128 19888 299792
+rect 34928 2128 35248 299792
+rect 50288 2128 50608 299792
+rect 65648 2128 65968 299792
+rect 81008 2128 81328 299792
+rect 96368 2128 96688 299792
+rect 111728 2128 112048 299792
+rect 127088 2128 127408 299792
+rect 142448 2128 142768 299792
+rect 157808 2128 158128 299792
+rect 173168 2128 173488 299792
+rect 188528 2128 188848 299792
+rect 203888 2128 204208 299792
+rect 219248 2128 219568 299792
+rect 234608 2128 234928 299792
+<< labels >>
+rlabel metal3 s 241200 100648 242000 100768 6 a[0]
+port 1 nsew signal input
+rlabel metal3 s 0 89088 800 89208 6 a[1]
+port 2 nsew signal input
+rlabel metal2 s 178406 301200 178462 302000 6 a[2]
+port 3 nsew signal input
+rlabel metal3 s 241200 11568 242000 11688 6 a[3]
+port 4 nsew signal input
+rlabel metal3 s 241200 279488 242000 279608 6 b[0]
+port 5 nsew signal input
+rlabel metal2 s 51538 301200 51594 302000 6 b[1]
+port 6 nsew signal input
+rlabel metal3 s 0 133288 800 133408 6 b[2]
+port 7 nsew signal input
+rlabel metal2 s 220910 301200 220966 302000 6 b[3]
+port 8 nsew signal input
+rlabel metal2 s 9678 301200 9734 302000 6 clk
+port 9 nsew signal input
+rlabel metal2 s 126242 0 126298 800 6 input_en[0]
+port 10 nsew signal output
+rlabel metal3 s 0 44208 800 44328 6 input_en[1]
+port 11 nsew signal output
+rlabel metal2 s 211250 0 211306 800 6 input_en[2]
+port 12 nsew signal output
+rlabel metal2 s 18 0 74 800 6 input_en[3]
+port 13 nsew signal output
+rlabel metal2 s 41878 0 41934 800 6 input_en[4]
+port 14 nsew signal output
+rlabel metal2 s 94042 301200 94098 302000 6 input_en[5]
+port 15 nsew signal output
+rlabel metal3 s 241200 56448 242000 56568 6 input_en[6]
+port 16 nsew signal output
+rlabel metal2 s 84382 0 84438 800 6 input_en[7]
+port 17 nsew signal output
+rlabel metal3 s 241200 190408 242000 190528 6 output_en[0]
+port 18 nsew signal output
+rlabel metal3 s 241200 234608 242000 234728 6 output_en[1]
+port 19 nsew signal output
+rlabel metal3 s 0 222368 800 222488 6 output_en[2]
+port 20 nsew signal output
+rlabel metal2 s 136546 301200 136602 302000 6 output_en[3]
+port 21 nsew signal output
+rlabel metal4 s 4208 2128 4528 299792 6 vccd1
+port 22 nsew power input
+rlabel metal4 s 34928 2128 35248 299792 6 vccd1
+port 22 nsew power input
+rlabel metal4 s 65648 2128 65968 299792 6 vccd1
+port 22 nsew power input
+rlabel metal4 s 96368 2128 96688 299792 6 vccd1
+port 22 nsew power input
+rlabel metal4 s 127088 2128 127408 299792 6 vccd1
+port 22 nsew power input
+rlabel metal4 s 157808 2128 158128 299792 6 vccd1
+port 22 nsew power input
+rlabel metal4 s 188528 2128 188848 299792 6 vccd1
+port 22 nsew power input
+rlabel metal4 s 219248 2128 219568 299792 6 vccd1
+port 22 nsew power input
+rlabel metal4 s 19568 2128 19888 299792 6 vssd1
+port 23 nsew ground input
+rlabel metal4 s 50288 2128 50608 299792 6 vssd1
+port 23 nsew ground input
+rlabel metal4 s 81008 2128 81328 299792 6 vssd1
+port 23 nsew ground input
+rlabel metal4 s 111728 2128 112048 299792 6 vssd1
+port 23 nsew ground input
+rlabel metal4 s 142448 2128 142768 299792 6 vssd1
+port 23 nsew ground input
+rlabel metal4 s 173168 2128 173488 299792 6 vssd1
+port 23 nsew ground input
+rlabel metal4 s 203888 2128 204208 299792 6 vssd1
+port 23 nsew ground input
+rlabel metal4 s 234608 2128 234928 299792 6 vssd1
+port 23 nsew ground input
+rlabel metal2 s 168746 0 168802 800 6 y[0]
+port 24 nsew signal output
+rlabel metal3 s 0 178168 800 178288 6 y[1]
+port 25 nsew signal output
+rlabel metal3 s 0 267248 800 267368 6 y[2]
+port 26 nsew signal output
+rlabel metal3 s 241200 145528 242000 145648 6 y[3]
+port 27 nsew signal output
+<< properties >>
+string FIXED_BBOX 0 0 242000 302000
+string LEFclass BLOCK
+string LEFview TRUE
+string GDS_END 18783164
+string GDS_FILE /home/acm289/ece5745-tapeout/openlane/fourbit_adder/runs/fourbit_adder/results/finishing/fourbit_adder.magic.gds
+string GDS_START 125320
+<< end >>
+

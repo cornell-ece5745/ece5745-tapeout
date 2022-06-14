@@ -142,6 +142,18 @@ grp_99_SPI_TapeOutBlockRTL_32bits_5entries mprj (
     .miso_en         (io_oeb[17]),
     .mosi_en         (io_oeb[18])
 );
+// fourbit_adder mprj (
+// `ifdef USE_POWER_PINS
+// 	.vccd1(vccd1),	// User area 1 1.8V power
+// 	.vssd1(vssd1),	// User area 1 digital ground
+// `endif
+//     .a(io_in[13:10]),
+//     .b(io_in[17:14]),
+//     .y(io_out[21:18]),
+//     .input_en(io_oeb[17:10]),
+//     .output_en(io_oeb[21:18]),
+//     .clk(wb_clk_i)
+// );
 
 endmodule	// user_project_wrapper
 

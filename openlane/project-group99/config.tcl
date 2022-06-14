@@ -55,12 +55,20 @@ set ::env(DIODE_INSERTION_STRATEGY) 4
 # If you're going to use multiple power domains, then disable cvc run.
 set ::env(RUN_CVC) 1
 
+# ========================================================================================
+# Changed by Aidan :)
+# Parameter reference: https://github.com/The-OpenROAD-Project/OpenLane/blob/master/configuration/README.md
+
+# Increase Hold time slack margins from default of 0.1 (ns) to avoid hold time violations
+
 set ::env(PL_RESIZER_HOLD_SLACK_MARGIN) 0.8
 set ::env(GLB_RESIZER_HOLD_SLACK_MARGIN) 0.8
 
-# Attempt to adjust where macros are placed
+# Changing where macros are placed to allow more room for routing
+
 set ::env(PL_MACRO_HALO) 100
 set ::env(PL_MACRO_CHANNEL) 200
-# set ::env(PL_TARGET_DENSITY) 0.1
+
+# Allow more routing on edges between cells (thanks Austin!)
 
 set ::env(GLB_RT_ADJUSTMENT) 0.25

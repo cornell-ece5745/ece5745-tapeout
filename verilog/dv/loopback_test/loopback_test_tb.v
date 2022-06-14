@@ -19,7 +19,7 @@
 `define VTB_OUTPUT_ASSERT_DELAY 3
 
 // CYCLE_TIME and INTRA_CYCLE_TIME are duration of time.
-`define CYCLE_TIME 4
+`define CYCLE_TIME 10
 `define INTRA_CYCLE_TIME (`VTB_OUTPUT_ASSERT_DELAY-`VTB_INPUT_DELAY)
 
 `timescale 1 ns / 1 ps
@@ -87,7 +87,7 @@ module loopback_test_tb;
     assign mprj_io[12] = loopthrough_sel_reg;
     assign mprj_io[15] = spi_min__cs_reg;
     assign mprj_io[16] = spi_min__sclk_reg;
-    assign mprj_io[17] = spi_min__mosi_reg;
+    assign mprj_io[18] = spi_min__mosi_reg;
 
     // logic [0:0] adapter_parity ;
     // logic [0:0] loopthrough_sel ;
@@ -136,7 +136,7 @@ module loopback_test_tb;
     end
     endtask
 
-	always #2 clk = ~clk;
+	always #5 clk = ~clk;
 
 	initial begin
 		clk = 1'b0;
@@ -181,11 +181,12 @@ module loopback_test_tb;
     //     else $fatal("\n=====\n\nVTB_OUTPUT_ASSERT_DELAY should be smaller than or equal to CYCLE_TIME\n\n=====\n");
   
       wait(checkbits == 4'hA);
+      wait(clk == 1);
+      wait(clk == 0);
       cycle_count = 0;
-      clk = 1'b0; // NEED TO DO THIS TO HAVE FALLING EDGE AT TIME 0
     //   RSTB = 1'b1; // TODO reset active low/high
       reset = 1'b1;
-    //   #(`CYCLE_TIME/2);
+      #(`CYCLE_TIME/2);
   
     //   // Now we are talking
       #`VTB_INPUT_DELAY;
