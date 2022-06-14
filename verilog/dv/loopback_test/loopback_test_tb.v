@@ -58,7 +58,8 @@
   end
 
 module loopback_test_tb;
-	reg clock;
+	reg signal;
+    reg clock;
     reg clk;
 	reg RSTB;
     reg reset;
@@ -180,7 +181,8 @@ module loopback_test_tb;
     //   assert(`VTB_OUTPUT_ASSERT_DELAY <= `CYCLE_TIME)
     //     else $fatal("\n=====\n\nVTB_OUTPUT_ASSERT_DELAY should be smaller than or equal to CYCLE_TIME\n\n=====\n");
   
-      wait(checkbits == 4'hA);
+    //   wait(checkbits == 4'hA);
+      wait(signal == 1);
       wait(clk == 1);
       wait(clk == 0);
       cycle_count = 0;
@@ -210,17 +212,30 @@ module loopback_test_tb;
       $finish;
     end    
 
+	// initial begin
+	// 	RSTB <= 1'b0;
+	// 	CSB  <= 1'b1;		// Force CSB high
+	// 	#2000;
+	// 	RSTB <= 1'b1;	    	// Release reset
+	// 	#300000;
+	// 	CSB = 1'b0;		// CSB can be released
+	// end
+
 	initial begin
-		RSTB <= 1'b0;
-		CSB  <= 1'b1;		// Force CSB high
-		#2000;
-		RSTB <= 1'b1;	    	// Release reset
+		signal <= 1'b0;
+        RSTB <= 1'b0;
+		// CSB  <= 1'b1;
+		#1000;
+		RSTB <= 1'b1;
+        #1000
+        // RSTB <= 1'b0; //Reset back to initial config
+        signal <= 1'b1;
 		#300000;
-		CSB = 1'b0;		// CSB can be released
+		// CSB = 1'b0;		// CSB can be released
 	end
 
 	initial begin		// Power-up sequence
-		power1 <= 1'b0;
+        power1 <= 1'b0;
 		power2 <= 1'b0;
 		power3 <= 1'b0;
 		power4 <= 1'b0;
