@@ -2266,6 +2266,7 @@ module tapeout_SPI_TapeOutBlockVRTL_sv2v (
     output miso_en,
     output mosi_en
   );
+
     assign lt_sel_en = 1; // Input
     assign mp_en     = 0; // Output
     assign ap_en     = 0; // Output
@@ -2275,20 +2276,22 @@ module tapeout_SPI_TapeOutBlockVRTL_sv2v (
     assign mosi_en   = 1; // Input
     assign clk_en    = 1; // Input
     assign reset_en  = 1; // Input
-	tapeout_SPI_TapeOutBlockVRTL #(
-		.nbits(34),
-		.num_entries(5)
-	) v(
-		.adapter_parity(adapter_parity),
-		.clk(clk),
-		.loopthrough_sel(loopthrough_sel),
-		.minion_parity(minion_parity),
-		.reset(reset),
-		.spi_min_cs(spi_min_cs),
-		.spi_min_miso(spi_min_miso),
-		.spi_min_mosi(spi_min_mosi),
-		.spi_min_sclk(spi_min_sclk)
-	);
+
+  tapeout_SPI_TapeOutBlockVRTL #(
+    .nbits(34),
+    .num_entries(5)
+  ) v(
+    .adapter_parity(adapter_parity),
+    .clk(clk),
+    .loopthrough_sel(loopthrough_sel),
+    .minion_parity(minion_parity),
+    .reset(reset),
+    .spi_min_cs(spi_min_cs),
+    .spi_min_miso(spi_min_miso),
+    .spi_min_mosi(spi_min_mosi),
+    .spi_min_sclk(spi_min_sclk)
+  );
+
 endmodule
 
 `endif /* SPI_TAPEOUTBLOCKVRTL_SV2V */
@@ -2301,24 +2304,28 @@ endmodule
 
 module grp_15_SPI_TapeOutBlockRTL_32bits_5entries
 (
-  output logic [1-1:0] adapter_parity ,
-  output logic [1-1:0] ap_en ,
-  input logic [1-1:0] clk ,
-  output logic [1-1:0] clk_en ,
-  output logic [1-1:0] cs_en ,
-  input logic [1-1:0] loopthrough_sel ,
-  output logic [1-1:0] lt_sel_en ,
-  output logic [1-1:0] minion_parity ,
-  output logic [1-1:0] miso_en ,
-  output logic [1-1:0] mosi_en ,
-  output logic [1-1:0] mp_en ,
-  input logic [1-1:0] reset ,
-  output logic [1-1:0] reset_en ,
-  output logic [1-1:0] sclk_en ,
-  input logic [1-1:0] spi_min_cs ,
-  output logic [1-1:0] spi_min_miso ,
-  input logic [1-1:0] spi_min_mosi ,
-  input logic [1-1:0] spi_min_sclk 
+`ifdef USE_POWER_PINS
+  inout vccd1, // User area 1 1.8V supply
+  inout vssd1, // User area 1 digital ground
+`endif
+  output adapter_parity ,
+  output ap_en ,
+  input  clk ,
+  output clk_en ,
+  output cs_en ,
+  input  loopthrough_sel ,
+  output lt_sel_en ,
+  output minion_parity ,
+  output miso_en ,
+  output mosi_en ,
+  output mp_en ,
+  input  reset ,
+  output reset_en ,
+  output sclk_en ,
+  input  spi_min_cs ,
+  output spi_min_miso ,
+  input  spi_min_mosi ,
+  input  spi_min_sclk
 );
   tapeout_SPI_TapeOutBlockVRTL_sv2v
   #(
