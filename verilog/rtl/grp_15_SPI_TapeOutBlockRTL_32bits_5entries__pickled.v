@@ -2100,20 +2100,24 @@ module tapeout_SPI_TapeOutBlockVRTL (
 	input wire spi_min_cs;
 	input wire spi_min_mosi;
 	output wire spi_min_miso;
+	reg reset_presync;
+	reg reset_sync;
+	always @(posedge clk) begin
+		reset_presync <= reset;
+		reset_sync <= reset_presync;
+	end
 	wire in_rsc_vld;
 	wire [31:0] in_rsc_dat;
 	wire in_rsc_rdy;
 	wire out_rsc_vld;
 	wire [31:0] out_rsc_dat;
 	wire out_rsc_rdy;
-	wire [7:0] truncated_in_rsc_dat;
-	assign truncated_in_rsc_dat = in_rsc_dat[7:0];
 	SPI_v3_components_SPIstackVRTL #(
 		.nbits(nbits),
 		.num_entries(num_entries)
 	) SPIstack(
 		.clk(clk),
-		.reset(reset),
+		.reset(reset_sync),
 		.loopthrough_sel(loopthrough_sel),
 		.minion_parity(minion_parity),
 		.adapter_parity(adapter_parity),
@@ -2128,9 +2132,11 @@ module tapeout_SPI_TapeOutBlockVRTL (
 		.send_msg(in_rsc_dat),
 		.send_rdy(in_rsc_rdy)
 	);
+	wire [7:0] truncated_in_rsc_dat;
+	assign truncated_in_rsc_dat = in_rsc_dat[7:0];
 	crc32 crc32_inst(
 		.clk(clk),
-		.rst(reset),
+		.rst(reset_sync),
 		.in_rsc_dat(truncated_in_rsc_dat),
 		.in_rsc_vld(in_rsc_vld),
 		.in_rsc_rdy(in_rsc_rdy),
@@ -2140,52 +2146,30 @@ module tapeout_SPI_TapeOutBlockVRTL (
 	);
 endmodule
 module tapeout_SPI_TapeOutBlockVRTL_sv2v (
-    output adapter_parity,
-    input  clk,
-    input  loopthrough_sel,
-    output minion_parity,
-    input  reset,
-    input  spi_min_cs,
-    output spi_min_miso,
-    input  spi_min_mosi,
-    input  spi_min_sclk,
-
-    output clk_en,
-    output reset_en,
-    output lt_sel_en,
-    output mp_en,
-    output ap_en,
-    output cs_en,
-    output sclk_en,
-    output miso_en,
-    output mosi_en
-  );
-
-    assign lt_sel_en = 1; // Input
-    assign mp_en     = 0; // Output
-    assign ap_en     = 0; // Output
-    assign cs_en     = 1; // Input
-    assign sclk_en   = 1; // Input
-    assign miso_en   = 0; // Output
-    assign mosi_en   = 1; // Input
-    assign clk_en    = 1; // Input
-    assign reset_en  = 1; // Input
-
-  tapeout_SPI_TapeOutBlockVRTL #(
-    .nbits(34),
-    .num_entries(5)
-  ) v(
-    .adapter_parity(adapter_parity),
-    .clk(clk),
-    .loopthrough_sel(loopthrough_sel),
-    .minion_parity(minion_parity),
-    .reset(reset),
-    .spi_min_cs(spi_min_cs),
-    .spi_min_miso(spi_min_miso),
-    .spi_min_mosi(spi_min_mosi),
-    .spi_min_sclk(spi_min_sclk)
-  );
-
+  output adapter_parity,
+  input  clk,
+  input  loopthrough_sel,
+  output minion_parity,
+  input  reset,
+  input  spi_min_cs,
+  output spi_min_miso,
+  input  spi_min_mosi,
+  input  spi_min_sclk
+);
+	tapeout_SPI_TapeOutBlockVRTL #(
+		.nbits(34),
+		.num_entries(5)
+	) v(
+		.adapter_parity(adapter_parity),
+		.clk(clk),
+		.loopthrough_sel(loopthrough_sel),
+		.minion_parity(minion_parity),
+		.reset(reset),
+		.spi_min_cs(spi_min_cs),
+		.spi_min_miso(spi_min_miso),
+		.spi_min_mosi(spi_min_mosi),
+		.spi_min_sclk(spi_min_sclk)
+	);
 endmodule
 
 `endif /* SPI_TAPEOUTBLOCKVRTL_SV2V */
@@ -2203,42 +2187,44 @@ module grp_15_SPI_TapeOutBlockRTL_32bits_5entries
   inout vssd1, // User area 1 digital ground
 `endif
   output adapter_parity ,
-  output ap_en ,
   input  clk ,
-  output clk_en ,
-  output cs_en ,
   input  loopthrough_sel ,
-  output lt_sel_en ,
   output minion_parity ,
-  output miso_en ,
-  output mosi_en ,
-  output mp_en ,
   input  reset ,
-  output reset_en ,
-  output sclk_en ,
   input  spi_min_cs ,
   output spi_min_miso ,
   input  spi_min_mosi ,
-  input  spi_min_sclk
+  input  spi_min_sclk,
+
+  output clk_en,
+  output reset_en,
+  output lt_sel_en,
+  output mp_en,
+  output ap_en,
+  output cs_en,
+  output sclk_en,
+  output miso_en,
+  output mosi_en
 );
+  assign lt_sel_en = 1; // Input
+  assign mp_en     = 0; // Output
+  assign ap_en     = 0; // Output
+  assign cs_en     = 1; // Input
+  assign sclk_en   = 1; // Input
+  assign miso_en   = 0; // Output
+  assign mosi_en   = 1; // Input
+  assign clk_en    = 1; // Input
+  assign reset_en  = 1; // Input
+
   tapeout_SPI_TapeOutBlockVRTL_sv2v
   #(
   ) v
   (
     .adapter_parity( adapter_parity ),
-    .ap_en( ap_en ),
     .clk( clk ),
-    .clk_en( clk_en ),
-    .cs_en( cs_en ),
     .loopthrough_sel( loopthrough_sel ),
-    .lt_sel_en( lt_sel_en ),
     .minion_parity( minion_parity ),
-    .miso_en( miso_en ),
-    .mosi_en( mosi_en ),
-    .mp_en( mp_en ),
     .reset( reset ),
-    .reset_en( reset_en ),
-    .sclk_en( sclk_en ),
     .spi_min_cs( spi_min_cs ),
     .spi_min_miso( spi_min_miso ),
     .spi_min_mosi( spi_min_mosi ),

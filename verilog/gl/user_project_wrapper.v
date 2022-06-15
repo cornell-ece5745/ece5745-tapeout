@@ -54,7 +54,7 @@ module user_project_wrapper (user_clock2,
  input [3:0] wbs_sel_i;
 
 
- grp_99_SPI_TapeOutBlockRTL_32bits_5entries mprj (.adapter_parity(io_out[14]),
+ grp_15_SPI_TapeOutBlockRTL_32bits_5entries mprj (.adapter_parity(io_out[14]),
     .ap_en(io_oeb[14]),
     .clk(io_in[26]),
     .clk_en(io_oeb[26]),
@@ -68,10 +68,10 @@ module user_project_wrapper (user_clock2,
     .reset(io_in[27]),
     .reset_en(io_oeb[27]),
     .sclk_en(io_oeb[16]),
-    .spi_min__cs(io_in[15]),
-    .spi_min__miso(io_out[17]),
-    .spi_min__mosi(io_in[18]),
-    .spi_min__sclk(io_in[16]),
+    .spi_min_cs(io_in[15]),
+    .spi_min_miso(io_out[17]),
+    .spi_min_mosi(io_in[18]),
+    .spi_min_sclk(io_in[16]),
     .vccd1(vccd1),
     .vssd1(vssd1));
 endmodule

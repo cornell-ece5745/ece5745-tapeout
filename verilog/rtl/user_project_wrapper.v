@@ -118,7 +118,7 @@ module user_project_wrapper #(
 //     .irq(user_irq)
 // );
 
-grp_99_SPI_TapeOutBlockRTL_32bits_5entries mprj (
+grp_15_SPI_TapeOutBlockRTL_32bits_5entries mprj (
 `ifdef USE_POWER_PINS
 	.vccd1(vccd1),	// User area 1 1.8V power
 	.vssd1(vssd1),	// User area 1 digital ground
@@ -128,10 +128,10 @@ grp_99_SPI_TapeOutBlockRTL_32bits_5entries mprj (
     .loopthrough_sel (io_in[12]),
     .minion_parity   (io_out[13]),
     .reset           (io_in[27]),
-    .spi_min__cs     (io_in[15]),
-    .spi_min__miso   (io_out[17]),
-    .spi_min__mosi   (io_in[18]),
-    .spi_min__sclk   (io_in[16]),
+    .spi_min_cs     (io_in[15]),
+    .spi_min_miso   (io_out[17]),
+    .spi_min_mosi   (io_in[18]),
+    .spi_min_sclk   (io_in[16]),
     .clk_en          (io_oeb[26]),
     .reset_en        (io_oeb[27]),
     .lt_sel_en       (io_oeb[12]),
