@@ -31,7 +31,7 @@ set ::env(CLOCK_NET) "clk"
 set ::env(CLOCK_PERIOD) "100"
 
 set ::env(FP_SIZING) absolute
-set ::env(DIE_AREA) "0 0 1000 1000"
+set ::env(DIE_AREA) "0 0 900 900"
 
 #set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
@@ -57,4 +57,6 @@ set ::env(RUN_CVC) 1
 
 set ::env(PL_RESIZER_HOLD_SLACK_MARGIN) 0.8
 set ::env(GLB_RESIZER_HOLD_SLACK_MARGIN) 0.8
+
+# set ::env(GLB_RT_ADJUSTMENT) "0.25"
 
