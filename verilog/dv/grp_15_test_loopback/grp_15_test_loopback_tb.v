@@ -145,10 +145,10 @@ module grp_15_test_loopback_tb;
 
   assign mprj_io[0]  = 0; // disable debug mode
   assign mprj_io[3]  = 1; // force CSB high
-  assign mprj_io[12] = loopthrough_sel;
-  assign mprj_io[15] = spi_min_cs;
-  assign mprj_io[16] = spi_min_sclk;
-  assign mprj_io[18] = spi_min_mosi;
+  assign mprj_io[35] = loopthrough_sel;
+  assign mprj_io[8] = spi_min_cs;
+  assign mprj_io[9] = spi_min_sclk;
+  assign mprj_io[11] = spi_min_mosi;
   assign mprj_io[27] = reset;
   assign mprj_io[26] = clk;
 
@@ -159,9 +159,9 @@ module grp_15_test_loopback_tb;
   wire        spi_min_miso;
   wire  [3:0] checkbits;
 
-  assign minion_parity  = mprj_io[13];
-  assign adapter_parity = mprj_io[14];
-  assign spi_min_miso   = mprj_io[17];
+  assign minion_parity  = mprj_io[36];
+  assign adapter_parity = mprj_io[37];
+  assign spi_min_miso   = mprj_io[10];
   assign checkbits      = mprj_io[31:28];
 
   //----------------------------------------------------------------------

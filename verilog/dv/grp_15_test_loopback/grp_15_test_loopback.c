@@ -79,15 +79,15 @@ void main()
         // // reg_mprj_io_1  = GPIO_MODE_USER_STD_OUTPUT;
         // // reg_mprj_io_0  = GPIO_MODE_USER_STD_OUTPUT;
 
-        reg_mprj_io_14 = GPIO_MODE_USER_STD_OUTPUT; //Adapter Parity
+        reg_mprj_io_37 = GPIO_MODE_USER_STD_OUTPUT; //Adapter Parity
         reg_mprj_io_26 = GPIO_MODE_USER_STD_INPUT_NOPULL; //Clock
-        reg_mprj_io_12 = GPIO_MODE_USER_STD_INPUT_NOPULL; //Loopthrough Select
-        reg_mprj_io_13 = GPIO_MODE_USER_STD_OUTPUT; //Minion Parity
+        reg_mprj_io_35 = GPIO_MODE_USER_STD_INPUT_NOPULL; //Loopthrough Select
+        reg_mprj_io_36 = GPIO_MODE_USER_STD_OUTPUT; //Minion Parity
         reg_mprj_io_27 = GPIO_MODE_USER_STD_INPUT_NOPULL; //Reset
-        reg_mprj_io_15 = GPIO_MODE_USER_STD_INPUT_NOPULL; //SPI_CS
-        reg_mprj_io_17 = GPIO_MODE_USER_STD_OUTPUT; //SPI_MISO
-        reg_mprj_io_18 = GPIO_MODE_USER_STD_INPUT_NOPULL; //SPI_MOSI
-        reg_mprj_io_16 = GPIO_MODE_USER_STD_INPUT_NOPULL; //SPI_SCLK
+        reg_mprj_io_8 = GPIO_MODE_USER_STD_INPUT_NOPULL; //SPI_CS
+        reg_mprj_io_10 = GPIO_MODE_USER_STD_OUTPUT; //SPI_MISO
+        reg_mprj_io_11 = GPIO_MODE_USER_STD_INPUT_NOPULL; //SPI_MOSI
+        reg_mprj_io_9 = GPIO_MODE_USER_STD_INPUT_NOPULL; //SPI_SCLK
         
 
         /* Apply configuration */
