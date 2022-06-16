@@ -1,6 +1,6 @@
 ###############################################################################
 # Created by write_sdc
-# Wed Jun 15 18:01:46 2022
+# Wed Jun 15 22:52:19 2022
 ###############################################################################
 current_design grp_99_SPI_TapeOutBlockRTL_32bits_5entries
 ###############################################################################
@@ -12,9 +12,9 @@ set_clock_uncertainty 0.2500 clk
 set_propagated_clock [get_clocks {clk}]
 set_input_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {loopthrough_sel}]
 set_input_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {reset}]
-set_input_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {spi_min__cs}]
-set_input_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {spi_min__mosi}]
-set_input_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {spi_min__sclk}]
+set_input_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {spi_min_cs}]
+set_input_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {spi_min_mosi}]
+set_input_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {spi_min_sclk}]
 set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {adapter_parity}]
 set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {ap_en}]
 set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {clk_en}]
@@ -26,7 +26,7 @@ set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {mosi_e
 set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {mp_en}]
 set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {reset_en}]
 set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {sclk_en}]
-set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {spi_min__miso}]
+set_output_delay 20.0000 -clock [get_clocks {clk}] -add_delay [get_ports {spi_min_miso}]
 ###############################################################################
 # Environment
 ###############################################################################
@@ -41,13 +41,13 @@ set_load -pin_load 0.0334 [get_ports {mosi_en}]
 set_load -pin_load 0.0334 [get_ports {mp_en}]
 set_load -pin_load 0.0334 [get_ports {reset_en}]
 set_load -pin_load 0.0334 [get_ports {sclk_en}]
-set_load -pin_load 0.0334 [get_ports {spi_min__miso}]
+set_load -pin_load 0.0334 [get_ports {spi_min_miso}]
 set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {clk}]
 set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {loopthrough_sel}]
 set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {reset}]
-set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {spi_min__cs}]
-set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {spi_min__mosi}]
-set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {spi_min__sclk}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {spi_min_cs}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {spi_min_mosi}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {spi_min_sclk}]
 set_timing_derate -early 0.9500
 set_timing_derate -late 1.0500
 ###############################################################################

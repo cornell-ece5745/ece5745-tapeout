@@ -54,7 +54,7 @@ module user_project_wrapper (user_clock2,
  input [3:0] wbs_sel_i;
 
 
- grp_15_SPI_TapeOutBlockRTL_32bits_5entries mprj (.adapter_parity(io_out[14]),
+ grp_99_SPI_TapeOutBlockRTL_32bits_5entries mprj (.adapter_parity(io_out[14]),
     .ap_en(io_oeb[14]),
     .clk(io_in[26]),
     .clk_en(io_oeb[26]),

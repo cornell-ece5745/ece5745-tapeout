@@ -1,12 +1,18 @@
 # Caravel user project includes
 
-# includes for group 99 block
+# includes for multi block
 
--v $(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v
--v $(USER_PROJECT_VERILOG)/rtl/grp_99_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v
+# -v $(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v
+# -v $(USER_PROJECT_VERILOG)/rtl/grp_99_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v
+# -v $(USER_PROJECT_VERILOG)/rtl/grp_15_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v
 
 # includes for group 15 block
 
 # -v $(USER_PROJECT_VERILOG)/rtl/grp_15_project_wrapper.v
 # -v $(USER_PROJECT_VERILOG)/rtl/grp_15_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v
+
+# includes for group 99 block
+
+-v $(USER_PROJECT_VERILOG)/rtl/grp_99_project_wrapper.v
+-v $(USER_PROJECT_VERILOG)/rtl/grp_99_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v
 
