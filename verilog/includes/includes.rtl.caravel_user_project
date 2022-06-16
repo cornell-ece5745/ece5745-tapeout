@@ -16,3 +16,8 @@
 # -v $(USER_PROJECT_VERILOG)/rtl/grp_99_project_wrapper.v
 # -v $(USER_PROJECT_VERILOG)/rtl/grp_99_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v
 
+# includes for group 17 block
+
+# -v $(USER_PROJECT_VERILOG)/rtl/grp_17_project_wrapper.v
+# -v $(USER_PROJECT_VERILOG)/rtl/grp_17_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v
+
