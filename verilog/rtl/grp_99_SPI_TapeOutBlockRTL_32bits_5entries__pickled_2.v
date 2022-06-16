@@ -15,6 +15,9 @@
 // Dependency of placeholder SPI_TapeOutBlockVRTL_sv2v
 //-----------------------------------------------------------
 
+`ifndef SPI_TAPEOUTBLOCKVRTL_SV2V
+`define SPI_TAPEOUTBLOCKVRTL_SV2V
+
 // The source code below are included because they are specified
 // as the v_libs Verilog placeholder option of component SPI_TapeOutBlockVRTL_sv2v_noparam.
 
@@ -27,7 +30,7 @@
 // End of all v_libs files for component SPI_TapeOutBlockVRTL_sv2v_noparam
 
 `line 1 "tapeout/SPI_TapeOutBlockVRTL_sv2v.v" 0
-module grp_99_SPI_v3_components_LoopThroughVRTL (
+module SPI_v3_components_LoopThroughVRTL (
 	clk,
 	reset,
 	sel,
@@ -67,7 +70,7 @@ module grp_99_SPI_v3_components_LoopThroughVRTL (
 	assign upstream_req_rdy = (sel ? upstream_resp_rdy : downstream_req_rdy);
 	assign downstream_resp_rdy = (sel ? 0 : upstream_resp_rdy);
 endmodule
-module grp_99_ShiftReg (
+module ShiftReg (
 	clk,
 	in_,
 	load_data,
@@ -92,7 +95,7 @@ module grp_99_ShiftReg (
 		else if (~load_en & shift_en)
 			out <= {out[nbits - 2:0], in_};
 endmodule
-module grp_99_Synchronizer (
+module Synchronizer (
 	clk,
 	in_,
 	negedge_,
@@ -119,7 +122,7 @@ module grp_99_Synchronizer (
 			shreg <= {shreg[1:0], in_};
 	assign out = shreg[1];
 endmodule
-module grp_99_SPI_v3_components_SPIMinionVRTL (
+module SPI_v3_components_SPIMinionVRTL (
 	clk,
 	cs,
 	miso,
@@ -150,7 +153,7 @@ module grp_99_SPI_v3_components_SPIMinionVRTL (
 	wire cs_sync_out;
 	wire cs_sync_posedge_;
 	wire cs_sync_reset;
-	grp_99_Synchronizer #(.reset_value(1'b1)) cs_sync(
+	Synchronizer #(.reset_value(1'b1)) cs_sync(
 		.clk(cs_sync_clk),
 		.in_(cs_sync_in_),
 		.negedge_(cs_sync_negedge_),
@@ -164,7 +167,7 @@ module grp_99_SPI_v3_components_SPIMinionVRTL (
 	wire mosi_sync_out;
 	wire mosi_sync_posedge_;
 	wire mosi_sync_reset;
-	grp_99_Synchronizer #(.reset_value(1'b0)) mosi_sync(
+	Synchronizer #(.reset_value(1'b0)) mosi_sync(
 		.clk(mosi_sync_clk),
 		.in_(mosi_sync_in_),
 		.negedge_(mosi_sync_negedge_),
@@ -178,7 +181,7 @@ module grp_99_SPI_v3_components_SPIMinionVRTL (
 	wire sclk_sync_out;
 	wire sclk_sync_posedge_;
 	wire sclk_sync_reset;
-	grp_99_Synchronizer #(.reset_value(1'b0)) sclk_sync(
+	Synchronizer #(.reset_value(1'b0)) sclk_sync(
 		.clk(sclk_sync_clk),
 		.in_(sclk_sync_in_),
 		.negedge_(sclk_sync_negedge_),
@@ -193,7 +196,7 @@ module grp_99_SPI_v3_components_SPIMinionVRTL (
 	wire [nbits - 1:0] shreg_in_out;
 	wire shreg_in_reset;
 	reg shreg_in_shift_en;
-	grp_99_ShiftReg #(.nbits(nbits)) shreg_in(
+	ShiftReg #(.nbits(nbits)) shreg_in(
 		.clk(shreg_in_clk),
 		.in_(shreg_in_in_),
 		.load_data(shreg_in_load_data),
@@ -209,7 +212,7 @@ module grp_99_SPI_v3_components_SPIMinionVRTL (
 	wire [nbits - 1:0] shreg_out_out;
 	wire shreg_out_reset;
 	reg shreg_out_shift_en;
-	grp_99_ShiftReg #(.nbits(nbits)) shreg_out(
+	ShiftReg #(.nbits(nbits)) shreg_out(
 		.clk(shreg_out_clk),
 		.in_(shreg_out_in_),
 		.load_data(shreg_out_load_data),
@@ -247,7 +250,7 @@ module grp_99_SPI_v3_components_SPIMinionVRTL (
 	assign push_msg = shreg_in_out;
 	assign parity = ^push_msg[nbits - 3:0] & push_en;
 endmodule
-module grp_99_vc_Reg (
+module vc_Reg (
 	clk,
 	q,
 	d
@@ -258,7 +261,7 @@ module grp_99_vc_Reg (
 	input wire [p_nbits - 1:0] d;
 	always @(posedge clk) q <= d;
 endmodule
-module grp_99_vc_ResetReg (
+module vc_ResetReg (
 	clk,
 	reset,
 	q,
@@ -272,7 +275,7 @@ module grp_99_vc_ResetReg (
 	input wire [p_nbits - 1:0] d;
 	always @(posedge clk) q <= (reset ? p_reset_value : d);
 endmodule
-module grp_99_vc_EnReg (
+module vc_EnReg (
 	clk,
 	reset,
 	q,
@@ -289,7 +292,7 @@ module grp_99_vc_EnReg (
 		if (en)
 			q <= d;
 endmodule
-module grp_99_vc_EnResetReg (
+module vc_EnResetReg (
 	clk,
 	reset,
 	q,
@@ -307,7 +310,7 @@ module grp_99_vc_EnResetReg (
 		if (reset || en)
 			q <= (reset ? p_reset_value : d);
 endmodule
-module grp_99_vc_Mux2 (
+module vc_Mux2 (
 	in0,
 	in1,
 	sel,
@@ -325,7 +328,7 @@ module grp_99_vc_Mux2 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module grp_99_vc_Mux3 (
+module vc_Mux3 (
 	in0,
 	in1,
 	in2,
@@ -346,7 +349,7 @@ module grp_99_vc_Mux3 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module grp_99_vc_Mux4 (
+module vc_Mux4 (
 	in0,
 	in1,
 	in2,
@@ -370,7 +373,7 @@ module grp_99_vc_Mux4 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module grp_99_vc_Mux5 (
+module vc_Mux5 (
 	in0,
 	in1,
 	in2,
@@ -397,7 +400,7 @@ module grp_99_vc_Mux5 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module grp_99_vc_Mux6 (
+module vc_Mux6 (
 	in0,
 	in1,
 	in2,
@@ -427,7 +430,7 @@ module grp_99_vc_Mux6 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module grp_99_vc_Mux7 (
+module vc_Mux7 (
 	in0,
 	in1,
 	in2,
@@ -460,7 +463,7 @@ module grp_99_vc_Mux7 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module grp_99_vc_Mux8 (
+module vc_Mux8 (
 	in0,
 	in1,
 	in2,
@@ -496,7 +499,7 @@ module grp_99_vc_Mux8 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module grp_99_vc_MuxN (
+module vc_MuxN (
 	in,
 	sel,
 	out
@@ -508,7 +511,7 @@ module grp_99_vc_MuxN (
 	output wire [p_nbits - 1:0] out;
 	assign out = in[sel * p_nbits+:p_nbits];
 endmodule
-module grp_99_vc_Regfile_1r1w (
+module vc_Regfile_1r1w (
 	clk,
 	reset,
 	read_addr,
@@ -533,7 +536,7 @@ module grp_99_vc_Regfile_1r1w (
 		if (write_en)
 			rfile[write_addr] <= write_data;
 endmodule
-module grp_99_vc_ResetRegfile_1r1w (
+module vc_ResetRegfile_1r1w (
 	clk,
 	reset,
 	read_addr,
@@ -566,7 +569,7 @@ module grp_99_vc_ResetRegfile_1r1w (
 		end
 	endgenerate
 endmodule
-module grp_99_vc_Regfile_2r1w (
+module vc_Regfile_2r1w (
 	clk,
 	reset,
 	read_addr0,
@@ -596,7 +599,7 @@ module grp_99_vc_Regfile_2r1w (
 		if (write_en)
 			rfile[write_addr] <= write_data;
 endmodule
-module grp_99_vc_Regfile_2r2w (
+module vc_Regfile_2r2w (
 	clk,
 	reset,
 	read_addr0,
@@ -635,7 +638,7 @@ module grp_99_vc_Regfile_2r2w (
 			rfile[write_addr1] <= write_data1;
 	end
 endmodule
-module grp_99_vc_Regfile_2r1w_zero (
+module vc_Regfile_2r1w_zero (
 	clk,
 	reset,
 	rd_addr0,
@@ -657,7 +660,7 @@ module grp_99_vc_Regfile_2r1w_zero (
 	input wire [31:0] wr_data;
 	wire [31:0] rf_read_data0;
 	wire [31:0] rf_read_data1;
-	grp_99_vc_Regfile_2r1w #(
+	vc_Regfile_2r1w #(
 		.p_data_nbits(32),
 		.p_num_entries(32)
 	) rfile(
@@ -675,7 +678,7 @@ module grp_99_vc_Regfile_2r1w_zero (
 	assign rd_data1 = (rd_addr1 == 5'd0 ? 32'd0 : rf_read_data1);
 endmodule
 
-module grp_99_vc_QueueCtrl1 (
+module vc_QueueCtrl1 (
 	clk,
 	reset,
 	recv_val,
@@ -718,7 +721,7 @@ module grp_99_vc_QueueCtrl1 (
 	assign send_val = ~empty || ((c_bypass_en && empty) && recv_val);
 	assign full_next = (do_deq && ~do_pipe ? 1'b0 : (do_enq && ~do_bypass ? 1'b1 : full));
 endmodule
-module grp_99_vc_QueueDpath1 (
+module vc_QueueDpath1 (
 	clk,
 	reset,
 	write_en,
@@ -735,7 +738,7 @@ module grp_99_vc_QueueDpath1 (
 	input wire [p_msg_nbits - 1:0] recv_msg;
 	output wire [p_msg_nbits - 1:0] send_msg;
 	wire [p_msg_nbits - 1:0] qstore;
-	grp_99_vc_EnReg #(.p_nbits(p_msg_nbits)) qstore_reg(
+	vc_EnReg #(.p_nbits(p_msg_nbits)) qstore_reg(
 		.clk(clk),
 		.reset(reset),
 		.en(write_en),
@@ -744,7 +747,7 @@ module grp_99_vc_QueueDpath1 (
 	);
 	generate
 		if (|(p_type & 4'b0010)) begin : genblk1
-			grp_99_vc_Mux2 #(.p_nbits(p_msg_nbits)) bypass_mux(
+			vc_Mux2 #(.p_nbits(p_msg_nbits)) bypass_mux(
 				.in0(qstore),
 				.in1(recv_msg),
 				.sel(bypass_mux_sel),
@@ -756,7 +759,7 @@ module grp_99_vc_QueueDpath1 (
 		end
 	endgenerate
 endmodule
-module grp_99_vc_QueueCtrl (
+module vc_QueueCtrl (
 	clk,
 	reset,
 	recv_val,
@@ -785,7 +788,7 @@ module grp_99_vc_QueueCtrl (
 	output wire [c_addr_nbits:0] num_free_entries;
 	wire [c_addr_nbits - 1:0] enq_ptr;
 	wire [c_addr_nbits - 1:0] enq_ptr_next;
-	grp_99_vc_ResetReg #(.p_nbits(c_addr_nbits)) enq_ptr_reg(
+	vc_ResetReg #(.p_nbits(c_addr_nbits)) enq_ptr_reg(
 		.clk(clk),
 		.reset(reset),
 		.d(enq_ptr_next),
@@ -793,7 +796,7 @@ module grp_99_vc_QueueCtrl (
 	);
 	wire [c_addr_nbits - 1:0] deq_ptr;
 	wire [c_addr_nbits - 1:0] deq_ptr_next;
-	grp_99_vc_ResetReg #(.p_nbits(c_addr_nbits)) deq_ptr_reg(
+	vc_ResetReg #(.p_nbits(c_addr_nbits)) deq_ptr_reg(
 		.clk(clk),
 		.reset(reset),
 		.d(deq_ptr_next),
@@ -803,7 +806,7 @@ module grp_99_vc_QueueCtrl (
 	assign read_addr = deq_ptr;
 	wire full;
 	wire full_next;
-	grp_99_vc_ResetReg #(.p_nbits(1)) full_reg(
+	vc_ResetReg #(.p_nbits(1)) full_reg(
 		.clk(clk),
 		.reset(reset),
 		.d(full_next),
@@ -838,7 +841,7 @@ module grp_99_vc_QueueCtrl (
 	assign full_next = ((do_enq && ~do_deq) && (enq_ptr_inc == deq_ptr) ? 1'b1 : ((do_deq && full) && ~do_pipe ? 1'b0 : full));
 	assign num_free_entries = (full ? {c_addr_nbits + 1 {1'b0}} : (empty ? p_num_msgs[c_addr_nbits:0] : (enq_ptr > deq_ptr ? p_num_msgs[c_addr_nbits:0] - (enq_ptr - deq_ptr) : (deq_ptr > enq_ptr ? deq_ptr - enq_ptr : {c_addr_nbits + 1 {1'bx}}))));
 endmodule
-module grp_99_vc_QueueDpath (
+module vc_QueueDpath (
 	clk,
 	reset,
 	write_en,
@@ -861,7 +864,7 @@ module grp_99_vc_QueueDpath (
 	input wire [p_msg_nbits - 1:0] recv_msg;
 	output wire [p_msg_nbits - 1:0] send_msg;
 	wire [p_msg_nbits - 1:0] read_data;
-	grp_99_vc_Regfile_1r1w #(
+	vc_Regfile_1r1w #(
 		.p_data_nbits(p_msg_nbits),
 		.p_num_entries(p_num_msgs)
 	) qstore(
@@ -875,7 +878,7 @@ module grp_99_vc_QueueDpath (
 	);
 	generate
 		if (|(p_type & 4'b0010)) begin : genblk1
-			grp_99_vc_Mux2 #(.p_nbits(p_msg_nbits)) bypass_mux(
+			vc_Mux2 #(.p_nbits(p_msg_nbits)) bypass_mux(
 				.in0(read_data),
 				.in1(recv_msg),
 				.sel(bypass_mux_sel),
@@ -887,7 +890,7 @@ module grp_99_vc_QueueDpath (
 		end
 	endgenerate
 endmodule
-module grp_99_vc_Queue (
+module vc_Queue (
 	clk,
 	reset,
 	recv_val,
@@ -915,7 +918,7 @@ module grp_99_vc_Queue (
 		if (p_num_msgs == 1) begin : genblk1
 			wire write_en;
 			wire bypass_mux_sel;
-			grp_99_vc_QueueCtrl1 #(.p_type(p_type)) ctrl(
+			vc_QueueCtrl1 #(.p_type(p_type)) ctrl(
 				.clk(clk),
 				.reset(reset),
 				.recv_val(recv_val),
@@ -926,7 +929,7 @@ module grp_99_vc_Queue (
 				.bypass_mux_sel(bypass_mux_sel),
 				.num_free_entries(num_free_entries)
 			);
-			grp_99_vc_QueueDpath1 #(
+			vc_QueueDpath1 #(
 				.p_type(p_type),
 				.p_msg_nbits(p_msg_nbits)
 			) dpath(
@@ -943,7 +946,7 @@ module grp_99_vc_Queue (
 			wire bypass_mux_sel;
 			wire [c_addr_nbits - 1:0] write_addr;
 			wire [c_addr_nbits - 1:0] read_addr;
-			grp_99_vc_QueueCtrl #(
+			vc_QueueCtrl #(
 				.p_type(p_type),
 				.p_num_msgs(p_num_msgs)
 			) ctrl(
@@ -959,7 +962,7 @@ module grp_99_vc_Queue (
 				.bypass_mux_sel(bypass_mux_sel),
 				.num_free_entries(num_free_entries)
 			);
-			grp_99_vc_QueueDpath #(
+			vc_QueueDpath #(
 				.p_type(p_type),
 				.p_msg_nbits(p_msg_nbits),
 				.p_num_msgs(p_num_msgs)
@@ -976,7 +979,7 @@ module grp_99_vc_Queue (
 		end
 	endgenerate
 endmodule
-module grp_99_SPI_v3_components_SPIMinionAdapterVRTL (
+module SPI_v3_components_SPIMinionAdapterVRTL (
 	clk,
 	reset,
 	pull_en,
@@ -1019,7 +1022,7 @@ module grp_99_SPI_v3_components_SPIMinionAdapterVRTL (
 	wire [nbits - 3:0] cm_q_send_msg;
 	reg cm_q_send_rdy;
 	wire cm_q_send_val;
-	grp_99_vc_Queue #(
+	vc_Queue #(
 		.p_type(4'b0000),
 		.p_msg_nbits(nbits - 2),
 		.p_num_msgs(num_entries)
@@ -1037,7 +1040,7 @@ module grp_99_SPI_v3_components_SPIMinionAdapterVRTL (
 	wire [$clog2(num_entries):0] mc_q_num_free;
 	wire mc_q_recv_rdy;
 	reg mc_q_recv_val;
-	grp_99_vc_Queue #(
+	vc_Queue #(
 		.p_type(4'b0000),
 		.p_msg_nbits(nbits - 2),
 		.p_num_msgs(num_entries)
@@ -1062,7 +1065,7 @@ module grp_99_SPI_v3_components_SPIMinionAdapterVRTL (
 		pull_msg_data = cm_q_send_msg & {nbits - 2 {pull_msg_val}};
 	end
 endmodule
-module grp_99_SPI_v3_components_SPIMinionAdapterCompositeVRTL (
+module SPI_v3_components_SPIMinionAdapterCompositeVRTL (
 	clk,
 	cs,
 	miso,
@@ -1104,7 +1107,7 @@ module grp_99_SPI_v3_components_SPIMinionAdapterCompositeVRTL (
 	wire [nbits - 3:0] push_msg_data;
 	wire [nbits - 1:0] pull_msg;
 	wire [nbits - 1:0] push_msg;
-	grp_99_SPI_v3_components_SPIMinionAdapterVRTL #(
+	SPI_v3_components_SPIMinionAdapterVRTL #(
 		.nbits(nbits),
 		.num_entries(num_entries)
 	) adapter(
@@ -1126,7 +1129,7 @@ module grp_99_SPI_v3_components_SPIMinionAdapterCompositeVRTL (
 		.send_val(send_val),
 		.parity(adapter_parity)
 	);
-	grp_99_SPI_v3_components_SPIMinionVRTL #(.nbits(nbits)) minion(
+	SPI_v3_components_SPIMinionVRTL #(.nbits(nbits)) minion(
 		.clk(clk),
 		.cs(cs),
 		.miso(miso),
@@ -1146,7 +1149,7 @@ module grp_99_SPI_v3_components_SPIMinionAdapterCompositeVRTL (
 	assign push_msg_val_rd = push_msg[nbits - 2];
 	assign push_msg_data = push_msg[nbits - 3:0];
 endmodule
-module grp_99_SPI_v3_components_SPIstackVRTL (
+module SPI_v3_components_SPIstackVRTL (
 	clk,
 	reset,
 	loopthrough_sel,
@@ -1186,7 +1189,7 @@ module grp_99_SPI_v3_components_SPIstackVRTL (
 	wire minion_in_val;
 	wire [nbits - 3:0] minion_in_msg;
 	wire minion_in_rdy;
-	grp_99_SPI_v3_components_SPIMinionAdapterCompositeVRTL #(
+	SPI_v3_components_SPIMinionAdapterCompositeVRTL #(
 		.nbits(nbits),
 		.num_entries(num_entries)
 	) minion(
@@ -1205,7 +1208,7 @@ module grp_99_SPI_v3_components_SPIstackVRTL (
 		.send_msg(minion_out_msg),
 		.send_rdy(minion_out_rdy)
 	);
-	grp_99_SPI_v3_components_LoopThroughVRTL #(.nbits(nbits - 2)) loopthrough(
+	SPI_v3_components_LoopThroughVRTL #(.nbits(nbits - 2)) loopthrough(
 		.clk(clk),
 		.reset(reset),
 		.sel(loopthrough_sel),
@@ -1223,7 +1226,7 @@ module grp_99_SPI_v3_components_SPIstackVRTL (
 		.downstream_resp_rdy(recv_rdy)
 	);
 endmodule
-module grp_99_tapeout_BlockPlaceholderVRTL (
+module tapeout_BlockPlaceholderVRTL (
 	send_val,
 	send_msg,
 	send_rdy,
@@ -1242,7 +1245,7 @@ module grp_99_tapeout_BlockPlaceholderVRTL (
 	assign send_msg = recv_msg;
 	assign recv_rdy = send_rdy;
 endmodule
-module grp_99_vc_Adder (
+module vc_Adder (
 	in0,
 	in1,
 	cin,
@@ -1257,7 +1260,7 @@ module grp_99_vc_Adder (
 	output wire cout;
 	assign {cout, out} = (in0 + in1) + {{p_nbits - 1 {1'b0}}, cin};
 endmodule
-module grp_99_vc_SimpleAdder (
+module vc_SimpleAdder (
 	in0,
 	in1,
 	out
@@ -1268,7 +1271,7 @@ module grp_99_vc_SimpleAdder (
 	output wire [p_nbits - 1:0] out;
 	assign out = in0 + in1;
 endmodule
-module grp_99_vc_Subtractor (
+module vc_Subtractor (
 	in0,
 	in1,
 	out
@@ -1279,7 +1282,7 @@ module grp_99_vc_Subtractor (
 	output wire [p_nbits - 1:0] out;
 	assign out = in0 - in1;
 endmodule
-module grp_99_vc_Incrementer (
+module vc_Incrementer (
 	in,
 	out
 );
@@ -1289,7 +1292,7 @@ module grp_99_vc_Incrementer (
 	output wire [p_nbits - 1:0] out;
 	assign out = in + p_inc_value;
 endmodule
-module grp_99_vc_ZeroExtender (
+module vc_ZeroExtender (
 	in,
 	out
 );
@@ -1299,7 +1302,7 @@ module grp_99_vc_ZeroExtender (
 	output wire [p_out_nbits - 1:0] out;
 	assign out = {{p_out_nbits - p_in_nbits {1'b0}}, in};
 endmodule
-module grp_99_vc_SignExtender (
+module vc_SignExtender (
 	in,
 	out
 );
@@ -1309,7 +1312,7 @@ module grp_99_vc_SignExtender (
 	output wire [p_out_nbits - 1:0] out;
 	assign out = {{p_out_nbits - p_in_nbits {in[p_in_nbits - 1]}}, in};
 endmodule
-module grp_99_vc_ZeroComparator (
+module vc_ZeroComparator (
 	in,
 	out
 );
@@ -1318,7 +1321,7 @@ module grp_99_vc_ZeroComparator (
 	output wire out;
 	assign out = in == {p_nbits {1'b0}};
 endmodule
-module grp_99_vc_EqComparator (
+module vc_EqComparator (
 	in0,
 	in1,
 	out
@@ -1329,7 +1332,7 @@ module grp_99_vc_EqComparator (
 	output wire out;
 	assign out = in0 == in1;
 endmodule
-module grp_99_vc_LtComparator (
+module vc_LtComparator (
 	in0,
 	in1,
 	out
@@ -1340,7 +1343,7 @@ module grp_99_vc_LtComparator (
 	output wire out;
 	assign out = in0 < in1;
 endmodule
-module grp_99_vc_GtComparator (
+module vc_GtComparator (
 	in0,
 	in1,
 	out
@@ -1351,7 +1354,7 @@ module grp_99_vc_GtComparator (
 	output wire out;
 	assign out = in0 > in1;
 endmodule
-module grp_99_vc_LeftLogicalShifter (
+module vc_LeftLogicalShifter (
 	in,
 	shamt,
 	out
@@ -1363,7 +1366,7 @@ module grp_99_vc_LeftLogicalShifter (
 	output wire [p_nbits - 1:0] out;
 	assign out = in << shamt;
 endmodule
-module grp_99_vc_RightLogicalShifter (
+module vc_RightLogicalShifter (
 	in,
 	shamt,
 	out
@@ -1375,7 +1378,7 @@ module grp_99_vc_RightLogicalShifter (
 	output wire [p_nbits - 1:0] out;
 	assign out = in >> shamt;
 endmodule
-module grp_99_tut4_verilog_gcd_GcdUnitDpath (
+module tut4_verilog_gcd_GcdUnitDpath (
 	clk,
 	reset,
 	recv_msg,
@@ -1405,7 +1408,7 @@ module grp_99_tut4_verilog_gcd_GcdUnitDpath (
 	wire [15:0] b_reg_out;
 	wire [15:0] sub_out;
 	wire [15:0] a_mux_out;
-	grp_99_vc_Mux3 #(.p_nbits(c_nbits)) a_mux(
+	vc_Mux3 #(.p_nbits(c_nbits)) a_mux(
 		.sel(a_mux_sel),
 		.in0(recv_msg_a),
 		.in1(b_reg_out),
@@ -1413,7 +1416,7 @@ module grp_99_tut4_verilog_gcd_GcdUnitDpath (
 		.out(a_mux_out)
 	);
 	wire [15:0] a_reg_out;
-	grp_99_vc_EnReg #(.p_nbits(c_nbits)) a_reg(
+	vc_EnReg #(.p_nbits(c_nbits)) a_reg(
 		.clk(clk),
 		.reset(reset),
 		.en(a_reg_en),
@@ -1421,36 +1424,36 @@ module grp_99_tut4_verilog_gcd_GcdUnitDpath (
 		.q(a_reg_out)
 	);
 	wire [15:0] b_mux_out;
-	grp_99_vc_Mux2 #(.p_nbits(c_nbits)) b_mux(
+	vc_Mux2 #(.p_nbits(c_nbits)) b_mux(
 		.sel(b_mux_sel),
 		.in0(recv_msg_b),
 		.in1(a_reg_out),
 		.out(b_mux_out)
 	);
-	grp_99_vc_EnReg #(.p_nbits(c_nbits)) b_reg(
+	vc_EnReg #(.p_nbits(c_nbits)) b_reg(
 		.clk(clk),
 		.reset(reset),
 		.en(b_reg_en),
 		.d(b_mux_out),
 		.q(b_reg_out)
 	);
-	grp_99_vc_LtComparator #(.p_nbits(c_nbits)) a_lt_b(
+	vc_LtComparator #(.p_nbits(c_nbits)) a_lt_b(
 		.in0(a_reg_out),
 		.in1(b_reg_out),
 		.out(is_a_lt_b)
 	);
-	grp_99_vc_ZeroComparator #(.p_nbits(c_nbits)) b_zero(
+	vc_ZeroComparator #(.p_nbits(c_nbits)) b_zero(
 		.in(b_reg_out),
 		.out(is_b_zero)
 	);
-	grp_99_vc_Subtractor #(.p_nbits(c_nbits)) sub(
+	vc_Subtractor #(.p_nbits(c_nbits)) sub(
 		.in0(a_reg_out),
 		.in1(b_reg_out),
 		.out(sub_out)
 	);
 	assign send_msg = sub_out;
 endmodule
-module grp_99_tut4_verilog_gcd_GcdUnitCtrl (
+module tut4_verilog_gcd_GcdUnitCtrl (
 	clk,
 	reset,
 	recv_val,
@@ -1551,7 +1554,7 @@ module grp_99_tut4_verilog_gcd_GcdUnitCtrl (
 		endcase
 	end
 endmodule
-module grp_99_tut4_verilog_gcd_GcdUnitRTL (
+module tut4_verilog_gcd_GcdUnitRTL (
 	clk,
 	reset,
 	recv_val,
@@ -1575,7 +1578,7 @@ module grp_99_tut4_verilog_gcd_GcdUnitRTL (
 	wire b_mux_sel;
 	wire is_b_zero;
 	wire is_a_lt_b;
-	grp_99_tut4_verilog_gcd_GcdUnitCtrl ctrl(
+	tut4_verilog_gcd_GcdUnitCtrl ctrl(
 		.clk(clk),
 		.reset(reset),
 		.recv_val(recv_val),
@@ -1589,7 +1592,7 @@ module grp_99_tut4_verilog_gcd_GcdUnitRTL (
 		.is_b_zero(is_b_zero),
 		.is_a_lt_b(is_a_lt_b)
 	);
-	grp_99_tut4_verilog_gcd_GcdUnitDpath dpath(
+	tut4_verilog_gcd_GcdUnitDpath dpath(
 		.clk(clk),
 		.reset(reset),
 		.recv_msg(recv_msg),
@@ -1603,7 +1606,7 @@ module grp_99_tut4_verilog_gcd_GcdUnitRTL (
 	);
 	wire [4095:0] str;
 endmodule
-module grp_99_tapeout_SPI_TapeOutBlockVRTL (
+module tapeout_SPI_TapeOutBlockVRTL (
 	clk,
 	reset,
 	loopthrough_sel,
@@ -1640,7 +1643,7 @@ module grp_99_tapeout_SPI_TapeOutBlockVRTL (
 		reset_presync <= reset;
 		reset_sync <= reset_presync;
 	end
-	grp_99_SPI_v3_components_SPIstackVRTL #(
+	SPI_v3_components_SPIstackVRTL #(
 		.nbits(nbits),
 		.num_entries(num_entries)
 	) SPIstack(
@@ -1661,7 +1664,7 @@ module grp_99_tapeout_SPI_TapeOutBlockVRTL (
 		.recv_rdy(recv_rdy)
 	);
 	always @(*) recv_msg = {{gcd_msg_size {gcd_msg[gcd_msg_size - 1]}}, gcd_msg};
-	grp_99_tut4_verilog_gcd_GcdUnitRTL GCD(
+	tut4_verilog_gcd_GcdUnitRTL GCD(
 		.clk(clk),
 		.reset(reset_sync),
 		.recv_val(send_val),
@@ -1672,7 +1675,7 @@ module grp_99_tapeout_SPI_TapeOutBlockVRTL (
 		.send_msg(gcd_msg)
 	);
 endmodule
-module grp_99_tapeout_SPI_TapeOutBlockVRTL_sv2v (
+module tapeout_SPI_TapeOutBlockVRTL_sv2v (
 	output adapter_parity,
 	input clk,
 	input loopthrough_sel,
@@ -1683,7 +1686,7 @@ module grp_99_tapeout_SPI_TapeOutBlockVRTL_sv2v (
 	input spi_min_mosi,
 	input spi_min_sclk
 );
-	grp_99_tapeout_SPI_TapeOutBlockVRTL #(
+	tapeout_SPI_TapeOutBlockVRTL #(
 		.nbits(34),
 		.num_entries(5)
 	) v(
@@ -1699,10 +1702,13 @@ module grp_99_tapeout_SPI_TapeOutBlockVRTL_sv2v (
 	);
 endmodule
 
+`endif /* SPI_TAPEOUTBLOCKVRTL_SV2V */
 //-----------------------------------------------------------
 // Wrapper of placeholder SPI_TapeOutBlockVRTL_sv2v_noparam
 //-----------------------------------------------------------
 
+`ifndef SPI_TAPEOUTBLOCKVRTL_SV2V_NOPARAM
+`define SPI_TAPEOUTBLOCKVRTL_SV2V_NOPARAM
 
 module grp_99_SPI_TapeOutBlockRTL_32bits_5entries
 (
@@ -1741,7 +1747,7 @@ module grp_99_SPI_TapeOutBlockRTL_32bits_5entries
   assign clk_en    = 1; // Input
   assign reset_en  = 1; // Input
   
-  grp_99_tapeout_SPI_TapeOutBlockVRTL_sv2v
+  tapeout_SPI_TapeOutBlockVRTL_sv2v
   #(
   ) v
   (
@@ -1757,4 +1763,5 @@ module grp_99_SPI_TapeOutBlockRTL_32bits_5entries
   );
 endmodule
 
+`endif /* SPI_TAPEOUTBLOCKVRTL_SV2V_NOPARAM */
 
