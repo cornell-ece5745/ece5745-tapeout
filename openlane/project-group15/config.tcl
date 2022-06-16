@@ -58,5 +58,5 @@ set ::env(RUN_CVC) 1
 set ::env(PL_RESIZER_HOLD_SLACK_MARGIN) 0.8
 set ::env(GLB_RESIZER_HOLD_SLACK_MARGIN) 0.8
 
-# set ::env(GLB_RT_ADJUSTMENT) "0.25"
+set ::env(GLB_RT_ADJUSTMENT) 0.25
 

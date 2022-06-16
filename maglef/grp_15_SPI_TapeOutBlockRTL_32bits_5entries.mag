@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1655403429
+timestamp 1655409329
 << obsli1 >>
 rect 1104 2159 178848 177361
 << obsm1 >>
@@ -70,12 +70,11 @@ rect 142448 2128 142768 177392
 rect 157808 2128 158128 177392
 rect 173168 2128 173488 177392
 << obsm4 >>
-rect 65379 65995 65568 131885
-rect 66048 65995 80928 131885
-rect 81408 65995 96288 131885
-rect 96768 65995 111648 131885
-rect 112128 65995 127008 131885
-rect 127488 65995 136837 131885
+rect 67403 70891 80928 129845
+rect 81408 70891 96288 129845
+rect 96768 70891 111648 129845
+rect 112128 70891 127008 129845
+rect 127488 70891 136101 129845
 << labels >>
 rlabel metal3 s 179200 14968 180000 15088 6 adapter_parity
 port 1 nsew signal output
@@ -141,7 +140,7 @@ port 20 nsew ground input
 string FIXED_BBOX 0 0 180000 180000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 18760414
+string GDS_END 18895134
 string GDS_FILE /home/acm289/ece5745-tapeout/openlane/project-group15/runs/project-group15/results/finishing/grp_15_SPI_TapeOutBlockRTL_32bits_5entries.magic.gds
 string GDS_START 625260
 << end >>

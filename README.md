@@ -10,3 +10,10 @@
 Refer to [README](docs/source/quickstart.rst) for a quick start of how to use caravel_user_project
 
 Refer to [README](docs/source/index.rst) for this sample project documentation. 
+
+### ECE5745 Class Tapeout
+
+This is the repository for the Spring 2022 tapeout for ECE5745: Complex Digital Asic Design, a class taught at Cornell University by Prof. Christopher Batten. Projects include:
+
+ - Wavelet Compression Accelerator (Arun Raman, Anya Prabowo, Tim Tran, Cecilio Camarero)
+ - GCD unit (Aidan McNay)
