@@ -46,7 +46,8 @@ set ::env(CLOCK_PERIOD) "10"
 ## Internal Macros
 ### Macro PDN Connections
 set ::env(FP_PDN_MACRO_HOOKS) "\
-	mprj vccd1 vssd1"
+	grp_15 vccd1 vssd1 \
+    grp_99 vccd1 vssd1"
 
 ### Macro Placement
 set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
@@ -57,14 +58,17 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 # ==============Change third line to reference your design file(s)
 set ::env(VERILOG_FILES_BLACKBOX) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/grp_15_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v"
+	$script_dir/../../verilog/rtl/grp_15_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v \
+    $script_dir/../../verilog/rtl/grp_99_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v"
 
 # ==============Change .lef and .gds to be those for your design (corresponding to the module name)
 set ::env(EXTRA_LEFS) "\
-	$script_dir/../../lef/grp_15_SPI_TapeOutBlockRTL_32bits_5entries.lef"
+	$script_dir/../../lef/grp_15_SPI_TapeOutBlockRTL_32bits_5entries.lef \
+    $script_dir/../../lef/grp_99_SPI_TapeOutBlockRTL_32bits_5entries.lef"
 
 set ::env(EXTRA_GDS_FILES) "\
-	$script_dir/../../gds/grp_15_SPI_TapeOutBlockRTL_32bits_5entries.gds"
+	$script_dir/../../gds/grp_15_SPI_TapeOutBlockRTL_32bits_5entries.gds \
+    $script_dir/../../gds/grp_99_SPI_TapeOutBlockRTL_32bits_5entries.gds"
 
 # ==============END USER CHANGES================================================
 
