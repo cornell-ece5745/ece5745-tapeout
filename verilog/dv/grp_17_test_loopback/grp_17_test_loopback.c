@@ -46,10 +46,10 @@ void main()
 	// All GPIO pins are configured to be output
 	// Used to flad the start/end of a test 
 
-        reg_mprj_io_31 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_30 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_29 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_28 = GPIO_MODE_MGMT_STD_OUTPUT;
+        reg_mprj_io_15 = GPIO_MODE_MGMT_STD_OUTPUT;
+        reg_mprj_io_14 = GPIO_MODE_MGMT_STD_OUTPUT;
+        reg_mprj_io_13 = GPIO_MODE_MGMT_STD_OUTPUT;
+        reg_mprj_io_12 = GPIO_MODE_MGMT_STD_OUTPUT;
         // // reg_mprj_io_27 = GPIO_MODE_MGMT_STD_OUTPUT;
         // // reg_mprj_io_26 = GPIO_MODE_MGMT_STD_OUTPUT;
         // // reg_mprj_io_25 = GPIO_MODE_MGMT_STD_OUTPUT;
@@ -79,15 +79,15 @@ void main()
         // // reg_mprj_io_1  = GPIO_MODE_USER_STD_OUTPUT;
         // // reg_mprj_io_0  = GPIO_MODE_USER_STD_OUTPUT;
 
-        reg_mprj_io_37 = GPIO_MODE_USER_STD_OUTPUT; //Adapter Parity
-        reg_mprj_io_26 = GPIO_MODE_USER_STD_INPUT_NOPULL; //Clock
-        reg_mprj_io_35 = GPIO_MODE_USER_STD_INPUT_NOPULL; //Loopthrough Select
-        reg_mprj_io_36 = GPIO_MODE_USER_STD_OUTPUT; //Minion Parity
-        reg_mprj_io_27 = GPIO_MODE_USER_STD_INPUT_NOPULL; //Reset
-        reg_mprj_io_8 = GPIO_MODE_USER_STD_INPUT_NOPULL; //SPI_CS
-        reg_mprj_io_10 = GPIO_MODE_USER_STD_OUTPUT; //SPI_MISO
-        reg_mprj_io_11 = GPIO_MODE_USER_STD_INPUT_NOPULL; //SPI_MOSI
-        reg_mprj_io_9 = GPIO_MODE_USER_STD_INPUT_NOPULL; //SPI_SCLK
+        reg_mprj_io_32 = GPIO_MODE_USER_STD_OUTPUT; //Adapter Parity
+        reg_mprj_io_11 = GPIO_MODE_USER_STD_INPUT_NOPULL; //Clock
+        reg_mprj_io_27 = GPIO_MODE_USER_STD_INPUT_NOPULL; //Loopthrough Select
+        reg_mprj_io_26 = GPIO_MODE_USER_STD_OUTPUT; //Minion Parity
+        reg_mprj_io_10 = GPIO_MODE_USER_STD_INPUT_NOPULL; //Reset
+        reg_mprj_io_31 = GPIO_MODE_USER_STD_INPUT_NOPULL; //SPI_CS
+        reg_mprj_io_29 = GPIO_MODE_USER_STD_OUTPUT; //SPI_MISO
+        reg_mprj_io_28 = GPIO_MODE_USER_STD_INPUT_NOPULL; //SPI_MOSI
+        reg_mprj_io_30 = GPIO_MODE_USER_STD_INPUT_NOPULL; //SPI_SCLK
         
 
         /* Apply configuration */
@@ -101,7 +101,7 @@ void main()
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 
 	// Flag start of the test
-	reg_mprj_datal = 0xA0000000;
+	reg_mprj_datal = 0x0000A000;
 
 	// Configure LA[64] LA[65] as outputs from the cpu
 	reg_la2_oenb = reg_la2_iena = 0x00000003; 

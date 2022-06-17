@@ -57,23 +57,22 @@ module user_project_wrapper
   output [2:0]                user_irq
 );
 
-  grp_99_SPI_TapeOutBlockRTL_32bits_5entries mprj
-  (
-  `ifdef USE_POWER_PINS
-    .vccd1(vccd1),  // User area 1 1.8V power
-    .vssd1(vssd1),  // User area 1 digital ground
-  `endif
+grp_99_SPI_TapeOutBlockRTL_32bits_5entries grp_99 (
+`ifdef USE_POWER_PINS
+	.vccd1(vccd1),	// User area 1 1.8V power
+	.vssd1(vssd1),	// User area 1 digital ground
+`endif
     .adapter_parity  (io_out[14]),
-    .clk             (io_in[26]),
+    .clk             (io_in[11]),
     .loopthrough_sel (io_in[12]),
     .minion_parity   (io_out[13]),
-    .reset           (io_in[27]),
-    .spi_min_cs      (io_in[15]),
-    .spi_min_miso    (io_out[17]),
-    .spi_min_mosi    (io_in[18]),
-    .spi_min_sclk    (io_in[16]),
-    .clk_en          (io_oeb[26]),
-    .reset_en        (io_oeb[27]),
+    .reset           (io_in[10]),
+    .spi_min_cs     (io_in[15]),
+    .spi_min_miso   (io_out[17]),
+    .spi_min_mosi   (io_in[18]),
+    .spi_min_sclk   (io_in[16]),
+    .clk_en          (io_oeb[11]),
+    .reset_en        (io_oeb[10]),
     .lt_sel_en       (io_oeb[12]),
     .mp_en           (io_oeb[13]),
     .ap_en           (io_oeb[14]),
@@ -81,7 +80,7 @@ module user_project_wrapper
     .sclk_en         (io_oeb[16]),
     .miso_en         (io_oeb[17]),
     .mosi_en         (io_oeb[18])
-  );
+);
 
 endmodule
 

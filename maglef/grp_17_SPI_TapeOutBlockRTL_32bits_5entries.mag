@@ -1,0 +1,141 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1655427963
+<< obsli1 >>
+rect 1104 2159 138828 137649
+<< obsm1 >>
+rect 14 2128 139826 137680
+<< metal2 >>
+rect 18694 139200 18750 140000
+rect 48962 139200 49018 140000
+rect 79230 139200 79286 140000
+rect 109498 139200 109554 140000
+rect 139766 139200 139822 140000
+rect 18 0 74 800
+rect 30286 0 30342 800
+rect 60554 0 60610 800
+rect 90822 0 90878 800
+rect 121090 0 121146 800
+<< obsm2 >>
+rect 20 139144 18638 139346
+rect 18806 139144 48906 139346
+rect 49074 139144 79174 139346
+rect 79342 139144 109442 139346
+rect 109610 139144 139710 139346
+rect 20 856 139820 139144
+rect 130 800 30230 856
+rect 30398 800 60498 856
+rect 60666 800 90766 856
+rect 90934 800 121034 856
+rect 121202 800 139820 856
+<< metal3 >>
+rect 0 127848 800 127968
+rect 139200 107448 140000 107568
+rect 0 95888 800 96008
+rect 139200 75488 140000 75608
+rect 0 63928 800 64048
+rect 139200 43528 140000 43648
+rect 0 31968 800 32088
+rect 139200 11568 140000 11688
+<< obsm3 >>
+rect 800 128048 139200 137665
+rect 880 127768 139200 128048
+rect 800 107648 139200 127768
+rect 800 107368 139120 107648
+rect 800 96088 139200 107368
+rect 880 95808 139200 96088
+rect 800 75688 139200 95808
+rect 800 75408 139120 75688
+rect 800 64128 139200 75408
+rect 880 63848 139200 64128
+rect 800 43728 139200 63848
+rect 800 43448 139120 43728
+rect 800 32168 139200 43448
+rect 880 31888 139200 32168
+rect 800 11768 139200 31888
+rect 800 11488 139120 11768
+rect 800 2143 139200 11488
+<< metal4 >>
+rect 4208 2128 4528 137680
+rect 19568 2128 19888 137680
+rect 34928 2128 35248 137680
+rect 50288 2128 50608 137680
+rect 65648 2128 65968 137680
+rect 81008 2128 81328 137680
+rect 96368 2128 96688 137680
+rect 111728 2128 112048 137680
+rect 127088 2128 127408 137680
+<< obsm4 >>
+rect 17723 3163 19488 136781
+rect 19968 3163 34848 136781
+rect 35328 3163 50208 136781
+rect 50688 3163 65568 136781
+rect 66048 3163 80928 136781
+rect 81408 3163 96288 136781
+rect 96768 3163 111648 136781
+rect 112128 3163 119541 136781
+<< labels >>
+rlabel metal3 s 139200 11568 140000 11688 6 adapter_parity
+port 1 nsew signal output
+rlabel metal3 s 139200 107448 140000 107568 6 ap_en
+port 2 nsew signal output
+rlabel metal2 s 79230 139200 79286 140000 6 clk
+port 3 nsew signal input
+rlabel metal2 s 90822 0 90878 800 6 clk_en
+port 4 nsew signal output
+rlabel metal3 s 0 127848 800 127968 6 cs_en
+port 5 nsew signal output
+rlabel metal2 s 48962 139200 49018 140000 6 loopthrough_sel
+port 6 nsew signal input
+rlabel metal2 s 18 0 74 800 6 lt_sel_en
+port 7 nsew signal output
+rlabel metal2 s 139766 139200 139822 140000 6 minion_parity
+port 8 nsew signal output
+rlabel metal2 s 121090 0 121146 800 6 miso_en
+port 9 nsew signal output
+rlabel metal2 s 30286 0 30342 800 6 mosi_en
+port 10 nsew signal output
+rlabel metal3 s 0 31968 800 32088 6 mp_en
+port 11 nsew signal output
+rlabel metal3 s 139200 75488 140000 75608 6 reset
+port 12 nsew signal input
+rlabel metal3 s 0 63928 800 64048 6 reset_en
+port 13 nsew signal output
+rlabel metal2 s 109498 139200 109554 140000 6 sclk_en
+port 14 nsew signal output
+rlabel metal2 s 60554 0 60610 800 6 spi_min_cs
+port 15 nsew signal input
+rlabel metal3 s 0 95888 800 96008 6 spi_min_miso
+port 16 nsew signal output
+rlabel metal2 s 18694 139200 18750 140000 6 spi_min_mosi
+port 17 nsew signal input
+rlabel metal3 s 139200 43528 140000 43648 6 spi_min_sclk
+port 18 nsew signal input
+rlabel metal4 s 4208 2128 4528 137680 6 vccd1
+port 19 nsew power input
+rlabel metal4 s 34928 2128 35248 137680 6 vccd1
+port 19 nsew power input
+rlabel metal4 s 65648 2128 65968 137680 6 vccd1
+port 19 nsew power input
+rlabel metal4 s 96368 2128 96688 137680 6 vccd1
+port 19 nsew power input
+rlabel metal4 s 127088 2128 127408 137680 6 vccd1
+port 19 nsew power input
+rlabel metal4 s 19568 2128 19888 137680 6 vssd1
+port 20 nsew ground input
+rlabel metal4 s 50288 2128 50608 137680 6 vssd1
+port 20 nsew ground input
+rlabel metal4 s 81008 2128 81328 137680 6 vssd1
+port 20 nsew ground input
+rlabel metal4 s 111728 2128 112048 137680 6 vssd1
+port 20 nsew ground input
+<< properties >>
+string FIXED_BBOX 0 0 140000 140000
+string LEFclass BLOCK
+string LEFview TRUE
+string GDS_END 31527598
+string GDS_FILE /home/acm289/ece5745-tapeout/openlane/project-group17/runs/project-group17/results/finishing/grp_17_SPI_TapeOutBlockRTL_32bits_5entries.magic.gds
+string GDS_START 1478428
+<< end >>
+

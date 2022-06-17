@@ -148,9 +148,9 @@ module grp_15_test_random_tb;
   assign mprj_io[35] = loopthrough_sel;
   assign mprj_io[8] = spi_min_cs;
   assign mprj_io[9] = spi_min_sclk;
-  assign mprj_io[11] = spi_min_mosi;
-  assign mprj_io[27] = reset;
-  assign mprj_io[26] = clk;
+  assign mprj_io[34] = spi_min_mosi;
+  assign mprj_io[10] = reset;
+  assign mprj_io[11] = clk;
 
   // Outputs
 
@@ -161,7 +161,7 @@ module grp_15_test_random_tb;
 
   assign minion_parity  = mprj_io[36];
   assign adapter_parity = mprj_io[37];
-  assign spi_min_miso   = mprj_io[10];
+  assign spi_min_miso   = mprj_io[33];
   assign checkbits      = mprj_io[31:28];
 
   //----------------------------------------------------------------------

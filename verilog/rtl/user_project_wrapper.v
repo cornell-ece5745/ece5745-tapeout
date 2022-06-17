@@ -124,16 +124,16 @@ grp_99_SPI_TapeOutBlockRTL_32bits_5entries grp_99 (
 	.vssd1(vssd1),	// User area 1 digital ground
 `endif
     .adapter_parity  (io_out[14]),
-    .clk             (io_in[26]),
+    .clk             (io_in[11]),
     .loopthrough_sel (io_in[12]),
     .minion_parity   (io_out[13]),
-    .reset           (io_in[27]),
+    .reset           (io_in[10]),
     .spi_min_cs     (io_in[15]),
     .spi_min_miso   (io_out[17]),
     .spi_min_mosi   (io_in[18]),
     .spi_min_sclk   (io_in[16]),
-    .clk_en          (io_oeb[26]),
-    .reset_en        (io_oeb[27]),
+    .clk_en          (io_oeb[11]),
+    .reset_en        (io_oeb[10]),
     .lt_sel_en       (io_oeb[12]),
     .mp_en           (io_oeb[13]),
     .ap_en           (io_oeb[14]),
@@ -150,23 +150,49 @@ grp_99_SPI_TapeOutBlockRTL_32bits_5entries grp_99 (
     .vssd1(vssd1),  // User area 1 digital ground
   `endif
     .adapter_parity  (io_out[37]),
-    .clk             (io_in[26]),
+    .clk             (io_in[11]),
     .loopthrough_sel (io_in[35]),
     .minion_parity   (io_out[36]),
-    .reset           (io_in[27]),
+    .reset           (io_in[10]),
     .spi_min_cs      (io_in[8]),
-    .spi_min_miso    (io_out[10]),
-    .spi_min_mosi    (io_in[11]),
+    .spi_min_miso    (io_out[33]),
+    .spi_min_mosi    (io_in[34]),
     .spi_min_sclk    (io_in[9]),
-    .clk_en          (io_oeb[26]),
-    .reset_en        (io_oeb[27]),
+    .clk_en          (),
+    .reset_en        (),
     .lt_sel_en       (io_oeb[35]),
     .mp_en           (io_oeb[36]),
     .ap_en           (io_oeb[37]),
     .cs_en           (io_oeb[8]),
     .sclk_en         (io_oeb[9]),
-    .miso_en         (io_oeb[10]),
-    .mosi_en         (io_oeb[11])
+    .miso_en         (io_oeb[33]),
+    .mosi_en         (io_oeb[34])
+  );
+
+  grp_17_SPI_TapeOutBlockRTL_32bits_5entries grp_17
+  (
+  `ifdef USE_POWER_PINS
+    .vccd1(vccd1),  // User area 1 1.8V power
+    .vssd1(vssd1),  // User area 1 digital ground
+  `endif
+    .adapter_parity  (io_out[32]),
+    .clk             (io_in[11]),
+    .loopthrough_sel (io_in[27]),
+    .minion_parity   (io_out[26]),
+    .reset           (io_in[10]),
+    .spi_min_cs      (io_in[31]),
+    .spi_min_miso    (io_out[29]),
+    .spi_min_mosi    (io_in[28]),
+    .spi_min_sclk    (io_in[30]),
+    .clk_en          (),
+    .reset_en        (),
+    .lt_sel_en       (io_oeb[27]),
+    .mp_en           (io_oeb[26]),
+    .ap_en           (io_oeb[32]),
+    .cs_en           (io_oeb[31]),
+    .sclk_en         (io_oeb[30]),
+    .miso_en         (io_oeb[29]),
+    .mosi_en         (io_oeb[28])
   );
 
 endmodule	// user_project_wrapper

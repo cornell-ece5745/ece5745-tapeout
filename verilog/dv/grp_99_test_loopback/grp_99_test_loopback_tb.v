@@ -149,8 +149,8 @@ module grp_99_test_loopback_tb;
   assign mprj_io[15] = spi_min_cs;
   assign mprj_io[16] = spi_min_sclk;
   assign mprj_io[18] = spi_min_mosi;
-  assign mprj_io[27] = reset;
-  assign mprj_io[26] = clk;
+  assign mprj_io[10] = reset;
+  assign mprj_io[11] = clk;
 
   // Outputs
 
