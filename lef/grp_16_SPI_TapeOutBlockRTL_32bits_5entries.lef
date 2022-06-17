@@ -1,0 +1,241 @@
+VERSION 5.7 ;
+  NOWIREEXTENSIONATPIN ON ;
+  DIVIDERCHAR "/" ;
+  BUSBITCHARS "[]" ;
+MACRO grp_16_SPI_TapeOutBlockRTL_32bits_5entries
+  CLASS BLOCK ;
+  FOREIGN grp_16_SPI_TapeOutBlockRTL_32bits_5entries ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 700.000 BY 700.000 ;
+  PIN adapter_parity
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 696.000 57.840 700.000 58.440 ;
+    END
+  END adapter_parity
+  PIN ap_en
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 696.000 537.240 700.000 537.840 ;
+    END
+  END ap_en
+  PIN clk
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 396.150 696.000 396.430 700.000 ;
+    END
+  END clk
+  PIN clk_en
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 454.110 0.000 454.390 4.000 ;
+    END
+  END clk_en
+  PIN cs_en
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 639.240 4.000 639.840 ;
+    END
+  END cs_en
+  PIN loopthrough_sel
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 244.810 696.000 245.090 700.000 ;
+    END
+  END loopthrough_sel
+  PIN lt_sel_en
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 0.090 0.000 0.370 4.000 ;
+    END
+  END lt_sel_en
+  PIN minion_parity
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 698.830 696.000 699.110 700.000 ;
+    END
+  END minion_parity
+  PIN miso_en
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 605.450 0.000 605.730 4.000 ;
+    END
+  END miso_en
+  PIN mosi_en
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 151.430 0.000 151.710 4.000 ;
+    END
+  END mosi_en
+  PIN mp_en
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 159.840 4.000 160.440 ;
+    END
+  END mp_en
+  PIN reset
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 696.000 377.440 700.000 378.040 ;
+    END
+  END reset
+  PIN reset_en
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 319.640 4.000 320.240 ;
+    END
+  END reset_en
+  PIN sclk_en
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 547.490 696.000 547.770 700.000 ;
+    END
+  END sclk_en
+  PIN spi_min_cs
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 302.770 0.000 303.050 4.000 ;
+    END
+  END spi_min_cs
+  PIN spi_min_miso
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 479.440 4.000 480.040 ;
+    END
+  END spi_min_miso
+  PIN spi_min_mosi
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 93.470 696.000 93.750 700.000 ;
+    END
+  END spi_min_mosi
+  PIN spi_min_sclk
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 696.000 217.640 700.000 218.240 ;
+    END
+  END spi_min_sclk
+  PIN vccd1
+    DIRECTION INPUT ;
+    USE POWER ;
+    PORT
+      LAYER met4 ;
+        RECT 21.040 10.640 22.640 688.400 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 174.640 10.640 176.240 688.400 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 328.240 10.640 329.840 688.400 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 481.840 10.640 483.440 688.400 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 635.440 10.640 637.040 688.400 ;
+    END
+  END vccd1
+  PIN vssd1
+    DIRECTION INPUT ;
+    USE GROUND ;
+    PORT
+      LAYER met4 ;
+        RECT 97.840 10.640 99.440 688.400 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 251.440 10.640 253.040 688.400 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 405.040 10.640 406.640 688.400 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 558.640 10.640 560.240 688.400 ;
+    END
+  END vssd1
+  OBS
+      LAYER li1 ;
+        RECT 5.520 10.795 694.140 688.245 ;
+      LAYER met1 ;
+        RECT 0.070 10.640 699.130 688.400 ;
+      LAYER met2 ;
+        RECT 0.100 695.720 93.190 696.730 ;
+        RECT 94.030 695.720 244.530 696.730 ;
+        RECT 245.370 695.720 395.870 696.730 ;
+        RECT 396.710 695.720 547.210 696.730 ;
+        RECT 548.050 695.720 698.550 696.730 ;
+        RECT 0.100 4.280 699.100 695.720 ;
+        RECT 0.650 4.000 151.150 4.280 ;
+        RECT 151.990 4.000 302.490 4.280 ;
+        RECT 303.330 4.000 453.830 4.280 ;
+        RECT 454.670 4.000 605.170 4.280 ;
+        RECT 606.010 4.000 699.100 4.280 ;
+      LAYER met3 ;
+        RECT 4.000 640.240 696.000 688.325 ;
+        RECT 4.400 638.840 696.000 640.240 ;
+        RECT 4.000 538.240 696.000 638.840 ;
+        RECT 4.000 536.840 695.600 538.240 ;
+        RECT 4.000 480.440 696.000 536.840 ;
+        RECT 4.400 479.040 696.000 480.440 ;
+        RECT 4.000 378.440 696.000 479.040 ;
+        RECT 4.000 377.040 695.600 378.440 ;
+        RECT 4.000 320.640 696.000 377.040 ;
+        RECT 4.400 319.240 696.000 320.640 ;
+        RECT 4.000 218.640 696.000 319.240 ;
+        RECT 4.000 217.240 695.600 218.640 ;
+        RECT 4.000 160.840 696.000 217.240 ;
+        RECT 4.400 159.440 696.000 160.840 ;
+        RECT 4.000 58.840 696.000 159.440 ;
+        RECT 4.000 57.440 695.600 58.840 ;
+        RECT 4.000 10.715 696.000 57.440 ;
+      LAYER met4 ;
+        RECT 149.335 66.815 174.240 514.585 ;
+        RECT 176.640 66.815 251.040 514.585 ;
+        RECT 253.440 66.815 327.840 514.585 ;
+        RECT 330.240 66.815 398.065 514.585 ;
+  END
+END grp_16_SPI_TapeOutBlockRTL_32bits_5entries
+END LIBRARY
+

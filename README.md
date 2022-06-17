@@ -16,4 +16,10 @@ Refer to [README](docs/source/index.rst) for this sample project documentation.
 This is the repository for the Spring 2022 tapeout for ECE5745: Complex Digital Asic Design, a class taught at Cornell University by Prof. Christopher Batten. Projects include:
 
  - Wavelet Compression Accelerator (Arun Raman, Anya Prabowo, Tim Tran, Cecilio Camarero)
+   - Macro name: grp_15
+ - SpMV Accelerator (Amulya Khurana, Kofi Efah, Mustapha Toureg, Dani Song, Aditi Agarwal)
+   - Macro name: grp_16
+ - BNN Accelerator (Kejia Hu, Yunhe Shao, Yujie Lu, Ziming Xiong, Jasmin An)
+   - Macro name: grp_17
  - GCD unit (Aidan McNay)
+   - Macro name: grp_99

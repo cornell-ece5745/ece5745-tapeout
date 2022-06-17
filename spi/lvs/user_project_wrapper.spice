@@ -12,6 +12,12 @@
 + sclk_en spi_min_cs spi_min_miso spi_min_mosi spi_min_sclk vccd1 vssd1
 .ends
 
+* Black-box entry subcircuit for grp_16_SPI_TapeOutBlockRTL_32bits_5entries abstract view
+.subckt grp_16_SPI_TapeOutBlockRTL_32bits_5entries adapter_parity ap_en clk clk_en
++ cs_en loopthrough_sel lt_sel_en minion_parity miso_en mosi_en mp_en reset reset_en
++ sclk_en spi_min_cs spi_min_miso spi_min_mosi spi_min_sclk vccd1 vssd1
+.ends
+
 * Black-box entry subcircuit for grp_17_SPI_TapeOutBlockRTL_32bits_5entries abstract view
 .subckt grp_17_SPI_TapeOutBlockRTL_32bits_5entries adapter_parity ap_en clk clk_en
 + cs_en loopthrough_sel lt_sel_en minion_parity miso_en mosi_en mp_en reset reset_en
@@ -125,6 +131,9 @@ Xgrp_99 io_out[14] io_oeb[14] io_in[11] io_oeb[11] io_oeb[15] io_in[12] io_oeb[1
 Xgrp_15 io_out[37] io_oeb[37] io_in[11] grp_15/clk_en io_oeb[8] io_in[35] io_oeb[35]
 + io_out[36] io_oeb[33] io_oeb[34] io_oeb[36] io_in[10] grp_15/reset_en io_oeb[9]
 + io_in[8] io_out[33] io_in[34] io_in[9] vccd1 vssd1 grp_15_SPI_TapeOutBlockRTL_32bits_5entries
+Xgrp_16 io_out[23] io_oeb[23] io_in[11] grp_16/clk_en io_oeb[22] io_in[25] io_oeb[25]
++ io_out[24] io_oeb[20] io_oeb[19] io_oeb[24] io_in[10] grp_16/reset_en io_oeb[21]
++ io_in[22] io_out[20] io_in[19] io_in[21] vccd1 vssd1 grp_16_SPI_TapeOutBlockRTL_32bits_5entries
 Xgrp_17 io_out[32] io_oeb[32] io_in[11] grp_17/clk_en io_oeb[31] io_in[27] io_oeb[27]
 + io_out[26] io_oeb[29] io_oeb[28] io_oeb[26] io_in[10] grp_17/reset_en io_oeb[30]
 + io_in[31] io_out[29] io_in[28] io_in[30] vccd1 vssd1 grp_17_SPI_TapeOutBlockRTL_32bits_5entries

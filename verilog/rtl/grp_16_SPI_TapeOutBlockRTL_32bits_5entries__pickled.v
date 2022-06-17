@@ -15,8 +15,6 @@
 // Dependency of placeholder SPI_TapeOutBlockVRTL_sv2v
 //-----------------------------------------------------------
 
-`ifndef SPI_TAPEOUTBLOCKVRTL_SV2V
-`define SPI_TAPEOUTBLOCKVRTL_SV2V
 
 // The source code below are included because they are specified
 // as the v_libs Verilog placeholder option of component SPI_TapeOutBlockVRTL_sv2v_noparam.
@@ -30,7 +28,7 @@
 // End of all v_libs files for component SPI_TapeOutBlockVRTL_sv2v_noparam
 
 `line 1 "tapeout/SPI_TapeOutBlockVRTL_sv2v.v" 0
-module LoopThroughPRTL__nbits_32 (
+module grp_16_LoopThroughPRTL__nbits_32 (
 	clk,
 	reset,
 	sel,
@@ -79,7 +77,7 @@ module LoopThroughPRTL__nbits_32 (
 	end
 	assign downstream__req__msg = upstream__req__msg;
 endmodule
-module NormalQueueCtrlRTL__num_entries_5 (
+module grp_16_NormalQueueCtrlRTL__num_entries_5 (
 	clk,
 	count,
 	raddr,
@@ -140,7 +138,7 @@ module NormalQueueCtrlRTL__num_entries_5 (
 	assign waddr = tail;
 	assign raddr = head;
 endmodule
-module RegisterFile__35272b4450df532b (
+module grp_16_RegisterFile__35272b4450df532b (
 	clk,
 	raddr,
 	rdata,
@@ -179,7 +177,7 @@ module RegisterFile__35272b4450df532b (
 		end
 	end
 endmodule
-module NormalQueueDpathRTL__EntryType_Bits32__num_entries_5 (
+module grp_16_NormalQueueDpathRTL__EntryType_Bits32__num_entries_5 (
 	clk,
 	raddr,
 	recv_msg,
@@ -202,7 +200,7 @@ module NormalQueueDpathRTL__EntryType_Bits32__num_entries_5 (
 	wire [2:0] rf__waddr;
 	wire [31:0] rf__wdata;
 	wire [0:0] rf__wen;
-	RegisterFile__35272b4450df532b rf(
+	grp_16_RegisterFile__35272b4450df532b rf(
 		.clk(rf__clk),
 		.raddr(rf__raddr),
 		.rdata(rf__rdata),
@@ -219,7 +217,7 @@ module NormalQueueDpathRTL__EntryType_Bits32__num_entries_5 (
 	assign rf__waddr[0+:3] = waddr;
 	assign rf__wdata[0+:32] = recv_msg;
 endmodule
-module NormalQueueRTL__EntryType_Bits32__num_entries_5 (
+module grp_16_NormalQueueRTL__EntryType_Bits32__num_entries_5 (
 	clk,
 	count,
 	reset,
@@ -249,7 +247,7 @@ module NormalQueueRTL__EntryType_Bits32__num_entries_5 (
 	wire [0:0] ctrl__send_val;
 	wire [2:0] ctrl__waddr;
 	wire [0:0] ctrl__wen;
-	NormalQueueCtrlRTL__num_entries_5 ctrl(
+	grp_16_NormalQueueCtrlRTL__num_entries_5 ctrl(
 		.clk(ctrl__clk),
 		.count(ctrl__count),
 		.raddr(ctrl__raddr),
@@ -268,7 +266,7 @@ module NormalQueueRTL__EntryType_Bits32__num_entries_5 (
 	wire [31:0] dpath__send_msg;
 	wire [2:0] dpath__waddr;
 	wire [0:0] dpath__wen;
-	NormalQueueDpathRTL__EntryType_Bits32__num_entries_5 dpath(
+	grp_16_NormalQueueDpathRTL__EntryType_Bits32__num_entries_5 dpath(
 		.clk(dpath__clk),
 		.raddr(dpath__raddr),
 		.recv_msg(dpath__recv_msg),
@@ -292,7 +290,7 @@ module NormalQueueRTL__EntryType_Bits32__num_entries_5 (
 	assign send__msg = dpath__send_msg;
 	assign count = ctrl__count;
 endmodule
-module SPIMinionAdapterPRTL__nbits_34__num_entries_5 (
+module grp_16_SPIMinionAdapterPRTL__nbits_34__num_entries_5 (
 	clk,
 	parity,
 	reset,
@@ -333,7 +331,7 @@ module SPIMinionAdapterPRTL__nbits_34__num_entries_5 (
 	wire [31:0] cm_q__send__msg;
 	wire [0:0] cm_q__send__rdy;
 	wire [0:0] cm_q__send__val;
-	NormalQueueRTL__EntryType_Bits32__num_entries_5 cm_q(
+	grp_16_NormalQueueRTL__EntryType_Bits32__num_entries_5 cm_q(
 		.clk(cm_q__clk),
 		.count(cm_q__count),
 		.reset(cm_q__reset),
@@ -353,7 +351,7 @@ module SPIMinionAdapterPRTL__nbits_34__num_entries_5 (
 	wire [31:0] mc_q__send__msg;
 	wire [0:0] mc_q__send__rdy;
 	wire [0:0] mc_q__send__val;
-	NormalQueueRTL__EntryType_Bits32__num_entries_5 mc_q(
+	grp_16_NormalQueueRTL__EntryType_Bits32__num_entries_5 mc_q(
 		.clk(mc_q__clk),
 		.count(mc_q__count),
 		.reset(mc_q__reset),
@@ -389,7 +387,7 @@ module SPIMinionAdapterPRTL__nbits_34__num_entries_5 (
 	assign cm_q__recv__msg = recv__msg;
 	assign cm_q__send__rdy = cm_send_rdy;
 endmodule
-module Synchronizer__reset_value_1 (
+module grp_16_Synchronizer__reset_value_1 (
 	clk,
 	in_,
 	negedge_,
@@ -418,7 +416,7 @@ module Synchronizer__reset_value_1 (
 	end
 	assign out = shreg[1:1];
 endmodule
-module Synchronizer__reset_value_0 (
+module grp_16_Synchronizer__reset_value_0 (
 	clk,
 	in_,
 	negedge_,
@@ -447,7 +445,7 @@ module Synchronizer__reset_value_0 (
 	end
 	assign out = shreg[1:1];
 endmodule
-module ShiftReg__nbits_34 (
+module grp_16_ShiftReg__nbits_34 (
 	clk,
 	in_,
 	load_data,
@@ -472,7 +470,7 @@ module ShiftReg__nbits_34 (
 			out <= {out[6'd32:6'd0], in_};
 	end
 endmodule
-module SPIMinionPRTL__nbits_34 (
+module grp_16_SPIMinionPRTL__nbits_34 (
 	clk,
 	parity,
 	reset,
@@ -502,7 +500,7 @@ module SPIMinionPRTL__nbits_34 (
 	wire [0:0] cs_sync__out;
 	wire [0:0] cs_sync__posedge_;
 	wire [0:0] cs_sync__reset;
-	Synchronizer__reset_value_1 cs_sync(
+	grp_16_Synchronizer__reset_value_1 cs_sync(
 		.clk(cs_sync__clk),
 		.in_(cs_sync__in_),
 		.negedge_(cs_sync__negedge_),
@@ -516,7 +514,7 @@ module SPIMinionPRTL__nbits_34 (
 	wire [0:0] mosi_sync__out;
 	wire [0:0] mosi_sync__posedge_;
 	wire [0:0] mosi_sync__reset;
-	Synchronizer__reset_value_0 mosi_sync(
+	grp_16_Synchronizer__reset_value_0 mosi_sync(
 		.clk(mosi_sync__clk),
 		.in_(mosi_sync__in_),
 		.negedge_(mosi_sync__negedge_),
@@ -530,7 +528,7 @@ module SPIMinionPRTL__nbits_34 (
 	wire [0:0] sclk_sync__out;
 	wire [0:0] sclk_sync__posedge_;
 	wire [0:0] sclk_sync__reset;
-	Synchronizer__reset_value_0 sclk_sync(
+	grp_16_Synchronizer__reset_value_0 sclk_sync(
 		.clk(sclk_sync__clk),
 		.in_(sclk_sync__in_),
 		.negedge_(sclk_sync__negedge_),
@@ -545,7 +543,7 @@ module SPIMinionPRTL__nbits_34 (
 	wire [33:0] shreg_in__out;
 	wire [0:0] shreg_in__reset;
 	reg [0:0] shreg_in__shift_en;
-	ShiftReg__nbits_34 shreg_in(
+	grp_16_ShiftReg__nbits_34 shreg_in(
 		.clk(shreg_in__clk),
 		.in_(shreg_in__in_),
 		.load_data(shreg_in__load_data),
@@ -561,7 +559,7 @@ module SPIMinionPRTL__nbits_34 (
 	wire [33:0] shreg_out__out;
 	wire [0:0] shreg_out__reset;
 	reg [0:0] shreg_out__shift_en;
-	ShiftReg__nbits_34 shreg_out(
+	grp_16_ShiftReg__nbits_34 shreg_out(
 		.clk(shreg_out__clk),
 		.in_(shreg_out__in_),
 		.load_data(shreg_out__load_data),
@@ -603,7 +601,7 @@ module SPIMinionPRTL__nbits_34 (
 	assign push__en = cs_sync__posedge_;
 	assign push__msg = shreg_in__out;
 endmodule
-module SPIMinionAdapterCompositePRTL__nbits_34__num_entries_5 (
+module grp_16_SPIMinionAdapterCompositePRTL__nbits_34__num_entries_5 (
 	adapter_parity,
 	clk,
 	minion_parity,
@@ -646,7 +644,7 @@ module SPIMinionAdapterCompositePRTL__nbits_34__num_entries_5 (
 	wire [31:0] adapter__send__msg;
 	wire [0:0] adapter__send__rdy;
 	wire [0:0] adapter__send__val;
-	SPIMinionAdapterPRTL__nbits_34__num_entries_5 adapter(
+	grp_16_SPIMinionAdapterPRTL__nbits_34__num_entries_5 adapter(
 		.clk(adapter__clk),
 		.parity(adapter__parity),
 		.reset(adapter__reset),
@@ -672,7 +670,7 @@ module SPIMinionAdapterCompositePRTL__nbits_34__num_entries_5 (
 	wire [0:0] minion__spi_min__miso;
 	wire [0:0] minion__spi_min__mosi;
 	wire [0:0] minion__spi_min__sclk;
-	SPIMinionPRTL__nbits_34 minion(
+	grp_16_SPIMinionPRTL__nbits_34 minion(
 		.clk(minion__clk),
 		.parity(minion__parity),
 		.reset(minion__reset),
@@ -710,7 +708,7 @@ module SPIMinionAdapterCompositePRTL__nbits_34__num_entries_5 (
 	assign recv__rdy = adapter__recv__rdy;
 	assign adapter__recv__val = recv__val;
 endmodule
-module SPIstackPRTL__nbits_34__num_entries_5 (
+module grp_16_SPIstackPRTL__nbits_34__num_entries_5 (
 	adapter_parity,
 	clk,
 	loopthrough_sel,
@@ -757,7 +755,7 @@ module SPIstackPRTL__nbits_34__num_entries_5 (
 	wire [31:0] loopthrough__upstream__resp__msg;
 	wire [0:0] loopthrough__upstream__resp__rdy;
 	wire [0:0] loopthrough__upstream__resp__val;
-	LoopThroughPRTL__nbits_32 loopthrough(
+	grp_16_LoopThroughPRTL__nbits_32 loopthrough(
 		.clk(loopthrough__clk),
 		.reset(loopthrough__reset),
 		.sel(loopthrough__sel),
@@ -788,7 +786,7 @@ module SPIstackPRTL__nbits_34__num_entries_5 (
 	wire [0:0] minion__spi_min__miso;
 	wire [0:0] minion__spi_min__mosi;
 	wire [0:0] minion__spi_min__sclk;
-	SPIMinionAdapterCompositePRTL__nbits_34__num_entries_5 minion(
+	grp_16_SPIMinionAdapterCompositePRTL__nbits_34__num_entries_5 minion(
 		.adapter_parity(minion__adapter_parity),
 		.clk(minion__clk),
 		.minion_parity(minion__minion_parity),
@@ -828,7 +826,7 @@ module SPIstackPRTL__nbits_34__num_entries_5 (
 	assign recv__rdy = loopthrough__downstream__resp__rdy;
 	assign loopthrough__downstream__resp__val = recv__val;
 endmodule
-module NormalQueueCtrlRTL__num_entries_2 (
+module grp_16_NormalQueueCtrlRTL__num_entries_2 (
 	clk,
 	count,
 	raddr,
@@ -893,7 +891,7 @@ module NormalQueueCtrlRTL__num_entries_2 (
 	assign waddr = tail;
 	assign raddr = head;
 endmodule
-module RegisterFile__db0945d550cc0f5f (
+module grp_16_RegisterFile__db0945d550cc0f5f (
 	clk,
 	raddr,
 	rdata,
@@ -932,7 +930,7 @@ module RegisterFile__db0945d550cc0f5f (
 		end
 	end
 endmodule
-module NormalQueueDpathRTL__b8bb4da201e26f4e (
+module grp_16_NormalQueueDpathRTL__b8bb4da201e26f4e (
 	clk,
 	raddr,
 	recv_msg,
@@ -955,7 +953,7 @@ module NormalQueueDpathRTL__b8bb4da201e26f4e (
 	wire [0:0] rf__waddr;
 	wire [77:0] rf__wdata;
 	wire [0:0] rf__wen;
-	RegisterFile__db0945d550cc0f5f rf(
+	grp_16_RegisterFile__db0945d550cc0f5f rf(
 		.clk(rf__clk),
 		.raddr(rf__raddr),
 		.rdata(rf__rdata),
@@ -972,7 +970,7 @@ module NormalQueueDpathRTL__b8bb4da201e26f4e (
 	assign rf__waddr[0+:1] = waddr;
 	assign rf__wdata[0+:78] = recv_msg;
 endmodule
-module NormalQueueRTL__b8bb4da201e26f4e (
+module grp_16_NormalQueueRTL__b8bb4da201e26f4e (
 	clk,
 	count,
 	reset,
@@ -1002,7 +1000,7 @@ module NormalQueueRTL__b8bb4da201e26f4e (
 	wire [0:0] ctrl__send_val;
 	wire [0:0] ctrl__waddr;
 	wire [0:0] ctrl__wen;
-	NormalQueueCtrlRTL__num_entries_2 ctrl(
+	grp_16_NormalQueueCtrlRTL__num_entries_2 ctrl(
 		.clk(ctrl__clk),
 		.count(ctrl__count),
 		.raddr(ctrl__raddr),
@@ -1021,7 +1019,7 @@ module NormalQueueRTL__b8bb4da201e26f4e (
 	wire [77:0] dpath__send_msg;
 	wire [0:0] dpath__waddr;
 	wire [0:0] dpath__wen;
-	NormalQueueDpathRTL__b8bb4da201e26f4e dpath(
+	grp_16_NormalQueueDpathRTL__b8bb4da201e26f4e dpath(
 		.clk(dpath__clk),
 		.raddr(dpath__raddr),
 		.recv_msg(dpath__recv_msg),
@@ -1045,7 +1043,7 @@ module NormalQueueRTL__b8bb4da201e26f4e (
 	assign send__msg = dpath__send_msg;
 	assign count = ctrl__count;
 endmodule
-module RegisterFile__8c50dafb5bf22f7b (
+module grp_16_RegisterFile__8c50dafb5bf22f7b (
 	clk,
 	raddr,
 	rdata,
@@ -1084,7 +1082,7 @@ module RegisterFile__8c50dafb5bf22f7b (
 		end
 	end
 endmodule
-module SynthMemSimple (
+module grp_16_SynthMemSimple (
 	clk,
 	reset,
 	minion__req__msg,
@@ -1122,7 +1120,7 @@ module SynthMemSimple (
 	wire [77:0] memreq_q__send__msg;
 	reg [0:0] memreq_q__send__rdy;
 	wire [0:0] memreq_q__send__val;
-	NormalQueueRTL__b8bb4da201e26f4e memreq_q(
+	grp_16_NormalQueueRTL__b8bb4da201e26f4e memreq_q(
 		.clk(memreq_q__clk),
 		.count(memreq_q__count),
 		.reset(memreq_q__reset),
@@ -1140,7 +1138,7 @@ module SynthMemSimple (
 	wire [4:0] reg_file__waddr;
 	wire [31:0] reg_file__wdata;
 	wire [0:0] reg_file__wen;
-	RegisterFile__8c50dafb5bf22f7b reg_file(
+	grp_16_RegisterFile__8c50dafb5bf22f7b reg_file(
 		.clk(reg_file__clk),
 		.raddr(reg_file__raddr),
 		.rdata(reg_file__rdata),
@@ -1194,7 +1192,7 @@ module SynthMemSimple (
 	assign reg_file__wen[0+:1] = reg_wen_M0;
 	assign reg_file__wdata[0+:32] = reg_wdata_M0;
 endmodule
-module PacketAssemblerPRTL__nbits_in_32__nbits_out_78 (
+module grp_16_PacketAssemblerPRTL__nbits_in_32__nbits_out_78 (
 	clk,
 	reset,
 	assem_ifc__req__msg,
@@ -1268,7 +1266,7 @@ module PacketAssemblerPRTL__nbits_in_32__nbits_out_78 (
 		end
 	end
 endmodule
-module Mux__Type_32__ninputs_2 (
+module grp_16_Mux__Type_32__ninputs_2 (
 	clk,
 	in_,
 	out,
@@ -1284,7 +1282,7 @@ module Mux__Type_32__ninputs_2 (
 		out = in_[(1 - sel) * 32+:32];
 	end
 endmodule
-module PacketDisassemblerPRTL__nbits_in_48__nbits_out_32 (
+module grp_16_PacketDisassemblerPRTL__nbits_in_48__nbits_out_32 (
 	clk,
 	reset,
 	disassem_ifc__req__msg,
@@ -1310,7 +1308,7 @@ module PacketDisassemblerPRTL__nbits_in_48__nbits_out_32 (
 	wire [31:0] reg_mux__out;
 	wire [0:0] reg_mux__reset;
 	reg [0:0] reg_mux__sel;
-	Mux__Type_32__ninputs_2 reg_mux(
+	grp_16_Mux__Type_32__ninputs_2 reg_mux(
 		.clk(reg_mux__clk),
 		.in_(reg_mux__in_),
 		.out(reg_mux__out),
@@ -1373,7 +1371,7 @@ module PacketDisassemblerPRTL__nbits_in_48__nbits_out_32 (
 	assign reg_mux__reset = reset;
 endmodule
 
-module tapeout_SPI_TapeOutBlockVRTL_sv2v (
+module grp_16_tapeout_SPI_TapeOutBlockVRTL_sv2v (
   output adapter_parity,
   input  clk,
   input  loopthrough_sel,
@@ -1407,7 +1405,7 @@ module tapeout_SPI_TapeOutBlockVRTL_sv2v (
 	wire [0:0] spi_min_stack__spi_min__miso;
 	wire [0:0] spi_min_stack__spi_min__mosi;
 	wire [0:0] spi_min_stack__spi_min__sclk;
-	SPIstackPRTL__nbits_34__num_entries_5 spi_min_stack(
+	grp_16_SPIstackPRTL__nbits_34__num_entries_5 spi_min_stack(
 		.adapter_parity(spi_min_stack__adapter_parity),
 		.clk(spi_min_stack__clk),
 		.loopthrough_sel(spi_min_stack__loopthrough_sel),
@@ -1432,7 +1430,7 @@ module tapeout_SPI_TapeOutBlockVRTL_sv2v (
 	wire [47:0] synthmem__minion__resp__msg;
 	reg [0:0] synthmem__minion__resp__rdy;
 	wire [0:0] synthmem__minion__resp__val;
-	SynthMemSimple synthmem(
+	grp_16_SynthMemSimple synthmem(
 		.clk(synthmem__clk),
 		.reset(synthmem__reset),
 		.minion__req__msg(synthmem__minion__req__msg),
@@ -1450,7 +1448,7 @@ module tapeout_SPI_TapeOutBlockVRTL_sv2v (
 	wire [77:0] synthmem_assem__assem_ifc__resp__msg;
 	reg [0:0] synthmem_assem__assem_ifc__resp__rdy;
 	wire [0:0] synthmem_assem__assem_ifc__resp__val;
-	PacketAssemblerPRTL__nbits_in_32__nbits_out_78 synthmem_assem(
+	grp_16_PacketAssemblerPRTL__nbits_in_32__nbits_out_78 synthmem_assem(
 		.clk(synthmem_assem__clk),
 		.reset(synthmem_assem__reset),
 		.assem_ifc__req__msg(synthmem_assem__assem_ifc__req__msg),
@@ -1468,7 +1466,7 @@ module tapeout_SPI_TapeOutBlockVRTL_sv2v (
 	wire [31:0] synthmem_disassem__disassem_ifc__resp__msg;
 	wire [0:0] synthmem_disassem__disassem_ifc__resp__rdy;
 	wire [0:0] synthmem_disassem__disassem_ifc__resp__val;
-	PacketDisassemblerPRTL__nbits_in_48__nbits_out_32 synthmem_disassem(
+	grp_16_PacketDisassemblerPRTL__nbits_in_48__nbits_out_32 synthmem_disassem(
 		.clk(synthmem_disassem__clk),
 		.reset(synthmem_disassem__reset),
 		.disassem_ifc__req__msg(synthmem_disassem__disassem_ifc__req__msg),
@@ -1511,13 +1509,9 @@ module tapeout_SPI_TapeOutBlockVRTL_sv2v (
 	assign spi_min_stack__recv__val = synthmem_disassem__disassem_ifc__resp__val;
 endmodule
 
-`endif /* SPI_TAPEOUTBLOCKVRTL_SV2V */
 //-----------------------------------------------------------
 // Wrapper of placeholder SPI_TapeOutBlockVRTL_sv2v_noparam
 //-----------------------------------------------------------
-
-`ifndef SPI_TAPEOUTBLOCKVRTL_SV2V_NOPARAM
-`define SPI_TAPEOUTBLOCKVRTL_SV2V_NOPARAM
 
 module grp_16_SPI_TapeOutBlockRTL_32bits_5entries
 (
@@ -1555,7 +1549,7 @@ module grp_16_SPI_TapeOutBlockRTL_32bits_5entries
   assign clk_en    = 1; // Input
   assign reset_en  = 1; // Input
 
-  tapeout_SPI_TapeOutBlockVRTL_sv2v
+  grp_16_tapeout_SPI_TapeOutBlockVRTL_sv2v
   #(
   ) v
   (
@@ -1571,5 +1565,4 @@ module grp_16_SPI_TapeOutBlockRTL_32bits_5entries
   );
 endmodule
 
-`endif /* SPI_TAPEOUTBLOCKVRTL_SV2V_NOPARAM */
 
