@@ -35,8 +35,8 @@ set ::env(DIE_AREA) "0 0 900 900"
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
-set ::env(PL_BASIC_PLACEMENT) 1
-set ::env(PL_TARGET_DENSITY) 0.05
+set ::env(PL_BASIC_PLACEMENT) 0
+set ::env(PL_TARGET_DENSITY) 0.21
 
 # Maximum layer used for routing is metal 4.
 # This is because this macro will be inserted in a top level (user_project_wrapper) 
@@ -63,12 +63,3 @@ set ::env(RUN_CVC) 1
 
 set ::env(PL_RESIZER_HOLD_SLACK_MARGIN) 0.8
 set ::env(GLB_RESIZER_HOLD_SLACK_MARGIN) 0.8
-
-# Changing where macros are placed to allow more room for routing
-
-set ::env(PL_MACRO_HALO) 100
-set ::env(PL_MACRO_CHANNEL) 200
-
-# Allow more routing on edges between cells (thanks Austin!)
-
-set ::env(GLB_RT_ADJUSTMENT) 0.25

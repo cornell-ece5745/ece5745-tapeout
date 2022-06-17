@@ -56,8 +56,8 @@ module user_project_wrapper
 
   output [2:0]                user_irq
 );
-
-  grp_17_SPI_TapeOutBlockRTL_32bits_5entries grp_17
+  
+  grp_17_SPI_TapeOutBlockRTL_32bits_5entries mprj
   (
   `ifdef USE_POWER_PINS
     .vccd1(vccd1),  // User area 1 1.8V power
@@ -72,8 +72,8 @@ module user_project_wrapper
     .spi_min_miso    (io_out[29]),
     .spi_min_mosi    (io_in[28]),
     .spi_min_sclk    (io_in[30]),
-    .clk_en          (),
-    .reset_en        (),
+    .clk_en          (io_oeb[11]),
+    .reset_en        (io_oeb[10]),
     .lt_sel_en       (io_oeb[27]),
     .mp_en           (io_oeb[26]),
     .ap_en           (io_oeb[32]),
