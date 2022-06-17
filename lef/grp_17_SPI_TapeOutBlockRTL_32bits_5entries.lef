@@ -11,16 +11,16 @@ MACRO grp_17_SPI_TapeOutBlockRTL_32bits_5entries
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
-      LAYER met3 ;
-        RECT 696.000 57.840 700.000 58.440 ;
+      LAYER met2 ;
+        RECT 437.550 0.000 437.830 4.000 ;
     END
   END adapter_parity
   PIN ap_en
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
-      LAYER met3 ;
-        RECT 696.000 537.240 700.000 537.840 ;
+      LAYER met2 ;
+        RECT 629.830 696.000 630.110 700.000 ;
     END
   END ap_en
   PIN clk
@@ -28,7 +28,7 @@ MACRO grp_17_SPI_TapeOutBlockRTL_32bits_5entries
     USE SIGNAL ;
     PORT
       LAYER met2 ;
-        RECT 396.150 696.000 396.430 700.000 ;
+        RECT 70.010 696.000 70.290 700.000 ;
     END
   END clk
   PIN clk_en
@@ -36,55 +36,55 @@ MACRO grp_17_SPI_TapeOutBlockRTL_32bits_5entries
     USE SIGNAL ;
     PORT
       LAYER met2 ;
-        RECT 454.110 0.000 454.390 4.000 ;
+        RECT 209.850 696.000 210.130 700.000 ;
     END
   END clk_en
   PIN cs_en
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
-      LAYER met3 ;
-        RECT 0.000 639.240 4.000 639.840 ;
+      LAYER met2 ;
+        RECT 612.350 0.000 612.630 4.000 ;
     END
   END cs_en
   PIN loopthrough_sel
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
-      LAYER met2 ;
-        RECT 244.810 696.000 245.090 700.000 ;
+      LAYER met3 ;
+        RECT 0.000 291.080 4.000 291.680 ;
     END
   END loopthrough_sel
   PIN lt_sel_en
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
-      LAYER met2 ;
-        RECT 0.090 0.000 0.370 4.000 ;
+      LAYER met3 ;
+        RECT 0.000 524.320 4.000 524.920 ;
     END
   END lt_sel_en
   PIN minion_parity
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
-      LAYER met2 ;
-        RECT 698.830 696.000 699.110 700.000 ;
+      LAYER met3 ;
+        RECT 0.000 407.360 4.000 407.960 ;
     END
   END minion_parity
   PIN miso_en
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
-      LAYER met2 ;
-        RECT 605.450 0.000 605.730 4.000 ;
+      LAYER met3 ;
+        RECT 696.000 116.320 700.000 116.920 ;
     END
   END miso_en
   PIN mosi_en
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
-      LAYER met2 ;
-        RECT 151.430 0.000 151.710 4.000 ;
+      LAYER met3 ;
+        RECT 0.000 640.600 4.000 641.200 ;
     END
   END mosi_en
   PIN mp_en
@@ -92,31 +92,31 @@ MACRO grp_17_SPI_TapeOutBlockRTL_32bits_5entries
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 159.840 4.000 160.440 ;
+        RECT 696.000 349.560 700.000 350.160 ;
     END
   END mp_en
   PIN reset
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
-      LAYER met3 ;
-        RECT 696.000 377.440 700.000 378.040 ;
+      LAYER met2 ;
+        RECT 349.690 696.000 349.970 700.000 ;
     END
   END reset
   PIN reset_en
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
-      LAYER met3 ;
-        RECT 0.000 319.640 4.000 320.240 ;
+      LAYER met2 ;
+        RECT 489.990 696.000 490.270 700.000 ;
     END
   END reset_en
   PIN sclk_en
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
-      LAYER met2 ;
-        RECT 547.490 696.000 547.770 700.000 ;
+      LAYER met3 ;
+        RECT 696.000 582.800 700.000 583.400 ;
     END
   END sclk_en
   PIN spi_min_cs
@@ -124,7 +124,7 @@ MACRO grp_17_SPI_TapeOutBlockRTL_32bits_5entries
     USE SIGNAL ;
     PORT
       LAYER met2 ;
-        RECT 302.770 0.000 303.050 4.000 ;
+        RECT 262.290 0.000 262.570 4.000 ;
     END
   END spi_min_cs
   PIN spi_min_miso
@@ -132,23 +132,23 @@ MACRO grp_17_SPI_TapeOutBlockRTL_32bits_5entries
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 479.440 4.000 480.040 ;
+        RECT 0.000 57.840 4.000 58.440 ;
     END
   END spi_min_miso
   PIN spi_min_mosi
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
-      LAYER met2 ;
-        RECT 93.470 696.000 93.750 700.000 ;
+      LAYER met3 ;
+        RECT 0.000 174.120 4.000 174.720 ;
     END
   END spi_min_mosi
   PIN spi_min_sclk
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
-      LAYER met3 ;
-        RECT 696.000 217.640 700.000 218.240 ;
+      LAYER met2 ;
+        RECT 87.490 0.000 87.770 4.000 ;
     END
   END spi_min_sclk
   PIN vccd1
@@ -199,46 +199,50 @@ MACRO grp_17_SPI_TapeOutBlockRTL_32bits_5entries
       LAYER li1 ;
         RECT 5.520 10.795 694.140 688.245 ;
       LAYER met1 ;
-        RECT 0.070 10.640 699.130 688.400 ;
+        RECT 5.520 10.640 694.140 688.400 ;
       LAYER met2 ;
-        RECT 0.100 695.720 93.190 696.730 ;
-        RECT 94.030 695.720 244.530 696.730 ;
-        RECT 245.370 695.720 395.870 696.730 ;
-        RECT 396.710 695.720 547.210 696.730 ;
-        RECT 548.050 695.720 698.550 696.730 ;
-        RECT 0.100 4.280 699.100 695.720 ;
-        RECT 0.650 4.000 151.150 4.280 ;
-        RECT 151.990 4.000 302.490 4.280 ;
-        RECT 303.330 4.000 453.830 4.280 ;
-        RECT 454.670 4.000 605.170 4.280 ;
-        RECT 606.010 4.000 699.100 4.280 ;
+        RECT 6.990 695.720 69.730 696.730 ;
+        RECT 70.570 695.720 209.570 696.730 ;
+        RECT 210.410 695.720 349.410 696.730 ;
+        RECT 350.250 695.720 489.710 696.730 ;
+        RECT 490.550 695.720 629.550 696.730 ;
+        RECT 630.390 695.720 690.830 696.730 ;
+        RECT 6.990 4.280 690.830 695.720 ;
+        RECT 6.990 4.000 87.210 4.280 ;
+        RECT 88.050 4.000 262.010 4.280 ;
+        RECT 262.850 4.000 437.270 4.280 ;
+        RECT 438.110 4.000 612.070 4.280 ;
+        RECT 612.910 4.000 690.830 4.280 ;
       LAYER met3 ;
-        RECT 4.000 640.240 696.000 688.325 ;
-        RECT 4.400 638.840 696.000 640.240 ;
-        RECT 4.000 538.240 696.000 638.840 ;
-        RECT 4.000 536.840 695.600 538.240 ;
-        RECT 4.000 480.440 696.000 536.840 ;
-        RECT 4.400 479.040 696.000 480.440 ;
-        RECT 4.000 378.440 696.000 479.040 ;
-        RECT 4.000 377.040 695.600 378.440 ;
-        RECT 4.000 320.640 696.000 377.040 ;
-        RECT 4.400 319.240 696.000 320.640 ;
-        RECT 4.000 218.640 696.000 319.240 ;
-        RECT 4.000 217.240 695.600 218.640 ;
-        RECT 4.000 160.840 696.000 217.240 ;
-        RECT 4.400 159.440 696.000 160.840 ;
-        RECT 4.000 58.840 696.000 159.440 ;
-        RECT 4.000 57.440 695.600 58.840 ;
+        RECT 4.000 641.600 696.000 688.325 ;
+        RECT 4.400 640.200 696.000 641.600 ;
+        RECT 4.000 583.800 696.000 640.200 ;
+        RECT 4.000 582.400 695.600 583.800 ;
+        RECT 4.000 525.320 696.000 582.400 ;
+        RECT 4.400 523.920 696.000 525.320 ;
+        RECT 4.000 408.360 696.000 523.920 ;
+        RECT 4.400 406.960 696.000 408.360 ;
+        RECT 4.000 350.560 696.000 406.960 ;
+        RECT 4.000 349.160 695.600 350.560 ;
+        RECT 4.000 292.080 696.000 349.160 ;
+        RECT 4.400 290.680 696.000 292.080 ;
+        RECT 4.000 175.120 696.000 290.680 ;
+        RECT 4.400 173.720 696.000 175.120 ;
+        RECT 4.000 117.320 696.000 173.720 ;
+        RECT 4.000 115.920 695.600 117.320 ;
+        RECT 4.000 58.840 696.000 115.920 ;
+        RECT 4.400 57.440 696.000 58.840 ;
         RECT 4.000 10.715 696.000 57.440 ;
       LAYER met4 ;
-        RECT 88.615 15.815 97.440 683.905 ;
-        RECT 99.840 15.815 174.240 683.905 ;
-        RECT 176.640 15.815 251.040 683.905 ;
-        RECT 253.440 15.815 327.840 683.905 ;
-        RECT 330.240 15.815 404.640 683.905 ;
-        RECT 407.040 15.815 481.440 683.905 ;
-        RECT 483.840 15.815 558.240 683.905 ;
-        RECT 560.640 15.815 597.705 683.905 ;
+        RECT 58.255 117.815 97.440 676.425 ;
+        RECT 99.840 117.815 174.240 676.425 ;
+        RECT 176.640 117.815 251.040 676.425 ;
+        RECT 253.440 117.815 327.840 676.425 ;
+        RECT 330.240 117.815 404.640 676.425 ;
+        RECT 407.040 117.815 481.440 676.425 ;
+        RECT 483.840 117.815 558.240 676.425 ;
+        RECT 560.640 117.815 635.040 676.425 ;
+        RECT 637.440 117.815 689.705 676.425 ;
   END
 END grp_17_SPI_TapeOutBlockRTL_32bits_5entries
 END LIBRARY

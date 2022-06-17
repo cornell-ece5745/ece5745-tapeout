@@ -15,9 +15,6 @@
 // Dependency of placeholder SPI_TapeOutBlockVRTL_sv2v
 //-----------------------------------------------------------
 
-`ifndef SPI_TAPEOUTBLOCKVRTL_SV2V
-`define SPI_TAPEOUTBLOCKVRTL_SV2V
-
 // The source code below are included because they are specified
 // as the v_libs Verilog placeholder option of component SPI_TapeOutBlockVRTL_sv2v_noparam.
 
@@ -30,7 +27,7 @@
 // End of all v_libs files for component SPI_TapeOutBlockVRTL_sv2v_noparam
 
 `line 1 "tapeout/SPI_TapeOutBlockVRTL_sv2v.v" 0
-module SPI_v3_components_LoopThroughVRTL (
+module grp_17_SPI_v3_components_LoopThroughVRTL (
 	clk,
 	reset,
 	sel,
@@ -70,7 +67,7 @@ module SPI_v3_components_LoopThroughVRTL (
 	assign upstream_req_rdy = (sel ? upstream_resp_rdy : downstream_req_rdy);
 	assign downstream_resp_rdy = (sel ? 0 : upstream_resp_rdy);
 endmodule
-module ShiftReg (
+module grp_17_ShiftReg (
 	clk,
 	in_,
 	load_data,
@@ -95,7 +92,7 @@ module ShiftReg (
 		else if (~load_en & shift_en)
 			out <= {out[nbits - 2:0], in_};
 endmodule
-module Synchronizer (
+module grp_17_Synchronizer (
 	clk,
 	in_,
 	negedge_,
@@ -122,7 +119,7 @@ module Synchronizer (
 			shreg <= {shreg[1:0], in_};
 	assign out = shreg[1];
 endmodule
-module SPI_v3_components_SPIMinionVRTL (
+module grp_17_SPI_v3_components_SPIMinionVRTL (
 	clk,
 	cs,
 	miso,
@@ -153,7 +150,7 @@ module SPI_v3_components_SPIMinionVRTL (
 	wire cs_sync_out;
 	wire cs_sync_posedge_;
 	wire cs_sync_reset;
-	Synchronizer #(.reset_value(1'b1)) cs_sync(
+	grp_17_Synchronizer #(.reset_value(1'b1)) cs_sync(
 		.clk(cs_sync_clk),
 		.in_(cs_sync_in_),
 		.negedge_(cs_sync_negedge_),
@@ -167,7 +164,7 @@ module SPI_v3_components_SPIMinionVRTL (
 	wire mosi_sync_out;
 	wire mosi_sync_posedge_;
 	wire mosi_sync_reset;
-	Synchronizer #(.reset_value(1'b0)) mosi_sync(
+	grp_17_Synchronizer #(.reset_value(1'b0)) mosi_sync(
 		.clk(mosi_sync_clk),
 		.in_(mosi_sync_in_),
 		.negedge_(mosi_sync_negedge_),
@@ -181,7 +178,7 @@ module SPI_v3_components_SPIMinionVRTL (
 	wire sclk_sync_out;
 	wire sclk_sync_posedge_;
 	wire sclk_sync_reset;
-	Synchronizer #(.reset_value(1'b0)) sclk_sync(
+	grp_17_Synchronizer #(.reset_value(1'b0)) sclk_sync(
 		.clk(sclk_sync_clk),
 		.in_(sclk_sync_in_),
 		.negedge_(sclk_sync_negedge_),
@@ -196,7 +193,7 @@ module SPI_v3_components_SPIMinionVRTL (
 	wire [nbits - 1:0] shreg_in_out;
 	wire shreg_in_reset;
 	reg shreg_in_shift_en;
-	ShiftReg #(.nbits(nbits)) shreg_in(
+	grp_17_ShiftReg #(.nbits(nbits)) shreg_in(
 		.clk(shreg_in_clk),
 		.in_(shreg_in_in_),
 		.load_data(shreg_in_load_data),
@@ -212,7 +209,7 @@ module SPI_v3_components_SPIMinionVRTL (
 	wire [nbits - 1:0] shreg_out_out;
 	wire shreg_out_reset;
 	reg shreg_out_shift_en;
-	ShiftReg #(.nbits(nbits)) shreg_out(
+	grp_17_ShiftReg #(.nbits(nbits)) shreg_out(
 		.clk(shreg_out_clk),
 		.in_(shreg_out_in_),
 		.load_data(shreg_out_load_data),
@@ -250,7 +247,7 @@ module SPI_v3_components_SPIMinionVRTL (
 	assign push_msg = shreg_in_out;
 	assign parity = ^push_msg[nbits - 3:0] & push_en;
 endmodule
-module vc_Reg (
+module grp_17_vc_Reg (
 	clk,
 	q,
 	d
@@ -261,7 +258,7 @@ module vc_Reg (
 	input wire [p_nbits - 1:0] d;
 	always @(posedge clk) q <= d;
 endmodule
-module vc_ResetReg (
+module grp_17_vc_ResetReg (
 	clk,
 	reset,
 	q,
@@ -275,7 +272,7 @@ module vc_ResetReg (
 	input wire [p_nbits - 1:0] d;
 	always @(posedge clk) q <= (reset ? p_reset_value : d);
 endmodule
-module vc_EnReg (
+module grp_17_vc_EnReg (
 	clk,
 	reset,
 	q,
@@ -292,7 +289,7 @@ module vc_EnReg (
 		if (en)
 			q <= d;
 endmodule
-module vc_EnResetReg (
+module grp_17_vc_EnResetReg (
 	clk,
 	reset,
 	q,
@@ -310,7 +307,7 @@ module vc_EnResetReg (
 		if (reset || en)
 			q <= (reset ? p_reset_value : d);
 endmodule
-module vc_Mux2 (
+module grp_17_vc_Mux2 (
 	in0,
 	in1,
 	sel,
@@ -328,7 +325,7 @@ module vc_Mux2 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module vc_Mux3 (
+module grp_17_vc_Mux3 (
 	in0,
 	in1,
 	in2,
@@ -349,7 +346,7 @@ module vc_Mux3 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module vc_Mux4 (
+module grp_17_vc_Mux4 (
 	in0,
 	in1,
 	in2,
@@ -373,7 +370,7 @@ module vc_Mux4 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module vc_Mux5 (
+module grp_17_vc_Mux5 (
 	in0,
 	in1,
 	in2,
@@ -400,7 +397,7 @@ module vc_Mux5 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module vc_Mux6 (
+module grp_17_vc_Mux6 (
 	in0,
 	in1,
 	in2,
@@ -430,7 +427,7 @@ module vc_Mux6 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module vc_Mux7 (
+module grp_17_vc_Mux7 (
 	in0,
 	in1,
 	in2,
@@ -463,7 +460,7 @@ module vc_Mux7 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module vc_Mux8 (
+module grp_17_vc_Mux8 (
 	in0,
 	in1,
 	in2,
@@ -499,7 +496,7 @@ module vc_Mux8 (
 			default: out = {p_nbits {1'bx}};
 		endcase
 endmodule
-module vc_Regfile_1r1w (
+module grp_17_vc_Regfile_1r1w (
 	clk,
 	reset,
 	read_addr,
@@ -524,7 +521,7 @@ module vc_Regfile_1r1w (
 		if (write_en)
 			rfile[write_addr] <= write_data;
 endmodule
-module vc_ResetRegfile_1r1w (
+module grp_17_vc_ResetRegfile_1r1w (
 	clk,
 	reset,
 	read_addr,
@@ -557,7 +554,7 @@ module vc_ResetRegfile_1r1w (
 		end
 	endgenerate
 endmodule
-module vc_Regfile_2r1w (
+module grp_17_vc_Regfile_2r1w (
 	clk,
 	reset,
 	read_addr0,
@@ -587,7 +584,7 @@ module vc_Regfile_2r1w (
 		if (write_en)
 			rfile[write_addr] <= write_data;
 endmodule
-module vc_Regfile_2r2w (
+module grp_17_vc_Regfile_2r2w (
 	clk,
 	reset,
 	read_addr0,
@@ -626,7 +623,7 @@ module vc_Regfile_2r2w (
 			rfile[write_addr1] <= write_data1;
 	end
 endmodule
-module vc_Regfile_2r1w_zero (
+module grp_17_vc_Regfile_2r1w_zero (
 	clk,
 	reset,
 	rd_addr0,
@@ -648,7 +645,7 @@ module vc_Regfile_2r1w_zero (
 	input wire [31:0] wr_data;
 	wire [31:0] rf_read_data0;
 	wire [31:0] rf_read_data1;
-	vc_Regfile_2r1w #(
+	grp_17_vc_Regfile_2r1w #(
 		.p_data_nbits(32),
 		.p_num_entries(32)
 	) rfile(
@@ -665,7 +662,7 @@ module vc_Regfile_2r1w_zero (
 	assign rd_data0 = (rd_addr0 == 5'd0 ? 32'd0 : rf_read_data0);
 	assign rd_data1 = (rd_addr1 == 5'd0 ? 32'd0 : rf_read_data1);
 endmodule
-module vc_QueueCtrl1 (
+module grp_17_vc_QueueCtrl1 (
 	clk,
 	reset,
 	recv_val,
@@ -708,7 +705,7 @@ module vc_QueueCtrl1 (
 	assign send_val = ~empty || ((c_bypass_en && empty) && recv_val);
 	assign full_next = (do_deq && ~do_pipe ? 1'b0 : (do_enq && ~do_bypass ? 1'b1 : full));
 endmodule
-module vc_QueueDpath1 (
+module grp_17_vc_QueueDpath1 (
 	clk,
 	reset,
 	write_en,
@@ -725,7 +722,7 @@ module vc_QueueDpath1 (
 	input wire [p_msg_nbits - 1:0] recv_msg;
 	output wire [p_msg_nbits - 1:0] send_msg;
 	wire [p_msg_nbits - 1:0] qstore;
-	vc_EnReg #(.p_nbits(p_msg_nbits)) qstore_reg(
+	grp_17_vc_EnReg #(.p_nbits(p_msg_nbits)) qstore_reg(
 		.clk(clk),
 		.reset(reset),
 		.en(write_en),
@@ -734,7 +731,7 @@ module vc_QueueDpath1 (
 	);
 	generate
 		if (|(p_type & 4'b0010)) begin : genblk1
-			vc_Mux2 #(.p_nbits(p_msg_nbits)) bypass_mux(
+			grp_17_vc_Mux2 #(.p_nbits(p_msg_nbits)) bypass_mux(
 				.in0(qstore),
 				.in1(recv_msg),
 				.sel(bypass_mux_sel),
@@ -746,7 +743,7 @@ module vc_QueueDpath1 (
 		end
 	endgenerate
 endmodule
-module vc_QueueCtrl (
+module grp_17_vc_QueueCtrl (
 	clk,
 	reset,
 	recv_val,
@@ -775,7 +772,7 @@ module vc_QueueCtrl (
 	output wire [c_addr_nbits:0] num_free_entries;
 	wire [c_addr_nbits - 1:0] enq_ptr;
 	wire [c_addr_nbits - 1:0] enq_ptr_next;
-	vc_ResetReg #(.p_nbits(c_addr_nbits)) enq_ptr_reg(
+	grp_17_vc_ResetReg #(.p_nbits(c_addr_nbits)) enq_ptr_reg(
 		.clk(clk),
 		.reset(reset),
 		.d(enq_ptr_next),
@@ -783,7 +780,7 @@ module vc_QueueCtrl (
 	);
 	wire [c_addr_nbits - 1:0] deq_ptr;
 	wire [c_addr_nbits - 1:0] deq_ptr_next;
-	vc_ResetReg #(.p_nbits(c_addr_nbits)) deq_ptr_reg(
+	grp_17_vc_ResetReg #(.p_nbits(c_addr_nbits)) deq_ptr_reg(
 		.clk(clk),
 		.reset(reset),
 		.d(deq_ptr_next),
@@ -793,7 +790,7 @@ module vc_QueueCtrl (
 	assign read_addr = deq_ptr;
 	wire full;
 	wire full_next;
-	vc_ResetReg #(.p_nbits(1)) full_reg(
+	grp_17_vc_ResetReg #(.p_nbits(1)) full_reg(
 		.clk(clk),
 		.reset(reset),
 		.d(full_next),
@@ -828,7 +825,7 @@ module vc_QueueCtrl (
 	assign full_next = ((do_enq && ~do_deq) && (enq_ptr_inc == deq_ptr) ? 1'b1 : ((do_deq && full) && ~do_pipe ? 1'b0 : full));
 	assign num_free_entries = (full ? {c_addr_nbits + 1 {1'b0}} : (empty ? p_num_msgs[c_addr_nbits:0] : (enq_ptr > deq_ptr ? p_num_msgs[c_addr_nbits:0] - (enq_ptr - deq_ptr) : (deq_ptr > enq_ptr ? deq_ptr - enq_ptr : {c_addr_nbits + 1 {1'bx}}))));
 endmodule
-module vc_QueueDpath (
+module grp_17_vc_QueueDpath (
 	clk,
 	reset,
 	write_en,
@@ -851,7 +848,7 @@ module vc_QueueDpath (
 	input wire [p_msg_nbits - 1:0] recv_msg;
 	output wire [p_msg_nbits - 1:0] send_msg;
 	wire [p_msg_nbits - 1:0] read_data;
-	vc_Regfile_1r1w #(
+	grp_17_vc_Regfile_1r1w #(
 		.p_data_nbits(p_msg_nbits),
 		.p_num_entries(p_num_msgs)
 	) qstore(
@@ -865,7 +862,7 @@ module vc_QueueDpath (
 	);
 	generate
 		if (|(p_type & 4'b0010)) begin : genblk1
-			vc_Mux2 #(.p_nbits(p_msg_nbits)) bypass_mux(
+			grp_17_vc_Mux2 #(.p_nbits(p_msg_nbits)) bypass_mux(
 				.in0(read_data),
 				.in1(recv_msg),
 				.sel(bypass_mux_sel),
@@ -877,7 +874,7 @@ module vc_QueueDpath (
 		end
 	endgenerate
 endmodule
-module vc_Queue (
+module grp_17_vc_Queue (
 	clk,
 	reset,
 	recv_val,
@@ -905,7 +902,7 @@ module vc_Queue (
 		if (p_num_msgs == 1) begin : genblk1
 			wire write_en;
 			wire bypass_mux_sel;
-			vc_QueueCtrl1 #(.p_type(p_type)) ctrl(
+			grp_17_vc_QueueCtrl1 #(.p_type(p_type)) ctrl(
 				.clk(clk),
 				.reset(reset),
 				.recv_val(recv_val),
@@ -916,7 +913,7 @@ module vc_Queue (
 				.bypass_mux_sel(bypass_mux_sel),
 				.num_free_entries(num_free_entries)
 			);
-			vc_QueueDpath1 #(
+			grp_17_vc_QueueDpath1 #(
 				.p_type(p_type),
 				.p_msg_nbits(p_msg_nbits)
 			) dpath(
@@ -933,7 +930,7 @@ module vc_Queue (
 			wire bypass_mux_sel;
 			wire [c_addr_nbits - 1:0] write_addr;
 			wire [c_addr_nbits - 1:0] read_addr;
-			vc_QueueCtrl #(
+			grp_17_vc_QueueCtrl #(
 				.p_type(p_type),
 				.p_num_msgs(p_num_msgs)
 			) ctrl(
@@ -949,7 +946,7 @@ module vc_Queue (
 				.bypass_mux_sel(bypass_mux_sel),
 				.num_free_entries(num_free_entries)
 			);
-			vc_QueueDpath #(
+			grp_17_vc_QueueDpath #(
 				.p_type(p_type),
 				.p_msg_nbits(p_msg_nbits),
 				.p_num_msgs(p_num_msgs)
@@ -966,7 +963,7 @@ module vc_Queue (
 		end
 	endgenerate
 endmodule
-module SPI_v3_components_SPIMinionAdapterVRTL (
+module grp_17_SPI_v3_components_SPIMinionAdapterVRTL (
 	clk,
 	reset,
 	pull_en,
@@ -1009,7 +1006,7 @@ module SPI_v3_components_SPIMinionAdapterVRTL (
 	wire [nbits - 3:0] cm_q_send_msg;
 	reg cm_q_send_rdy;
 	wire cm_q_send_val;
-	vc_Queue #(
+	grp_17_vc_Queue #(
 		.p_type(4'b0000),
 		.p_msg_nbits(nbits - 2),
 		.p_num_msgs(num_entries)
@@ -1027,7 +1024,7 @@ module SPI_v3_components_SPIMinionAdapterVRTL (
 	wire [$clog2(num_entries):0] mc_q_num_free;
 	wire mc_q_recv_rdy;
 	reg mc_q_recv_val;
-	vc_Queue #(
+	grp_17_vc_Queue #(
 		.p_type(4'b0000),
 		.p_msg_nbits(nbits - 2),
 		.p_num_msgs(num_entries)
@@ -1052,7 +1049,7 @@ module SPI_v3_components_SPIMinionAdapterVRTL (
 		pull_msg_data = cm_q_send_msg & {nbits - 2 {pull_msg_val}};
 	end
 endmodule
-module SPI_v3_components_SPIMinionAdapterCompositeVRTL (
+module grp_17_SPI_v3_components_SPIMinionAdapterCompositeVRTL (
 	clk,
 	cs,
 	miso,
@@ -1094,7 +1091,7 @@ module SPI_v3_components_SPIMinionAdapterCompositeVRTL (
 	wire [nbits - 3:0] push_msg_data;
 	wire [nbits - 1:0] pull_msg;
 	wire [nbits - 1:0] push_msg;
-	SPI_v3_components_SPIMinionAdapterVRTL #(
+	grp_17_SPI_v3_components_SPIMinionAdapterVRTL #(
 		.nbits(nbits),
 		.num_entries(num_entries)
 	) adapter(
@@ -1116,7 +1113,7 @@ module SPI_v3_components_SPIMinionAdapterCompositeVRTL (
 		.send_val(send_val),
 		.parity(adapter_parity)
 	);
-	SPI_v3_components_SPIMinionVRTL #(.nbits(nbits)) minion(
+	grp_17_SPI_v3_components_SPIMinionVRTL #(.nbits(nbits)) minion(
 		.clk(clk),
 		.cs(cs),
 		.miso(miso),
@@ -1136,7 +1133,7 @@ module SPI_v3_components_SPIMinionAdapterCompositeVRTL (
 	assign push_msg_val_rd = push_msg[nbits - 2];
 	assign push_msg_data = push_msg[nbits - 3:0];
 endmodule
-module SPI_v3_components_SPIstackVRTL (
+module grp_17_SPI_v3_components_SPIstackVRTL (
 	clk,
 	reset,
 	loopthrough_sel,
@@ -1176,7 +1173,7 @@ module SPI_v3_components_SPIstackVRTL (
 	wire minion_in_val;
 	wire [nbits - 3:0] minion_in_msg;
 	wire minion_in_rdy;
-	SPI_v3_components_SPIMinionAdapterCompositeVRTL #(
+	grp_17_SPI_v3_components_SPIMinionAdapterCompositeVRTL #(
 		.nbits(nbits),
 		.num_entries(num_entries)
 	) minion(
@@ -1195,7 +1192,7 @@ module SPI_v3_components_SPIstackVRTL (
 		.send_msg(minion_out_msg),
 		.send_rdy(minion_out_rdy)
 	);
-	SPI_v3_components_LoopThroughVRTL #(.nbits(nbits - 2)) loopthrough(
+	grp_17_SPI_v3_components_LoopThroughVRTL #(.nbits(nbits - 2)) loopthrough(
 		.clk(clk),
 		.reset(reset),
 		.sel(loopthrough_sel),
@@ -1213,7 +1210,7 @@ module SPI_v3_components_SPIstackVRTL (
 		.downstream_resp_rdy(recv_rdy)
 	);
 endmodule
-module MemoryEngine (
+module grp_17_MemoryEngine (
 	clk,
 	reset,
 	recv_rdy,
@@ -1258,7 +1255,7 @@ module MemoryEngine (
 	wire send_val_temp;
 	assign send_msg = (send_val ? data_temp : 'b0);
 	assign send_val = ~counter_full && send_val_temp;
-	regfile_ReadRegfileDpath #(
+	grp_17_regfile_ReadRegfileDpath #(
 		.DATA_WIDTH(16),
 		.DATA_ENTRIES(DATA_ENTRIES)
 	) dpath(
@@ -1272,7 +1269,7 @@ module MemoryEngine (
 		.data(data_temp),
 		.counter_full(counter_full)
 	);
-	read_regfile_Cpath #(
+	grp_17_read_regfile_Cpath #(
 		.DATA_WIDTH(16),
 		.DATA_ENTRIES(DATA_ENTRIES)
 	) cpath(
@@ -1285,7 +1282,7 @@ module MemoryEngine (
 		.recv_rdy(recv_rdy)
 	);
 endmodule
-module regfile_ReadRegfileDpath (
+module grp_17_regfile_ReadRegfileDpath (
 	clk,
 	reset,
 	wrt_en,
@@ -1308,7 +1305,7 @@ module regfile_ReadRegfileDpath (
 	output wire [DATA_WIDTH - 1:0] data;
 	output wire counter_full;
 	reg [$clog2(DATA_ENTRIES):0] counter;
-	vc_Regfile_1r1w #(
+	grp_17_vc_Regfile_1r1w #(
 		.p_data_nbits(DATA_WIDTH),
 		.p_num_entries(DATA_ENTRIES)
 	) regFile(
@@ -1329,7 +1326,7 @@ module regfile_ReadRegfileDpath (
 		else
 			counter <= (stop_output ? 'b0 : counter);
 endmodule
-module read_regfile_Cpath (
+module grp_17_read_regfile_Cpath (
 	clk,
 	reset,
 	run,
@@ -1376,7 +1373,7 @@ module read_regfile_Cpath (
 		endcase
 	end
 endmodule
-module MemoryEngineLat (
+module grp_17_MemoryEngineLat (
 	clk,
 	reset,
 	recv_rdy,
@@ -1422,7 +1419,7 @@ module MemoryEngineLat (
 			wrt_addr <= wrt_addr;
 	wire [15:0] data_temp;
 	assign send_msg = (send_val ? data_temp : 'b0);
-	regfile_ReadRegfileLatDpath #(
+	grp_17_regfile_ReadRegfileLatDpath #(
 		.DATA_WIDTH(16),
 		.DATA_ENTRIES(DATA_ENTRIES),
 		.DATA_LAT(DATA_LAT)
@@ -1439,7 +1436,7 @@ module MemoryEngineLat (
 		.counter_lat_finish(counter_lat_finish),
 		.lat_en(lat_en)
 	);
-	read_regfileLat_Cpath #(
+	grp_17_read_regfileLat_Cpath #(
 		.DATA_WIDTH(16),
 		.DATA_ENTRIES(DATA_ENTRIES)
 	) cpath(
@@ -1454,7 +1451,7 @@ module MemoryEngineLat (
 		.recv_rdy(recv_rdy)
 	);
 endmodule
-module regfile_ReadRegfileLatDpath (
+module grp_17_regfile_ReadRegfileLatDpath (
 	clk,
 	reset,
 	wrt_en,
@@ -1483,7 +1480,7 @@ module regfile_ReadRegfileLatDpath (
 	output wire counter_lat_finish;
 	reg [$clog2(DATA_ENTRIES) - 1:0] counter;
 	reg [$clog2(DATA_ENTRIES) - 1:0] counter_lat;
-	vc_Regfile_1r1w #(
+	grp_17_vc_Regfile_1r1w #(
 		.p_data_nbits(DATA_WIDTH),
 		.p_num_entries(DATA_ENTRIES)
 	) regFile(
@@ -1510,7 +1507,7 @@ module regfile_ReadRegfileLatDpath (
 			counter_lat <= (lat_en ? counter_lat + 1 : 'b0);
 		end
 endmodule
-module read_regfileLat_Cpath (
+module grp_17_read_regfileLat_Cpath (
 	clk,
 	reset,
 	run,
@@ -1567,7 +1564,7 @@ module read_regfileLat_Cpath (
 		endcase
 	end
 endmodule
-module FixedMult (
+module grp_17_FixedMult (
 	a,
 	b,
 	result
@@ -1581,7 +1578,7 @@ module FixedMult (
 	assign partial = a * b;
 	assign result = partial[(INT_WIDTH + (2 * FRAC_WIDTH)) - 1:FRAC_WIDTH];
 endmodule
-module Pe (
+module grp_17_Pe (
 	reset,
 	clk,
 	a,
@@ -1608,7 +1605,7 @@ module Pe (
 	assign pass_shift_result = shift_result;
 	reg [(INT_WIDTH + FRAC_WIDTH) - 1:0] reg_output;
 	wire [(INT_WIDTH + FRAC_WIDTH) - 1:0] fixed_mult_result;
-	FixedMult #(
+	grp_17_FixedMult #(
 		.INT_WIDTH(INT_WIDTH),
 		.FRAC_WIDTH(FRAC_WIDTH)
 	) fixed_mult(
@@ -1638,7 +1635,7 @@ module Pe (
 			reg_pass_right <= reg_pass_right_in;
 		end
 endmodule
-module SystolicMultControl (
+module grp_17_SystolicMultControl (
 	clk,
 	reset,
 	run,
@@ -1733,7 +1730,7 @@ module SystolicMultControl (
 		endcase
 	end
 endmodule
-module SystolicMult (
+module grp_17_SystolicMult (
 	reset,
 	clk,
 	recv_msg,
@@ -1759,7 +1756,7 @@ module SystolicMult (
 	output wire produce_run;
 	wire finished;
 	wire shift_result;
-	SystolicMultControl #(
+	grp_17_SystolicMultControl #(
 		.SYSTOLIC_SIZE(SYSTOLIC_SIZE),
 		.SYSTOLIC_STEP_SIZE(SYSTOLIC_STEP_SIZE)
 	) systolicMultControl(
@@ -1780,7 +1777,7 @@ module SystolicMult (
 	wire [(INT_WIDTH + FRAC_WIDTH) - 1:0] pass_b_1;
 	wire [SYSTOLIC_SIZE - 1:0] pass_shift_result;
 	wire [SYSTOLIC_SIZE - 1:0] reg_finished;
-	Pe #(
+	grp_17_Pe #(
 		.INT_WIDTH(INT_WIDTH),
 		.FRAC_WIDTH(FRAC_WIDTH)
 	) pe0(
@@ -1796,7 +1793,7 @@ module SystolicMult (
 		.reg_pass_right(pass_b_0)
 	);
 	wire [(INT_WIDTH + FRAC_WIDTH) - 1:0] pe1_reg_pass_right;
-	Pe #(
+	grp_17_Pe #(
 		.INT_WIDTH(INT_WIDTH),
 		.FRAC_WIDTH(FRAC_WIDTH)
 	) pe1(
@@ -1813,7 +1810,7 @@ module SystolicMult (
 	);
 	wire pe2_pass_shift_result;
 	wire pe2_reg_finished;
-	Pe #(
+	grp_17_Pe #(
 		.INT_WIDTH(INT_WIDTH),
 		.FRAC_WIDTH(FRAC_WIDTH)
 	) pe2(
@@ -1831,7 +1828,7 @@ module SystolicMult (
 	wire pe3_pass_shift_result;
 	wire pe3_reg_finished;
 	wire [(INT_WIDTH + FRAC_WIDTH) - 1:0] pe3_reg_pass_right;
-	Pe #(
+	grp_17_Pe #(
 		.INT_WIDTH(INT_WIDTH),
 		.FRAC_WIDTH(FRAC_WIDTH)
 	) pe3(
@@ -1847,7 +1844,7 @@ module SystolicMult (
 		.reg_pass_right(pe3_reg_pass_right)
 	);
 endmodule
-module Wrapper (
+module grp_17_Wrapper (
 	clk,
 	reset,
 	send_rdy,
@@ -1922,7 +1919,7 @@ module Wrapper (
 	assign memory_engine_in_0_recv_msg[0] = recv_msg[1];
 	wire memoryEngine_a_recv_rdy;
 	wire memoryEngine_a_send_val;
-	MemoryEngine #(.DATA_ENTRIES(DATA_ENTRIES)) memoryEngine_a(
+	grp_17_MemoryEngine #(.DATA_ENTRIES(DATA_ENTRIES)) memoryEngine_a(
 		.clk(clk),
 		.reset(reset),
 		.recv_rdy(memoryEngine_a_recv_rdy),
@@ -1937,7 +1934,7 @@ module Wrapper (
 	assign memory_engine_in_1_recv_msg[0] = recv_msg[1];
 	wire memoryEngineLat_a_recv_rdy;
 	wire memoryEngineLat_a_send_val;
-	MemoryEngineLat #(
+	grp_17_MemoryEngineLat #(
 		.DATA_ENTRIES(DATA_ENTRIES),
 		.DATA_LAT(DATA_LAT)
 	) memoryEngineLat_a(
@@ -1955,7 +1952,7 @@ module Wrapper (
 	assign memory_engine_in_2_recv_msg[0] = recv_msg[1];
 	wire memoryEngine_b_recv_rdy;
 	wire memoryEngine_b_send_val;
-	MemoryEngine #(.DATA_ENTRIES(DATA_ENTRIES)) memoryEngine_b(
+	grp_17_MemoryEngine #(.DATA_ENTRIES(DATA_ENTRIES)) memoryEngine_b(
 		.clk(clk),
 		.reset(reset),
 		.recv_rdy(memoryEngine_b_recv_rdy),
@@ -1969,7 +1966,7 @@ module Wrapper (
 	assign memory_engine_in_3_recv_msg[1] = recv_msg[2];
 	assign memory_engine_in_3_recv_msg[0] = recv_msg[1];
 	wire memoryEngineLat_b_send_val;
-	MemoryEngineLat #(
+	grp_17_MemoryEngineLat #(
 		.DATA_ENTRIES(DATA_ENTRIES),
 		.DATA_LAT(DATA_LAT)
 	) memoryEngineLat_b(
@@ -1992,7 +1989,7 @@ module Wrapper (
 	assign systolic_mult_0_recv_msg[0] = recv_msg[0];
 	wire systolicMult_recv_val;
 	wire systolicMult_send_rdy;
-	SystolicMult #(
+	grp_17_SystolicMult #(
 		.INT_WIDTH(INT_WIDTH),
 		.FRAC_WIDTH(FRAC_WIDTH),
 		.SYSTOLIC_SIZE(SYSTOLIC_SIZE),
@@ -2013,7 +2010,7 @@ module Wrapper (
 	assign memory_engine_out_0_recv_msg[0] = produce_run;
 	assign memory_engine_out_0_send_rdy = send_rdy;
 	wire memoryEngineOut0_recv_rdy;
-	MemoryEngine #(.DATA_ENTRIES(2)) memoryEngineOut0(
+	grp_17_MemoryEngine #(.DATA_ENTRIES(2)) memoryEngineOut0(
 		.clk(clk),
 		.reset(reset),
 		.recv_rdy(memoryEngineOut0_recv_rdy),
@@ -2028,7 +2025,7 @@ module Wrapper (
 	assign memory_engine_out_1_recv_msg[0] = produce_run;
 	assign memory_engine_out_1_send_rdy = send_rdy;
 	wire memoryEngineOut1_recv_rdy;
-	MemoryEngine #(.DATA_ENTRIES(2)) memoryEngineOut1(
+	grp_17_MemoryEngine #(.DATA_ENTRIES(2)) memoryEngineOut1(
 		.clk(clk),
 		.reset(reset),
 		.recv_rdy(memoryEngineOut1_recv_rdy),
@@ -2039,7 +2036,7 @@ module Wrapper (
 		.send_msg(memory_engine_out_1_send_msg)
 	);
 endmodule
-module tapeout_block_test_WrapperVRTL (
+module grp_17_tapeout_block_test_WrapperVRTL (
 	clk,
 	reset,
 	send_rdy,
@@ -2063,7 +2060,7 @@ module tapeout_block_test_WrapperVRTL (
 	localparam DATA_LAT = 0;
 	localparam SYSTOLIC_SIZE = 2;
 	localparam SYSTOLIC_STEP_SIZE = DATA_ENTRIES;
-	Wrapper #(
+	grp_17_Wrapper #(
 		.DATA_ENTRIES(DATA_ENTRIES),
 		.DATA_LAT(DATA_LAT),
 		.INT_WIDTH(INT_WIDTH),
@@ -2081,7 +2078,7 @@ module tapeout_block_test_WrapperVRTL (
 		.recv_msg(recv_msg[22:0])
 	);
 endmodule
-module tapeout_SPI_TapeOutBlockVRTL (
+module grp_17_tapeout_SPI_TapeOutBlockVRTL (
 	clk,
 	reset,
 	loopthrough_sel,
@@ -2116,7 +2113,7 @@ module tapeout_SPI_TapeOutBlockVRTL (
 	wire recv_val;
 	wire [packet_nbits - 1:0] recv_msg;
 	wire recv_rdy;
-	SPI_v3_components_SPIstackVRTL #(
+	grp_17_SPI_v3_components_SPIstackVRTL #(
 		.nbits(nbits),
 		.num_entries(num_entries)
 	) SPIstack(
@@ -2136,7 +2133,7 @@ module tapeout_SPI_TapeOutBlockVRTL (
 		.recv_msg(recv_msg),
 		.recv_rdy(recv_rdy)
 	);
-	tapeout_block_test_WrapperVRTL SystolicMult_SPI_Test(
+	grp_17_tapeout_block_test_WrapperVRTL SystolicMult_SPI_Test(
 		.clk(clk),
 		.reset(reset_sync),
 		.send_val(recv_val),
@@ -2148,7 +2145,7 @@ module tapeout_SPI_TapeOutBlockVRTL (
 	);
 endmodule
 
-module tapeout_SPI_TapeOutBlockVRTL_sv2v (
+module grp_17_tapeout_SPI_TapeOutBlockVRTL_sv2v (
   output adapter_parity,
   input  clk,
   input  loopthrough_sel,
@@ -2159,7 +2156,7 @@ module tapeout_SPI_TapeOutBlockVRTL_sv2v (
   input  spi_min_mosi,
   input  spi_min_sclk
 );
-tapeout_SPI_TapeOutBlockVRTL #(
+grp_17_tapeout_SPI_TapeOutBlockVRTL #(
   .nbits(34),
   .num_entries(5)
 ) v(
@@ -2175,14 +2172,9 @@ tapeout_SPI_TapeOutBlockVRTL #(
 );
 endmodule
 
-
-`endif /* SPI_TAPEOUTBLOCKVRTL_SV2V */
 //-----------------------------------------------------------
-// Wrapper of placeholder SPI_TapeOutBlockVRTL_sv2v_noparam
+// grp_17_Wrapper of placeholder SPI_TapeOutBlockVRTL_sv2v_noparam
 //-----------------------------------------------------------
-
-`ifndef SPI_TAPEOUTBLOCKVRTL_SV2V_NOPARAM
-`define SPI_TAPEOUTBLOCKVRTL_SV2V_NOPARAM
 
 module grp_17_SPI_TapeOutBlockRTL_32bits_5entries
 (
@@ -2220,7 +2212,7 @@ module grp_17_SPI_TapeOutBlockRTL_32bits_5entries
   assign clk_en    = 1; // Input
   assign reset_en  = 1; // Input
 
-  tapeout_SPI_TapeOutBlockVRTL_sv2v
+  grp_17_tapeout_SPI_TapeOutBlockVRTL_sv2v
   #(
   ) v
   (
@@ -2235,6 +2227,4 @@ module grp_17_SPI_TapeOutBlockRTL_32bits_5entries
     .spi_min_sclk( spi_min_sclk )
   );
 endmodule
-
-`endif /* SPI_TAPEOUTBLOCKVRTL_SV2V_NOPARAM */
 
