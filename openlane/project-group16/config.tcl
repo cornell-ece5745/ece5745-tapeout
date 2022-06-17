@@ -18,11 +18,11 @@ set ::env(STD_CELL_LIBRARY) "sky130_fd_sc_hd"
 
 set script_dir [file dirname [file normalize [info script]]]
 
-set ::env(DESIGN_NAME) grp_15_SPI_TapeOutBlockRTL_32bits_5entries
+set ::env(DESIGN_NAME) grp_16_SPI_TapeOutBlockRTL_32bits_5entries
 
 set ::env(VERILOG_FILES) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/grp_15_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v"
+	$script_dir/../../verilog/rtl/grp_16_SPI_TapeOutBlockRTL_32bits_5entries__pickled.v"
 
 set ::env(DESIGN_IS_CORE) 0
 
@@ -31,12 +31,12 @@ set ::env(CLOCK_NET) "clk"
 set ::env(CLOCK_PERIOD) "100"
 
 set ::env(FP_SIZING) absolute
-set ::env(DIE_AREA) "0 0 1210 1510"
+set ::env(DIE_AREA) "0 0 700 700"
 
-set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
+# set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
-set ::env(PL_BASIC_PLACEMENT) 1
-set ::env(PL_TARGET_DENSITY) 0.05
+set ::env(PL_BASIC_PLACEMENT) 0
+set ::env(PL_TARGET_DENSITY) 0.21
 
 # Maximum layer used for routing is metal 4.
 # This is because this macro will be inserted in a top level (user_project_wrapper) 
