@@ -1,0 +1,234 @@
+#!/usr/bin/env python
+#=========================================================================
+# sort-xcel-sim [options]
+#=========================================================================
+#
+#  -h --help           Display this message
+#
+#  --impl              {fl,cl,rtl}
+#  --input <dataset>   {random,sorted-fwd,sorted-rev}
+#  --trace             Display line tracing
+#  --stats             Display statistics
+#  --translate         Translate RTL model to Verilog
+#  --dump-vcd          Dump VCD to sort-xcel-<impl>-<input>.vcd
+#  --dump-vtb          Dump a SystemVerilog test harness
+#
+# Author : Christopher Batten
+# Date   : March 16, 2015
+#
+
+# Hack to add project root to python path
+
+import os
+import sys
+
+sim_dir = os.path.dirname( os.path.abspath( __file__ ) )
+while sim_dir:
+  if os.path.exists( sim_dir + os.path.sep + "pymtl.ini" ):
+    sys.path.insert(0,sim_dir)
+    break
+  sim_dir = os.path.dirname(sim_dir)
+
+import argparse
+import re
+import struct
+
+from random import randint
+
+from pymtl3 import *
+from pymtl3.stdlib.test_utils import config_model_with_cmdline_opts
+from pymtl3.passes.backends.verilog import VerilogPlaceholderPass
+
+from proc.XcelMsg       import *
+from spmv_xcel  import SpmvXcelFL
+from spmv_xcel import SpmvXcelCtrlRTL
+
+from test.SpmvXcelFL_test import *
+
+#-------------------------------------------------------------------------
+# Command line processing
+#-------------------------------------------------------------------------
+
+class ArgumentParserWithCustomError(argparse.ArgumentParser):
+  def error( self, msg = "" ):
+    if ( msg ): print("\n ERROR: %s" % msg)
+    print("")
+    file = open( sys.argv[0] )
+    for ( lineno, line ) in enumerate( file ):
+      if ( line[0] != '#' ): sys.exit(msg != "")
+      if ( (lineno == 2) or (lineno >= 4) ): print( line[1:].rstrip("\n") )
+
+def parse_cmdline():
+  p = ArgumentParserWithCustomError( add_help=False )
+
+  # Standard command line arguments
+
+  p.add_argument( "-h", "--help",    action="store_true" )
+
+  # Additional commane line arguments for the simulator
+
+  p.add_argument( "--impl", default="fl", choices=["fl","rtl"] )
+
+  p.add_argument( "--num_pe", default="4", choices=["1","2","3","4","8","16","32","64"] )
+
+  p.add_argument( "--input", default="mega-mega",
+    choices=["mini","mega","mega-mega","random"] )
+
+  p.add_argument( "--trace",     action="store_true" )
+  p.add_argument( "--stats",     action="store_true" )
+  p.add_argument( "--translate", action="store_true" )
+  p.add_argument( "--dump-textwave", action="store_true" )
+  p.add_argument( "--dump-vcd",  action="store_true" )
+  p.add_argument( "--dump-vtb",  action="store_true" )
+
+  opts = p.parse_args()
+  if opts.help: p.error()
+  return opts
+
+#-------------------------------------------------------------------------
+# SpMV
+#-------------------------------------------------------------------------
+def spmv( num_rows, rows, cols, vals, v ):
+  dest = []
+  rows = [0] + rows
+  for i in range(num_rows): 
+    dest.append(0)
+    sum = 0
+    for j in range(rows[i], rows[i+1]):
+      sum += vals[j] * v[cols[j]]
+    dest[i] = sum
+  return dest
+
+#-------------------------------------------------------------------------
+# Main
+#-------------------------------------------------------------------------
+def main():
+  try:
+    import pypyjit
+    pypyjit.set_param("off")
+  except:
+    pass
+
+  opts = parse_cmdline()
+
+  # Create the input pattern
+
+  if opts.input == "mini":
+    input_rows   = rows_mini
+    input_cols   = cols_mini
+    input_vals   = vals_mini
+    input_vector = vector_mini
+
+  elif opts.input == "mega":
+    input_rows   = rows_mega
+    input_cols   = cols_mega
+    input_vals   = vals_mega
+    input_vector = vector_mega
+
+  elif opts.input == "mega-mega":
+    input_rows   = rows_mega_mega
+    input_cols   = cols_mega_mega
+    input_vals   = vals_mega_mega
+    input_vector = vector_mega_mega
+
+  elif opts.input == "random":
+    input_rows   = rows_rand_128x128
+    input_cols   = cols_rand_128x128
+    input_vals   = vals_rand_128x128
+    input_vector = vector_rand_128x128
+
+  # Determine which model to use in the simulator
+
+  model_impl_dict = {
+    "fl"  : SpmvXcelFL,
+    "rtl" : SpmvXcelCtrlRTL,
+  }
+
+  # Check if translation is valid
+
+  if opts.translate and not opts.impl.startswith("rtl"):
+    print("\n ERROR: --translate only works with RTL models \n")
+    exit(1)
+
+  # Convert test data into byte array
+
+  rows_bytes = struct.pack("<{}I".format(len(input_rows)),*input_rows)
+  cols_bytes = struct.pack("<{}I".format(len(input_cols)),*input_cols)
+  vals_bytes = struct.pack("<{}I".format(len(input_vals)),*input_vals)
+  vector_bytes    = struct.pack("<{}I".format(len(input_vector)),*input_vector)
+  num_rows = len(input_rows)
+  num_nnz  = input_rows[num_rows-1] 
+  num_pe = int(opts.num_pe)
+  
+  # Protocol messages
+
+  xcel_protocol_msgs = gen_xcel_protocol_msgs( 0x1000, num_rows, num_nnz, num_rows//num_pe )
+
+  # Create test harness (we can reuse the harness from unit testing)
+
+  th = TestHarness( model_impl_dict[ opts.impl ](num_pe), num_pe, opts.impl )
+
+  # Load the data
+
+  th.set_param("top.src.construct",  msgs=xcel_protocol_msgs[::2] )
+  th.set_param("top.sink.construct", msgs=xcel_protocol_msgs[1::2] )
+
+  # Create VCD filename
+
+  unique_name = f"spmv-xcel-{opts.impl}-{opts.input}"
+
+  cmdline_opts = {
+    'dump_vcd': f"{unique_name}" if opts.dump_vcd else '',
+    'dump_vtb': f"{unique_name}" if opts.dump_vtb else '',
+    'test_verilog': 'zeros' if opts.translate else '',
+    'test_yosys_verilog': '',
+    'dump_textwave': f"{unique_name}" if opts.dump_textwave else '',
+  }
+
+  # Configure the test harness component
+  config_model_with_cmdline_opts( th, cmdline_opts, duts=['xcel'] )
+
+  # Load the data into the test memory
+
+  th.mem.write_mem( 0x1000, rows_bytes )
+  th.mem.write_mem( 0x1000+4*(num_rows), cols_bytes )
+  th.mem.write_mem( 0x1000+4*(num_rows+num_nnz), vals_bytes )
+  th.mem.write_mem( 0x1000+4*(num_rows+2*num_nnz), vector_bytes )
+
+  # Apply necessary passes
+
+  # Create a simulator
+  th.apply( DefaultPassGroup( linetrace=opts.trace ) )
+    
+  # Reset test harness
+
+  th.sim_reset()
+
+  # Run simulation
+
+  while not th.done():
+    th.sim_tick()
+
+  # Extra ticks to make VCD easier to read
+
+  th.sim_tick()
+  th.sim_tick()
+  th.sim_tick()
+
+  # Retrieve data from test memory
+
+  result_bytes = th.mem.read_mem( 0x1000+4*(num_rows*2+num_nnz*2), len(vector_bytes))
+
+  # Convert result bytes into list of ints
+
+  result = list(struct.unpack("<{}I".format(num_rows),result_bytes))
+
+  # Compare result to spmv reference
+  assert result == spmv( num_rows, input_rows, input_cols, input_vals, input_vector )
+
+  # Display statistics
+
+  if opts.stats:
+    print( f"num_cycles = {th.sim_cycle_count()}" )
+
+main()

@@ -11,15 +11,23 @@ This is the repository for the Spring 2022 tapeout for ECE5745: Complex Digital 
  - GCD unit (Aidan McNay)
    - Macro name: grp_99
 
+Clone Repo
+--------------------------------------------------------------------------
+
+    % mkdir -p $HOME/vc/git-hub/cornell-ece5745
+    % cd $HOME/vc/git-hub/cornell-ece5745
+    % git clone git@github.com:cornell-ece5745/ece5745-tapeout
+    % cd $HOME/vc/git-hub/cornell-ece5745/ece5745-tapeout
+    % TODIR=$PWD
+    % cd $TODIR
+    % make install check-env install_mcw
+
 Group 15
 --------------------------------------------------------------------------
 
 ### group 15 tapein setup
 
-    % mkdir -p $HOME/vc/git-hub/cornell-ece5745
-    % cd $HOME/vc/git-hub/cornell-ece5745
-    % git clone git@github.com:cornell-ece5745/project-group15
-    % cd $HOME/vc/git-hub/cornell-ece5745/project-group15
+    % cd $TODIR/project-group15
     % TOPDIR=$PWD
 
 ### group 15 PyMTL sim
@@ -44,14 +52,14 @@ Group 15
       constraint    = 2.0 ns
       slack         = 0.387 ns
       actual_clk    = 1.613 ns
-     
+
      4-State Sim Results
       - [PASSED]: test_loopback
       - [PASSED]: test_small
       - [PASSED]: test_large
       - [PASSED]: test_long
       - [PASSED]: test_random
-     
+
      Fast-Functional Sim Results
       - [PASSED]: test_loopback
       - [PASSED]: test_small
@@ -61,11 +69,6 @@ Group 15
 
 ### group 15 tapeout setup
 
-    % mkdir -p $HOME/vc/git-hub/cornell-ece5745
-    % cd $HOME/vc/git-hub/cornell-ece5745
-    % git clone git@github.com:cornell-ece5745/ece5745-tapeout
-    % cd $HOME/vc/git-hub/cornell-ece5745/ece5745-tapeout
-    % TODIR=$PWD
     % cd $TODIR
     % make install check-env install_mcw
 
@@ -140,10 +143,7 @@ Group 17
 
 ### group 17 tapein setup
 
-    % mkdir -p $HOME/vc/git-hub/cornell-ece5745
-    % cd $HOME/vc/git-hub/cornell-ece5745
-    % git clone git@github.com:cornell-ece5745/project-group17
-    % cd $HOME/vc/git-hub/cornell-ece5745/project-group17
+    % cd $TODIR/project-group17
     % TOPDIR=$PWD
 
 ### group 17 PyMTL sim
@@ -168,12 +168,12 @@ Group 17
       constraint    = 2.0 ns
       slack         = 0.009 ns
       actual_clk    = 1.991 ns
-     
+
      4-State Sim Results
       - [PASSED]: test_2x2
       - [PASSED]: test_2x4
       - [PASSED]: test_loopback
-     
+
      Fast-Functional Sim Results
       - [PASSED]: test_2x2
       - [PASSED]: test_2x4
@@ -181,11 +181,6 @@ Group 17
 
 ### group 17 tapeout setup
 
-    % mkdir -p $HOME/vc/git-hub/cornell-ece5745
-    % cd $HOME/vc/git-hub/cornell-ece5745
-    % git clone git@github.com:cornell-ece5745/ece5745-tapeout
-    % cd $HOME/vc/git-hub/cornell-ece5745/ece5745-tapeout
-    % TODIR=$PWD
     % cd $TODIR
     % make install check-env install_mcw
 
@@ -256,11 +251,7 @@ Group 16
 
 ### group 16 tapein setup
 
-    % mkdir -p $HOME/vc/git-hub/cornell-ece5745
-
-    % cd $HOME/vc/git-hub/cornell-ece5745
-    % git clone git@github.com:cornell-ece5745/project-group16
-    % cd $HOME/vc/git-hub/cornell-ece5745/project-group16
+    % cd $TODIR/project-group16
     % TOPDIR=$PWD
 
 ### group 16 PyMTL sim
@@ -285,12 +276,12 @@ Group 16
       constraint    = 2.0 ns
       slack         = 0.862 ns
       actual_clk    = 1.138 ns
-     
+
      4-State Sim Results
       - [PASSED]: test_2x2
       - [PASSED]: test_2x4
       - [PASSED]: test_loopback
-     
+
      Fast-Functional Sim Results
       - [PASSED]: test_2x2
       - [PASSED]: test_2x4
@@ -298,11 +289,6 @@ Group 16
 
 ### group 16 tapeout setup
 
-    % mkdir -p $HOME/vc/git-hub/cornell-ece5745
-    % cd $HOME/vc/git-hub/cornell-ece5745
-    % git clone git@github.com:cornell-ece5745/ece5745-tapeout
-    % cd $HOME/vc/git-hub/cornell-ece5745/ece5745-tapeout
-    % TODIR=$PWD
     % cd $TODIR
     % make install check-env install_mcw
 
@@ -376,10 +362,7 @@ Group 99
 
 ### group 99 tapein setup
 
-    % mkdir -p $HOME/vc/git-hub/cornell-ece5745
-    % cd $HOME/vc/git-hub/cornell-ece5745
-    % git clone git@github.com:cornell-ece5745/project-group99
-    % cd $HOME/vc/git-hub/cornell-ece5745/project-group99
+    % cd $TODIR/project-group99
     % TOPDIR=$PWD
 
 ### group 99 PyMTL sim
@@ -397,11 +380,6 @@ Group 99
 
 ### group 99 tapeout setup
 
-    % mkdir -p $HOME/vc/git-hub/cornell-ece5745
-    % cd $HOME/vc/git-hub/cornell-ece5745
-    % git clone git@github.com:cornell-ece5745/ece5745-tapeout
-    % cd $HOME/vc/git-hub/cornell-ece5745/ece5745-tapeout
-    % TODIR=$PWD
     % cd $TODIR
     % make install check-env install_mcw
 
@@ -565,4 +543,3 @@ to compress them for a GitHub repo-friendly size. If you are pulling from
 a compressed repository, the files can be uncompressed with
 
     % make uncompress
-

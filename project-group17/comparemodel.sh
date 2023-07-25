@@ -1,0 +1,2 @@
+./runc.sh
+./runpy.sh

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.dat": "c",
+        "functional": "c"
+    }
+}

@@ -1,0 +1,91 @@
+#=========================================================================
+# Modular C++ Build System Subproject Makefile Fragment
+#=========================================================================
+# Please read the documenation in 'mcppbs-uguide.txt' for more details
+# on how the Modular C++ Build System works.
+
+ubmark_intdeps  = @ubmark_intdeps@
+ubmark_cppflags = @ubmark_cppflags@
+ubmark_ldflags  = @ubmark_ldflags@
+ubmark_libs     = @ubmark_libs@
+
+ubmark_hdrs = \
+  ubmark-vvadd.h \
+  ubmark-spmv.h \
+  ubmark-dense.h \
+
+ubmark_srcs = \
+  ubmark-vvadd.c \
+  ubmark-spmv.c \
+  ubmark-dense.c \
+
+ubmark_install_prog_srcs = \
+  ubmark-vvadd-test1.c \
+  ubmark-vvadd-test2.c \
+  ubmark-vvadd-eval.c \
+  ubmark-vvadd-dummy.c \
+  ubmark-sort.c \
+  ubmark-sort-dummy.c \
+  ubmark-quicksort-v1.c \
+  ubmark-quicksort-v2.c \
+  ubmark-quicksort-v3.c \
+  ubmark-accum.c \
+  ubmark-spmv-test.c \
+  ubmark-spmv-eval.c \
+  ubmark-spmv-eval-1.c \
+  ubmark-spmv-eval-2.c \
+  ubmark-spmv-eval-3.c \
+  ubmark-spmv-eval-4.c \
+  ubmark-spmv-eval-5.c \
+  ubmark-spmv-eval-100.c \
+  ubmark-dense-eval.c \
+  ubmark-dense-eval-1.c \
+  ubmark-dense-eval-2.c \
+  ubmark-dense-eval-3.c \
+  ubmark-dense-eval-4.c \
+  ubmark-dense-eval-5.c \
+  ubmark-dense-eval-100.c \
+  ubmark-dense-test.c \
+
+ubmark-check: ubmark-vvadd-test1 ubmark-vvadd-test2
+	./ubmark-vvadd-test1
+	./ubmark-vvadd-test2
+
+# Only include programs that use an accelerator if we are cross-compiling
+
+ifeq ($(riscv_crosscompile),yes)
+
+ubmark_hdrs += \
+  ubmark-vvadd-xcel.h \
+  ubmark-spmv.h \
+  ubmark-dense.h \
+
+ubmark_srcs += \
+  ubmark-vvadd-xcel.c \
+  ubmark-spmv.c \
+  ubmark-dense.c \
+
+ubmark_install_prog_srcs += \
+  ubmark-vvadd-xcel-test1.c \
+  ubmark-vvadd-xcel-eval.c \
+  ubmark-accum-xcel.c \
+  ubmark-null-xcel.c \
+  ubmark-sort-xcel.c \
+  ubmark-spmv-eval.c \
+  ubmark-spmv-eval-1.c \
+  ubmark-spmv-eval-2.c \
+  ubmark-spmv-eval-3.c \
+  ubmark-spmv-eval-4.c \
+  ubmark-spmv-eval-5.c \
+  ubmark-spmv-eval-100.c \
+  ubmark-spmv-test.c \
+  ubmark-dense-test.c \
+  ubmark-dense-eval.c \
+  ubmark-dense-eval-1.c \
+  ubmark-dense-eval-2.c \
+  ubmark-dense-eval-3.c \
+  ubmark-dense-eval-4.c \
+  ubmark-dense-eval-5.c \
+  ubmark-dense-eval-100.c \
+
+endif

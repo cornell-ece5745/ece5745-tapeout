@@ -1,0 +1,32 @@
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for g++... g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking for ar... ar
+checking for ranlib... ranlib
+checking for a BSD-compatible install... /usr/bin/install -c
+configure: configuring internal subproject common
+configure: configuring internal subproject ubmark
+configure: configuring internal subproject proj
+configure: creating ./config.status
+config.status: creating common.mk
+config.status: creating ubmark.mk
+config.status: creating proj.mk
+config.status: creating Makefile
+config.status: creating common-config.h
+config.status: common-config.h is unchanged
+config.status: creating ubmark-config.h
+config.status: ubmark-config.h is unchanged
+config.status: creating proj-config.h
+config.status: proj-config.h is unchanged
+g++ -Wall -g -O3 -MMD -MP -I.  -I../ubmark -I../common  -c ../ubmark/ubmark-base.c
